@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Páramo — Above the Clouds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── CSS Variables from Brand Guidelines ── */
+  :root {
+    /* Primary */
+    --paramo-deep: #0B1D1A;
+    --highland-moss: #1B4D3E;
+    --misty-sage: #5B8A72;
+    --morning-mist: #A8C5B8;
+    --cloud-layer: #E8F0EB;
+    --peak-snow: #F7FAF8;
+
+    /* Accent — Golden Frailejón */
+    --frailejon-gold: #C8963E;
+    --sun-through-mist: #E8C87A;
+    --warm-earth: #9E7230;
+
+    /* Signal */
+    --success: #3A8B5C;
+    --warning: #D4913B;
+    --error: #C44B4B;
+    --info: #4A7B9D;
+
+    /* Typography */
+    --font-display: 'Source Serif 4', 'Times New Roman', serif;
+    --font-body: 'Outfit', system-ui, sans-serif;
+
+    /* Spacing */
+    --radius: 14px;
+  }
+
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--cloud-layer);
+    background: var(--paramo-deep);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Utility ── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes mistDrift {
+    0%, 100% { transform: translateX(0) scaleX(1); opacity: 0.08; }
+    50% { transform: translateX(40px) scaleX(1.1); opacity: 0.14; }
+  }
+  @keyframes goldPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .animate-up {
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.45s; }
+  .delay-4 { animation-delay: 0.6s; }
+  .delay-5 { animation-delay: 0.75s; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.25rem 0;
+    background: rgba(11, 29, 26, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(168, 197, 184, 0.08);
+    transition: background 0.3s;
+  }
+  nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--peak-snow);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .logo .accent {
+    color: var(--frailejon-gold);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    margin-left: auto;
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--morning-mist);
+    text-decoration: none;
+    transition: color 0.25s;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--peak-snow); }
+  .nav-cta {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--paramo-deep);
+    background: var(--frailejon-gold);
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius);
+    transition: background 0.25s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover {
+    background: var(--sun-through-mist);
+    color: var(--paramo-deep);
+    transform: translateY(-1px);
+  }
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-shrink: 0;
+  }
+  .mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--morning-mist);
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 6rem;
+    overflow: hidden;
+  }
+
+  /* Mist layers */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 120%;
+    height: 200px;
+    background: radial-gradient(ellipse at center, rgba(27, 77, 62, 0.2) 0%, transparent 70%);
+    animation: mistDrift 12s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 15%;
+    right: -10%;
+    width: 100%;
+    height: 160px;
+    background: radial-gradient(ellipse at center, rgba(91, 138, 114, 0.12) 0%, transparent 70%);
+    animation: mistDrift 16s ease-in-out infinite reverse;
+    pointer-events: none;
+  }
+
+  /* Topo pattern overlay */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image:
+      repeating-conic-gradient(var(--highland-moss) 0% 25%, transparent 0% 50%) 0 0 / 60px 60px,
+      radial-gradient(circle at 30% 40%, rgba(200, 150, 62, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(27, 77, 62, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Gold light glow */
+  .gold-glow {
+    position: absolute;
+    top: -5%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200, 150, 62, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+    animation: goldPulse 8s ease-in-out infinite;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--frailejon-gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--frailejon-gold);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.08;
+    color: var(--peak-snow);
+    letter-spacing: -0.025em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--frailejon-gold);
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    line-height: 1.65;
+    color: var(--morning-mist);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--paramo-deep);
+    background: var(--frailejon-gold);
+    padding: 0.9rem 2rem;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  }
+  .btn-primary:hover {
+    background: var(--sun-through-mist);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200, 150, 62, 0.2);
+  }
+  .btn-primary:active { background: var(--warm-earth); transform: translateY(0); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--morning-mist);
+    background: transparent;
+    padding: 0.9rem 2rem;
+    border-radius: var(--radius);
+    border: 1px solid rgba(168, 197, 184, 0.2);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.25s, color 0.25s, transform 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--misty-sage);
+    color: var(--peak-snow);
+    transform: translateY(-2px);
+  }
+
+  /* Scroll cue */
+  .scroll-cue {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--misty-sage);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.2s forwards;
+  }
+  .scroll-cue .arrow {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--misty-sage), transparent);
+    animation: float 2s ease-in-out infinite;
+  }
+
+  /* ── SOCIAL PROOF BAR ── */
+  .proof-bar {
+    padding: 4rem 0;
+    border-top: 1px solid rgba(168, 197, 184, 0.06);
+    border-bottom: 1px solid rgba(168, 197, 184, 0.06);
+  }
+  .proof-bar .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .proof-item {
+    text-align: center;
+  }
+  .proof-number {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--frailejon-gold);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .proof-label {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--misty-sage);
+    letter-spacing: 0.04em;
+  }
+  .proof-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(168, 197, 184, 0.12);
+  }
+
+  /* ── SECTION DEFAULTS ── */
+  section {
+    padding: clamp(5rem, 10vw, 8rem) 0;
+  }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.7rem;
+    color: var(--frailejon-gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-tag::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--frailejon-gold);
+    opacity: 0.5;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.12;
+    color: var(--peak-snow);
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-subtitle {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--morning-mist);
+    max-width: 560px;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── WHAT WE BUILD ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: rgba(27, 77, 62, 0.08);
+    border: 1px solid rgba(168, 197, 184, 0.08);
+    border-radius: var(--radius);
+    padding: 2.2rem;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--frailejon-gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .service-card:hover {
+    border-color: rgba(200, 150, 62, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(200, 150, 62, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+  }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--peak-snow);
+    margin-bottom: 0.75rem;
+  }
+  .service-card p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--morning-mist);
+  }
+
+  /* ── HOW IT WORKS ── */
+  .process-section {
+    background: linear-gradient(180deg, var(--paramo-deep) 0%, rgba(27, 77, 62, 0.06) 50%, var(--paramo-deep) 100%);
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--highland-moss), transparent);
+  }
+  .step {
+    text-align: center;
+    position: relative;
+  }
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--paramo-deep);
+    border: 1px solid var(--highland-moss);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--frailejon-gold);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .step:hover .step-number {
+    border-color: var(--frailejon-gold);
+    box-shadow: 0 0 24px rgba(200, 150, 62, 0.15);
+  }
+  .step h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--peak-snow);
+    margin-bottom: 0.6rem;
+  }
+  .step p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--morning-mist);
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* ── RESULTS / TESTIMONIALS ── */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+  .result-card {
+    background: rgba(27, 77, 62, 0.06);
+    border: 1px solid rgba(168, 197, 184, 0.08);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    transition: border-color 0.3s;
+  }
+  .result-card:hover {
+    border-color: rgba(168, 197, 184, 0.15);
+  }
+  .result-quote {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--cloud-layer);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--frailejon-gold);
+  }
+  .result-stat {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--frailejon-gold);
+    margin-bottom: 0.25rem;
+  }
+  .result-stat-label {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--misty-sage);
+  }
+  .result-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .result-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--highland-moss);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--morning-mist);
+  }
+  .result-name {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--peak-snow);
+  }
+  .result-role {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--misty-sage);
+  }
+
+  /* ── PRICING ── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .price-card {
+    background: rgba(27, 77, 62, 0.06);
+    border: 1px solid rgba(168, 197, 184, 0.08);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .price-card:hover {
+    transform: translateY(-4px);
+  }
+  .price-card.featured {
+    border-color: var(--frailejon-gold);
+    background: rgba(200, 150, 62, 0.04);
+  }
+  .price-card.featured::before {
+    content: 'Most Popular';
+    position: absolute;
+    top: -12px;
+    left: 2rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paramo-deep);
+    background: var(--frailejon-gold);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+  }
+  .price-tier {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--misty-sage);
+    margin-bottom: 0.75rem;
+  }
+  .price-amount {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--peak-snow);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .price-amount span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--misty-sage);
+  }
+  .price-desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--morning-mist);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+  .price-features {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+  .price-features li {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--morning-mist);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(168, 197, 184, 0.06);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .price-features li::before {
+    content: '✓';
+    color: var(--success);
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .price-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: block;
+  }
+  .price-btn-primary {
+    background: var(--frailejon-gold);
+    color: var(--paramo-deep);
+    border: none;
+    cursor: pointer;
+  }
+  .price-btn-primary:hover {
+    background: var(--sun-through-mist);
+    transform: translateY(-1px);
+  }
+  .price-btn-secondary {
+    background: transparent;
+    color: var(--morning-mist);
+    border: 1px solid rgba(168, 197, 184, 0.15);
+    cursor: pointer;
+  }
+  .price-btn-secondary:hover {
+    border-color: var(--misty-sage);
+    color: var(--peak-snow);
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+  .cta-section .container {
+    position: relative;
+    z-index: 2;
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(27, 77, 62, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cta-section .section-title {
+    max-width: 600px;
+    margin: 0 auto 1rem;
+  }
+  .cta-section .section-subtitle {
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 0;
+    border-top: 1px solid rgba(168, 197, 184, 0.06);
+  }
+  footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .footer-brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--peak-snow);
+    text-decoration: none;
+  }
+  .footer-brand .accent { color: var(--frailejon-gold); }
+  .footer-copy {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--misty-sage);
+  }
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .footer-links a {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--misty-sage);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .footer-links a:hover { color: var(--peak-snow); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none !important;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(11, 29, 26, 0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1.5rem 2rem 2rem;
+      gap: 0.25rem;
+      border-bottom: 1px solid rgba(168, 197, 184, 0.08);
+    }
+    .nav-links.open {
+      display: flex !important;
+    }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block;
+      padding: 0.75rem 0;
+      font-size: 1rem;
+    }
+    .nav-cta {
+      display: inline-block;
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+    .mobile-menu-btn { display: block; }
+    .mobile-menu-btn.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .mobile-menu-btn.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-menu-btn.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    .process-steps {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .process-steps::before { display: none; }
+    .proof-bar .container { gap: 2rem; }
+    .proof-divider { display: none; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: 1fr; }
+    footer .container { flex-direction: column; text-align: center; }
+    .footer-left { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="container">
+    <a href="#" class="logo">P<span class="accent">á</span>ramo</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#cta" class="nav-cta">Book a Call</a></li>
+    </ul>
+    <button class="mobile-menu-btn" aria-label="Menu" id="menuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="gold-glow"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag animate-up">AI Automation Studio</div>
+      <h1 class="animate-up delay-1">We show you what's possible<br><em>then we build it</em></h1>
+      <p class="hero-sub animate-up delay-2">Custom AI automation for business owners. We operate at elevation so your business flows effortlessly downstream.</p>
+      <div class="hero-actions animate-up delay-3">
+        <a href="#cta" class="btn-primary">Book Your Discovery Call →</a>
+        <a href="#services" class="btn-secondary">See What We Build</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- ══ PROOF BAR ══ -->
+<div class="proof-bar">
+  <div class="container">
+    <div class="proof-item reveal">
+      <div class="proof-number">120+</div>
+      <div class="proof-label">Automations Deployed</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item reveal">
+      <div class="proof-number">40hrs</div>
+      <div class="proof-label">Saved Per Client / Month</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item reveal">
+      <div class="proof-number">5</div>
+      <div class="proof-label">AI Instances, One Dashboard</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item reveal">
+      <div class="proof-number">98%</div>
+      <div class="proof-label">Client Retention</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="container">
+    <div class="section-tag reveal">What We Build</div>
+    <h2 class="section-title reveal">Automation that compounds</h2>
+    <p class="section-subtitle reveal">Every system we build saves time today and creates leverage tomorrow. Here's what flows downstream from the páramo.</p>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">⚡</div>
+        <h3>AI Command Centers</h3>
+        <p>A single dashboard managing multiple AI instances. Monitor, control, and optimize all your automations from one place.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🔄</div>
+        <h3>Workflow Automation</h3>
+        <p>End-to-end systems that handle content creation, lead nurturing, customer onboarding, and operations — without you touching a thing.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🧠</div>
+        <h3>Custom AI Agents</h3>
+        <p>Purpose-built agents trained on your business data. They think like you, respond like you, and work around the clock.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📊</div>
+        <h3>Data Pipelines</h3>
+        <p>Automated collection, processing, and reporting. Turn raw data from scattered sources into actionable dashboards.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">✉️</div>
+        <h3>Smart Outreach Systems</h3>
+        <p>Personalized, AI-driven email and DM sequences that sound like you wrote them — because we trained the AI on your voice.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🔗</div>
+        <h3>Integration Architecture</h3>
+        <p>We connect your entire stack — CRM, email, payments, scheduling, content — into one cohesive, automated ecosystem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ══ -->
+<section id="process" class="process-section">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-tag reveal" style="justify-content:center;">How It Works</div>
+      <h2 class="section-title reveal" style="margin-left:auto;margin-right:auto;">Three steps to elevation</h2>
+      <p class="section-subtitle reveal" style="margin-left:auto;margin-right:auto;">We don't sell vaporware. We map your workflow, build the system, and hand you the keys.</p>
+    </div>
+
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-number">1</div>
+        <h3>Discovery Call</h3>
+        <p>We map your current workflows and identify the highest-leverage automation opportunities in your business.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-number">2</div>
+        <h3>We Build It</h3>
+        <p>Our team designs, builds, and tests your custom automation. You see demos at every stage — proof, not promises.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-number">3</div>
+        <h3>You Grow</h3>
+        <p>We deploy, train your team, and provide ongoing support. The system runs. You get your time back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESULTS ══ -->
+<section id="results">
+  <div class="container">
+    <div class="section-tag reveal">Results</div>
+    <h2 class="section-title reveal">What flows downstream</h2>
+    <p class="section-subtitle reveal">Real outcomes from real entrepreneurs. Every claim has a build behind it.</p>
+
+    <div class="results-grid">
+      <div class="result-card reveal">
+        <div class="result-quote">"They built a Command Center that manages 5 AI instances from one dashboard. I didn't know this was possible."</div>
+        <div class="result-stat">5x</div>
+        <div class="result-stat-label">AI capacity from a single interface</div>
+        <div class="result-author">
+          <div class="result-avatar">JR</div>
+          <div>
+            <div class="result-name">Jordan R.</div>
+            <div class="result-role">E-commerce Founder</div>
+          </div>
+        </div>
+      </div>
+      <div class="result-card reveal">
+        <div class="result-quote">"She got her mornings back. The automation handles everything from lead capture to booking — no manual follow-up."</div>
+        <div class="result-stat">40hrs</div>
+        <div class="result-stat-label">Saved per month on operations</div>
+        <div class="result-author">
+          <div class="result-avatar">MP</div>
+          <div>
+            <div class="result-name">Maria P.</div>
+            <div class="result-role">Online Course Creator</div>
+          </div>
+        </div>
+      </div>
+      <div class="result-card reveal">
+        <div class="result-quote">"We went from 3 tools and daily manual work to one integrated system that runs while we sleep."</div>
+        <div class="result-stat">3→1</div>
+        <div class="result-stat-label">Consolidated into a single system</div>
+        <div class="result-author">
+          <div class="result-avatar">TK</div>
+          <div>
+            <div class="result-name">Tyler K.</div>
+            <div class="result-role">Agency Owner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING ══ -->
+<section id="pricing">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-tag reveal" style="justify-content:center;">Pricing</div>
+      <h2 class="section-title reveal" style="margin-left:auto;margin-right:auto;">Service tiers designed for growth</h2>
+      <p class="section-subtitle reveal" style="margin-left:auto;margin-right:auto;">Every engagement starts with a discovery call. No surprises, no hidden fees.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-tier">OpenClaw</div>
+        <div class="price-amount">$500 <span>setup</span></div>
+        <p class="price-desc">Your own AI assistant, fully set up and ready to go. No technical skills needed.</p>
+        <ul class="price-features">
+          <li>We set it up for you</li>
+          <li>No coding required</li>
+          <li>Runs 24/7 on a virtual server</li>
+          <li>Control it from any messenger</li>
+          <li>10 skills pre-installed</li>
+          <li>Support if you get stuck</li>
+        </ul>
+        <a href="#cta" class="price-btn price-btn-primary">Get Started</a>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-tier">Summit</div>
+        <div class="price-amount">Custom</div>
+        <p class="price-desc">Full-stack AI infrastructure for businesses ready to go all-in on automation.</p>
+        <ul class="price-features">
+          <li>Unlimited automations</li>
+          <li>Dedicated automation lead</li>
+          <li>Custom AI agent development</li>
+          <li>Integration architecture</li>
+          <li>White-glove onboarding</li>
+        </ul>
+        <a href="#cta" class="price-btn price-btn-secondary">Let's Talk</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section id="cta" class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="container">
+    <div class="section-tag reveal" style="justify-content:center;">Ready?</div>
+    <h2 class="section-title reveal">Let's build something<br>for your workflow</h2>
+    <p class="section-subtitle reveal">Book a free discovery call. We'll map your business, show you what's possible, and build the plan — no pressure, no jargon.</p>
+    <div class="reveal">
+      <a href="#" class="btn-primary" style="font-size:1.05rem;padding:1rem 2.5rem;">Book Your Discovery Call →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-left">
+      <a href="#" class="footer-brand">P<span class="accent">á</span>ramo</a>
+      <span class="footer-copy">© 2026 Páramo. Above the clouds.</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#">Discord</a></li>
+      <li><a href="#">Podcast</a></li>
+      <li><a href="#">Twitter</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- ══ SCROLL REVEAL JS ══ -->
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.querySelector('.nav-links');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  // Close menu when a link is clicked
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuBtn.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
