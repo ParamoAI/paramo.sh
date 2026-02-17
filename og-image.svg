@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow1" cx="85%" cy="15%" r="40%">
+      <stop offset="0%" stop-color="#C8963E" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0B1D1A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="15%" cy="85%" r="35%">
+      <stop offset="0%" stop-color="#1B4D3E" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0B1D1A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0B1D1A"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+  
+  <!-- Tag -->
+  <text x="600" y="175" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="600" font-size="16" fill="#C8963E" letter-spacing="3">OPENCLAW IMPLEMENTATION STUDIO</text>
+  
+  <!-- Headline -->
+  <text x="600" y="260" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="58" fill="#F7FAF8">We show you what's possible</text>
+  <text x="600" y="330" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="58" fill="#C8963E" font-style="italic">then we build it</text>
+  
+  <!-- Sub -->
+  <text x="600" y="390" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="300" font-size="22" fill="#A8C5B8">Custom AI automation for business owners.</text>
+  
+  <!-- Pills -->
+  <rect x="270" y="425" width="140" height="38" rx="19" fill="none" stroke="#5B8A72" stroke-opacity="0.4"/>
+  <text x="340" y="449" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="500" font-size="14" fill="#5B8A72">✓ AI Agents</text>
+  
+  <rect x="430" y="425" width="140" height="38" rx="19" fill="none" stroke="#5B8A72" stroke-opacity="0.4"/>
+  <text x="500" y="449" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="500" font-size="14" fill="#5B8A72">✓ Runs 24/7</text>
+  
+  <rect x="590" y="425" width="190" height="38" rx="19" fill="none" stroke="#5B8A72" stroke-opacity="0.4"/>
+  <text x="685" y="449" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="500" font-size="14" fill="#5B8A72">✓ White-Glove Setup</text>
+  
+  <!-- Brand -->
+  <text x="600" y="575" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="24" fill="#F7FAF8">P<tspan fill="#C8963E">á</tspan>ramo</text>
+</svg>
