@@ -16,6 +16,10 @@
       <stop offset="0%" stop-color="#0F1F1A" stop-opacity="0"/>
       <stop offset="100%" stop-color="#000000" stop-opacity="0.4"/>
     </radialGradient>
+    <!-- Clip content below top rule -->
+    <clipPath id="contentClip">
+      <rect x="0" y="50" width="1200" height="580"/>
+    </clipPath>
   </defs>
 
   <!-- Background -->
@@ -25,7 +29,8 @@
   <!-- Top rule line -->
   <line x1="80" y1="45" x2="1120" y2="45" stroke="#7AAA8A" stroke-width="0.5" opacity="0.3"/>
 
-  <!-- Logo mark — centered, upper area -->
+  <!-- Logo mark — clipped below top rule -->
+  <g clip-path="url(#contentClip)">
   <circle cx="600" cy="135" r="100" fill="url(#glow)"/>
   <circle cx="600" cy="145" r="7" fill="url(#inner)"/>
   <circle cx="600" cy="145" r="3.5" fill="#FFFAED"/>
@@ -48,6 +53,8 @@
 
   <!-- Tagline -->
   <text x="600" y="375" text-anchor="middle" font-family="'Montserrat','Helvetica',sans-serif" font-size="13" fill="#D4A853" letter-spacing="8" font-weight="500">ABOVE THE CLOUDS</text>
+
+  </g>
 
   <!-- Description -->
   <text x="600" y="430" text-anchor="middle" font-family="'Outfit','Helvetica',sans-serif" font-size="18" fill="#A8C5B8" font-weight="300">Custom AI automation for business owners.</text>
