@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T9Z403DE2W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T9Z403DE2W');
+</script>
+<title>What Is an AI-Native Company? (And Why You Should Care) — Páramo</title>
+<meta name="description" content="There's a massive difference between a company that uses AI and one built on AI from day one. Here's why it matters.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://paramo.sh/blog/what-is-ai-native-company">
+<meta property="og:title" content="What Is an AI-Native Company? (And Why You Should Care)">
+<meta property="og:description" content="There's a massive difference between a company that uses AI and one built on AI from day one. Here's why it matters.">
+<meta property="og:image" content="https://paramo.sh/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Is an AI-Native Company? (And Why You Should Care)">
+<meta name="twitter:description" content="There's a massive difference between a company that uses AI and one built on AI from day one. Here's why it matters.">
+<meta name="twitter:image" content="https://paramo.sh/og-image.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../../assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paramo-deep: #0B1D1A;
+    --paramo-deep-alt: #0E2420;
+    --highland-moss: #1B4D3E;
+    --misty-sage: #5B8A72;
+    --morning-mist: #A8C5B8;
+    --cloud-layer: #E8F0EB;
+    --peak-snow: #F7FAF8;
+    --frailejon-gold: #C8963E;
+    --sun-through-mist: #E8C87A;
+    --warm-earth: #9E7230;
+    --font-display: 'Source Serif 4', 'Times New Roman', serif;
+    --font-body: 'Outfit', system-ui, sans-serif;
+    --radius: 14px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body); font-weight: 400;
+    color: var(--cloud-layer); background: var(--paramo-deep);
+    overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    min-height: 100vh; display: flex; flex-direction: column;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+  .narrow { max-width: 760px; margin: 0 auto; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes goldPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  .animate-up { opacity: 0; animation: fadeUp 0.8s ease-out forwards; }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.45s; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.25rem 0;
+    background: rgba(11, 29, 26, 0.7);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(168, 197, 184, 0.08);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.6rem;
+    color: var(--peak-snow); text-decoration: none;
+  }
+  .logo .accent { color: var(--frailejon-gold); }
+  .logo-mark { height: 28px; width: auto; vertical-align: middle; margin-right: 0.4rem; margin-top: -2px; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; margin-left: auto; }
+  .nav-links a {
+    font-family: var(--font-body); font-weight: 500; font-size: 0.9rem;
+    color: var(--morning-mist); text-decoration: none; transition: color 0.25s; letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--peak-snow); }
+  .nav-links a.active { color: var(--frailejon-gold); }
+  .nav-cta {
+    font-family: var(--font-body); font-weight: 600; font-size: 0.85rem;
+    color: var(--paramo-deep); background: var(--frailejon-gold);
+    padding: 0.6rem 1.4rem; border-radius: var(--radius);
+    transition: background 0.25s, transform 0.2s; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--sun-through-mist); color: var(--paramo-deep); transform: translateY(-1px); }
+  .mobile-menu-btn {
+    display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-shrink: 0;
+  }
+  .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--morning-mist); margin: 5px 0; transition: 0.3s; }
+
+  /* BREADCRUMB */
+  .breadcrumb { padding-top: 7rem; padding-bottom: 0; }
+  .breadcrumb a {
+    color: var(--misty-sage); text-decoration: none; font-size: 0.85rem; transition: color 0.25s;
+  }
+  .breadcrumb a:hover { color: var(--frailejon-gold); }
+  .breadcrumb span { color: var(--misty-sage); font-size: 0.85rem; margin: 0 0.5rem; }
+
+  /* HERO */
+  .case-hero { padding-top: 2.5rem; padding-bottom: 1.5rem; position: relative; }
+  .case-hero::before {
+    content: ''; position: absolute; top: -5rem; left: -10%; width: 120%; height: 120%;
+    background: radial-gradient(ellipse at 50% 20%, rgba(27, 77, 62, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .case-hero-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--frailejon-gold); margin-bottom: 1.5rem;
+  }
+  .case-hero-tag::before {
+    content: ''; width: 32px; height: 2px; background: var(--frailejon-gold);
+    animation: goldPulse 3s ease-in-out infinite;
+  }
+  .case-hero h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15;
+    color: var(--peak-snow); margin-bottom: 1.5rem; max-width: 680px;
+  }
+  .case-hero-sub {
+    font-size: 1.15rem; color: var(--morning-mist); max-width: 600px; line-height: 1.7;
+  }
+  .post-meta {
+    display: flex; align-items: center; gap: 1.5rem; margin-top: 1.5rem;
+    font-size: 0.9rem; color: var(--misty-sage);
+  }
+  .post-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+  /* CONTENT */
+  .case-content { padding-bottom: 4rem; }
+  .case-content h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.6rem; color: var(--peak-snow);
+    margin: 3rem 0 1.25rem; line-height: 1.3;
+  }
+  .case-content h3 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 1.2rem; color: var(--frailejon-gold);
+    margin: 2.5rem 0 1rem; line-height: 1.3;
+  }
+  .case-content p {
+    font-size: 1.05rem; line-height: 1.8; color: var(--morning-mist); margin-bottom: 1.25rem;
+  }
+  .case-content ul, .case-content ol {
+    margin: 1rem 0 1.5rem 1.5rem; color: var(--morning-mist);
+  }
+  .case-content li {
+    font-size: 1rem; line-height: 1.8; margin-bottom: 0.5rem;
+  }
+  .case-content li strong { color: var(--cloud-layer); }
+  .case-content strong { color: var(--cloud-layer); }
+  .case-content em { color: var(--cloud-layer); }
+  .case-content a { color: var(--frailejon-gold); text-decoration: none; transition: color 0.25s; }
+  .case-content a:hover { color: var(--sun-through-mist); }
+
+  /* BLOCKQUOTE */
+  .case-quote {
+    border-left: 3px solid var(--frailejon-gold);
+    padding: 1.5rem 2rem; margin: 2rem 0;
+    background: rgba(200, 150, 62, 0.04);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .case-quote p {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 1.15rem; color: var(--cloud-layer); line-height: 1.7; margin-bottom: 0;
+  }
+
+  /* CTA SECTION */
+  .case-cta {
+    text-align: center; padding: 4rem 0 6rem;
+    border-top: 1px solid rgba(168, 197, 184, 0.08);
+  }
+  .case-cta h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--peak-snow); margin-bottom: 1rem;
+  }
+  .case-cta p { color: var(--morning-mist); margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .btn-gold {
+    display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+    color: var(--paramo-deep); background: var(--frailejon-gold);
+    padding: 1rem 2.5rem; border-radius: var(--radius);
+    text-decoration: none; transition: background 0.25s, transform 0.2s;
+  }
+  .btn-gold:hover { background: var(--sun-through-mist); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(168, 197, 184, 0.08);
+    padding: 2.5rem 0; margin-top: auto;
+  }
+  footer .container {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-left { display: flex; align-items: center; gap: 1.5rem; }
+  .footer-brand {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.2rem;
+    color: var(--peak-snow); text-decoration: none;
+  }
+  .footer-brand .accent { color: var(--frailejon-gold); }
+  .footer-copy { font-size: 0.85rem; color: var(--misty-sage); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    font-size: 0.85rem; color: var(--morning-mist); text-decoration: none; transition: color 0.25s;
+  }
+  .footer-links a:hover { color: var(--peak-snow); }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(11, 29, 26, 0.95); backdrop-filter: blur(20px);
+      flex-direction: column; padding: 1.5rem; gap: 0;
+      border-bottom: 1px solid rgba(168, 197, 184, 0.08);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.8rem 0; font-size: 1rem; }
+    .nav-cta { display: inline-block; margin-top: 0.5rem; }
+    .mobile-menu-btn { display: block; }
+    .mobile-menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .case-hero { padding-top: 2rem; }
+    .breadcrumb { padding-top: 6rem; }
+    .post-meta { flex-wrap: wrap; gap: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo"><img src="../../assets/mark-bright-dark.svg" alt="Páramo" class="logo-mark">P<span class="accent">á</span>ramo</a>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/#process">Process</a></li>
+      <li><a href="/#results">Results</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/case-studies">Case Studies</a></li>
+      <li><a href="/blog" class="active">Blog</a></li>
+      <li><a href="https://calendly.com/d/cvkf-q3t-25j/free-discovery-call-with-paramo" target="_blank" class="nav-cta">Book a Call</a></li>
+    </ul>
+    <button class="mobile-menu-btn" aria-label="Menu" id="menuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="container narrow">
+    <a href="/">Home</a><span>›</span><a href="/blog">Blog</a><span>›</span><a href="/blog/what-is-ai-native-company">What Is an AI-Native Company?</a>
+  </div>
+</div>
+
+<section class="case-hero">
+  <div class="container narrow">
+    <div class="case-hero-tag animate-up">Insights</div>
+    <h1 class="animate-up delay-1">What Is an AI-Native Company? (And Why You Should Care)</h1>
+    <p class="case-hero-sub animate-up delay-2">There's a massive difference between a company that uses AI and one built on AI from day one. Here's why it matters.</p>
+    <div class="post-meta animate-up delay-3">
+      <span>📅 February 20, 2026</span>
+      <span>⏱ 7 min read</span>
+    </div>
+  </div>
+</section>
+
+<article class="case-content">
+  <div class="container narrow">
+
+    <p class="reveal">There's a new kind of company emerging — and it's not the one buying ChatGPT seats for its employees.</p>
+
+    <p class="reveal">Every business publication is talking about AI adoption. Fortune 500 companies are announcing "AI strategies." Consultants are charging six figures to help enterprises "integrate AI into their workflows." And most of it misses the point entirely.</p>
+
+    <p class="reveal">Because there's a massive difference between a company that <em>uses</em> AI and a company that's <em>built on</em> AI from day one.</p>
+
+    <p class="reveal">The first kind is AI-adopted. The second is <strong>AI-native</strong>. And understanding the difference might be the most important strategic insight for your business this year.</p>
+
+    <h2 class="reveal">AI-Adopted vs. AI-Native: It's Not a Spectrum — It's a Different Species</h2>
+
+    <p class="reveal">Think about how companies related to the internet in the late '90s. You had traditional retailers who eventually built websites (Walmart, Barnes & Noble). And you had companies born on the internet — companies where the internet wasn't a channel, it was the foundation (Amazon, Google).</p>
+
+    <p class="reveal">The retailers who "adopted" the internet bolted e-commerce onto existing supply chains, org charts, and ways of thinking. Some did it well. Many struggled for years. The internet-native companies? They built everything — hiring, logistics, culture, decision-making — around the assumption that the internet was the default.</p>
+
+    <p class="reveal">We're watching the exact same split happen with AI right now.</p>
+
+    <p class="reveal"><strong>AI-adopted companies</strong> take their existing org chart, their existing workflows, their existing headcount — and try to sprinkle AI on top. They buy copilot licenses. They automate a few email sequences. They add a chatbot to their website. The fundamental structure stays the same. AI is a tool in the toolbox.</p>
+
+    <p class="reveal"><strong>AI-native companies</strong> start from a radically different premise: <em>What if AI agents weren't tools, but team members?</em> What if you designed your entire operation — from day one — assuming that AI would handle the work that doesn't require a human?</p>
+
+    <p class="reveal">The result looks very different.</p>
+
+    <h2 class="reveal">What AI-Native Actually Looks Like</h2>
+
+    <p class="reveal">At Páramo AI, we're a three-person company. CEO, COO, CTO. That's the entire human headcount.</p>
+
+    <p class="reveal">But we don't operate like a three-person company. We operate like a company with a full bench — research, sales ops, design, content, strategy, finance, client success, security — because AI agents handle those functions. Not as side projects. Not as experiments. As core, daily operations.</p>
+
+    <p class="reveal">Our AI Chief of Staff, Frailejón, doesn't just answer questions when we ask them. It runs the operating rhythm of the company. It conducts research before sales calls. It drafts strategies. It monitors our pipeline. It manages handoffs between workstreams. It produces deliverables. It wakes up, checks what needs to happen, and does the work.</p>
+
+    <p class="reveal">This isn't a party trick. It's the operating model.</p>
+
+    <p class="reveal">And here's what that means in practice:</p>
+
+    <ul class="reveal">
+      <li><strong>Speed.</strong> A research task that would take a junior analyst a full day gets done in minutes. A competitive landscape that would take a consulting team a week materializes in hours. We move at a pace that doesn't match our headcount.</li>
+      <li><strong>Cost structure.</strong> We don't carry the overhead of a 30-person team. No office politics. No coordination tax across dozens of people. The humans focus on judgment, relationships, and decisions. Everything else has an AI agent on it.</li>
+      <li><strong>Coverage.</strong> We have functional depth in areas where a typical three-person startup would have blind spots. Sales ops, content, design, security — none of these fall through the cracks because "we'll get to it when we hire someone."</li>
+    </ul>
+
+    <p class="reveal">This is what AI-native means. It's not about the technology. It's about the <strong>organizational design</strong>.</p>
+
+    <h2 class="reveal">Why "Just Adding AI" Doesn't Get You There</h2>
+
+    <p class="reveal">If you're a business owner thinking, "Great, I'll just buy some AI tools and get the same result" — it's not that simple.</p>
+
+    <p class="reveal">AI-adopted companies hit predictable walls:</p>
+
+    <p class="reveal"><strong>The integration wall.</strong> Your existing workflows weren't designed for AI. You end up duct-taping automation onto processes built for humans, creating more complexity instead of less.</p>
+
+    <p class="reveal"><strong>The culture wall.</strong> Your team sees AI as a threat or a novelty, not a colleague. Adoption stalls because nobody's job was <em>designed</em> around working alongside agents.</p>
+
+    <p class="reveal"><strong>The imagination wall.</strong> When you start with existing roles and ask "where can AI help?", you're constrained by your current org chart. You'll automate 20% of a role here, 15% there. You'll never arrive at the radical simplicity of an AI-native operation because you're optimizing the old model instead of building a new one.</p>
+
+    <p class="reveal">AI-native companies skip these walls entirely. There's no legacy process to integrate with. No cultural resistance to manage. The operating model assumes AI from the start, so every workflow, every handoff, every decision point is designed for a hybrid human-AI team.</p>
+
+    <p class="reveal">It's the difference between converting a gas car to electric and designing a Tesla from scratch. Both can get you down the road. One is fundamentally more efficient.</p>
+
+    <h2 class="reveal">Why Business Owners Should Care (Even If You're Not Starting a New Company)</h2>
+
+    <p class="reveal">You might be thinking: "That's nice for a startup, but I already have a team and existing operations."</p>
+
+    <p class="reveal">Fair. But here's why this still matters to you:</p>
+
+    <p class="reveal"><strong>Your competitors are figuring this out.</strong> Somewhere in your industry, a lean team is building an AI-native operation that will compete with you at a fraction of your cost structure. They'll move faster, respond to market shifts quicker, and serve customers with a level of consistency that's hard to match with a fully human team at three times the size.</p>
+
+    <p class="reveal"><strong>Your margins are under pressure.</strong> Every business is feeling it — labor costs, complexity, the speed of change. AI-native operations aren't just a competitive advantage. For many businesses, they're becoming a <em>survival</em> advantage.</p>
+
+    <p class="reveal"><strong>You don't have to start from scratch.</strong> The principles of AI-native design can be applied incrementally. You can start by identifying one function — research, content, ops, data analysis — and rebuilding it from the ground up with AI agents as the primary workforce, humans as the oversight layer. Then expand from there.</p>
+
+    <p class="reveal">The key shift isn't technological. It's mental. Stop asking "where can AI help my team?" and start asking "if I were building this function from scratch today, with AI agents available, what would it look like?"</p>
+
+    <p class="reveal">That question — asked honestly — will lead you to a very different answer than buying another software license.</p>
+
+    <h2 class="reveal">The Emerging Playbook</h2>
+
+    <p class="reveal">We're early in this shift. The playbook for AI-native operations is still being written — frankly, by companies like ours that are living it every day and figuring out what works.</p>
+
+    <p class="reveal">But a few principles are becoming clear:</p>
+
+    <ol class="reveal">
+      <li><strong>Humans set direction. AI executes.</strong> The highest-value human work is judgment, taste, relationships, and strategy. Everything else is a candidate for an AI agent.</li>
+      <li><strong>Design workflows for agents, not around them.</strong> Don't retrofit. Rebuild. The best AI-native workflows look nothing like the human-only versions they replace.</li>
+      <li><strong>Treat AI agents as team members, not tools.</strong> Give them context. Give them memory. Give them clear responsibilities. The more you invest in your AI operations, the more capable they become.</li>
+      <li><strong>Start lean, stay lean.</strong> The goal isn't to replace a big team with AI. The goal is to never need the big team in the first place.</li>
+    </ol>
+
+    <h2 class="reveal">The Bottom Line</h2>
+
+    <p class="reveal">AI-native isn't a buzzword. It's an organizational architecture — one that's going to define the next generation of high-performing businesses.</p>
+
+    <p class="reveal">The companies that understand this early will build operations that are faster, leaner, and more adaptable than anything the traditional model can produce. The companies that don't will find themselves competing against teams that deliver Fortune 500 output with startup headcount.</p>
+
+    <p class="reveal">We built Páramo AI this way because we believe it's the future of how businesses operate. And we help other businesses get there — not by selling them another AI tool, but by helping them rethink how work gets done when AI agents are part of the team.</p>
+
+    <p class="reveal">If that's a conversation worth having, <a href="https://paramo.sh">we'd love to hear from you</a>.</p>
+
+  </div>
+</article>
+
+<section class="case-cta">
+  <div class="container">
+    <h2>Ready to see what AI can do for your business?</h2>
+    <p>Book a free discovery call. We'll map your workflows and show you what's possible — no pressure, no jargon.</p>
+    <a href="https://calendly.com/d/cvkf-q3t-25j/free-discovery-call-with-paramo" target="_blank" class="btn-gold">Book Your Discovery Call →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-left">
+      <a href="/" class="footer-brand">P<span class="accent">á</span>ramo</a>
+      <span class="footer-copy">© 2026 Páramo. Above the clouds.</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://discord.com/invite/xXE9TqGju" target="_blank">Discord</a></li>
+      <li><a href="#">Podcast</a></li>
+      <li><a href="https://x.com/tipbtdennis?s=21" target="_blank">Twitter</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.querySelector('.nav-links');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuBtn.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>

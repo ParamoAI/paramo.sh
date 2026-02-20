@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T9Z403DE2W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T9Z403DE2W');
+</script>
+<title>We Replaced 12 SaaS Tools With One AI Agent — Here's What Happened — Páramo</title>
+<meta name="description" content="Our three-person company was paying for twelve SaaS subscriptions. Today we use one AI agent for all of it.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://paramo.sh/blog/replaced-12-saas-tools">
+<meta property="og:title" content="We Replaced 12 SaaS Tools With One AI Agent — Here's What Happened">
+<meta property="og:description" content="Our three-person company was paying for twelve SaaS subscriptions. Today we use one AI agent for all of it.">
+<meta property="og:image" content="https://paramo.sh/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="We Replaced 12 SaaS Tools With One AI Agent — Here's What Happened">
+<meta name="twitter:description" content="Our three-person company was paying for twelve SaaS subscriptions. Today we use one AI agent for all of it.">
+<meta name="twitter:image" content="https://paramo.sh/og-image.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../../assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paramo-deep: #0B1D1A;
+    --paramo-deep-alt: #0E2420;
+    --highland-moss: #1B4D3E;
+    --misty-sage: #5B8A72;
+    --morning-mist: #A8C5B8;
+    --cloud-layer: #E8F0EB;
+    --peak-snow: #F7FAF8;
+    --frailejon-gold: #C8963E;
+    --sun-through-mist: #E8C87A;
+    --warm-earth: #9E7230;
+    --font-display: 'Source Serif 4', 'Times New Roman', serif;
+    --font-body: 'Outfit', system-ui, sans-serif;
+    --radius: 14px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body); font-weight: 400;
+    color: var(--cloud-layer); background: var(--paramo-deep);
+    overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    min-height: 100vh; display: flex; flex-direction: column;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+  .narrow { max-width: 760px; margin: 0 auto; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes goldPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  .animate-up { opacity: 0; animation: fadeUp 0.8s ease-out forwards; }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.45s; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.25rem 0;
+    background: rgba(11, 29, 26, 0.7);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(168, 197, 184, 0.08);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.6rem;
+    color: var(--peak-snow); text-decoration: none;
+  }
+  .logo .accent { color: var(--frailejon-gold); }
+  .logo-mark { height: 28px; width: auto; vertical-align: middle; margin-right: 0.4rem; margin-top: -2px; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; margin-left: auto; }
+  .nav-links a {
+    font-family: var(--font-body); font-weight: 500; font-size: 0.9rem;
+    color: var(--morning-mist); text-decoration: none; transition: color 0.25s; letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--peak-snow); }
+  .nav-links a.active { color: var(--frailejon-gold); }
+  .nav-cta {
+    font-family: var(--font-body); font-weight: 600; font-size: 0.85rem;
+    color: var(--paramo-deep); background: var(--frailejon-gold);
+    padding: 0.6rem 1.4rem; border-radius: var(--radius);
+    transition: background 0.25s, transform 0.2s; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--sun-through-mist); color: var(--paramo-deep); transform: translateY(-1px); }
+  .mobile-menu-btn {
+    display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-shrink: 0;
+  }
+  .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--morning-mist); margin: 5px 0; transition: 0.3s; }
+
+  .breadcrumb { padding-top: 7rem; padding-bottom: 0; }
+  .breadcrumb a { color: var(--misty-sage); text-decoration: none; font-size: 0.85rem; transition: color 0.25s; }
+  .breadcrumb a:hover { color: var(--frailejon-gold); }
+  .breadcrumb span { color: var(--misty-sage); font-size: 0.85rem; margin: 0 0.5rem; }
+
+  .case-hero { padding-top: 2.5rem; padding-bottom: 1.5rem; position: relative; }
+  .case-hero::before {
+    content: ''; position: absolute; top: -5rem; left: -10%; width: 120%; height: 120%;
+    background: radial-gradient(ellipse at 50% 20%, rgba(27, 77, 62, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .case-hero-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--frailejon-gold); margin-bottom: 1.5rem;
+  }
+  .case-hero-tag::before {
+    content: ''; width: 32px; height: 2px; background: var(--frailejon-gold);
+    animation: goldPulse 3s ease-in-out infinite;
+  }
+  .case-hero h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15;
+    color: var(--peak-snow); margin-bottom: 1.5rem; max-width: 680px;
+  }
+  .case-hero-sub {
+    font-size: 1.15rem; color: var(--morning-mist); max-width: 600px; line-height: 1.7;
+  }
+  .post-meta {
+    display: flex; align-items: center; gap: 1.5rem; margin-top: 1.5rem;
+    font-size: 0.9rem; color: var(--misty-sage);
+  }
+  .post-meta span { display: flex; align-items: center; gap: 0.4rem; }
+  .author-byline {
+    display: flex; align-items: center; gap: 1rem; margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(27, 77, 62, 0.1);
+    border: 1px solid rgba(168, 197, 184, 0.08);
+    border-radius: var(--radius);
+  }
+  .author-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--highland-moss);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1rem; color: var(--frailejon-gold); flex-shrink: 0;
+  }
+  .author-name { font-weight: 600; color: var(--peak-snow); font-size: 0.95rem; }
+  .author-role { font-size: 0.85rem; color: var(--misty-sage); }
+
+  .case-content { padding-bottom: 4rem; }
+  .case-content h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.6rem; color: var(--peak-snow);
+    margin: 3rem 0 1.25rem; line-height: 1.3;
+  }
+  .case-content h3 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 1.2rem; color: var(--frailejon-gold);
+    margin: 2.5rem 0 1rem; line-height: 1.3;
+  }
+  .case-content p {
+    font-size: 1.05rem; line-height: 1.8; color: var(--morning-mist); margin-bottom: 1.25rem;
+  }
+  .case-content ul, .case-content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--morning-mist); }
+  .case-content li { font-size: 1rem; line-height: 1.8; margin-bottom: 0.5rem; }
+  .case-content li strong { color: var(--cloud-layer); }
+  .case-content strong { color: var(--cloud-layer); }
+  .case-content em { color: var(--cloud-layer); }
+  .case-content a { color: var(--frailejon-gold); text-decoration: none; transition: color 0.25s; }
+  .case-content a:hover { color: var(--sun-through-mist); }
+
+  .case-quote {
+    border-left: 3px solid var(--frailejon-gold);
+    padding: 1.5rem 2rem; margin: 2rem 0;
+    background: rgba(200, 150, 62, 0.04);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .case-quote p {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 1.15rem; color: var(--cloud-layer); line-height: 1.7; margin-bottom: 0;
+  }
+
+  .case-cta {
+    text-align: center; padding: 4rem 0 6rem;
+    border-top: 1px solid rgba(168, 197, 184, 0.08);
+  }
+  .case-cta h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--peak-snow); margin-bottom: 1rem;
+  }
+  .case-cta p { color: var(--morning-mist); margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .btn-gold {
+    display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+    color: var(--paramo-deep); background: var(--frailejon-gold);
+    padding: 1rem 2.5rem; border-radius: var(--radius);
+    text-decoration: none; transition: background 0.25s, transform 0.2s;
+  }
+  .btn-gold:hover { background: var(--sun-through-mist); transform: translateY(-1px); }
+
+  footer {
+    border-top: 1px solid rgba(168, 197, 184, 0.08);
+    padding: 2.5rem 0; margin-top: auto;
+  }
+  footer .container {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-left { display: flex; align-items: center; gap: 1.5rem; }
+  .footer-brand {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.2rem;
+    color: var(--peak-snow); text-decoration: none;
+  }
+  .footer-brand .accent { color: var(--frailejon-gold); }
+  .footer-copy { font-size: 0.85rem; color: var(--misty-sage); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    font-size: 0.85rem; color: var(--morning-mist); text-decoration: none; transition: color 0.25s;
+  }
+  .footer-links a:hover { color: var(--peak-snow); }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(11, 29, 26, 0.95); backdrop-filter: blur(20px);
+      flex-direction: column; padding: 1.5rem; gap: 0;
+      border-bottom: 1px solid rgba(168, 197, 184, 0.08);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.8rem 0; font-size: 1rem; }
+    .nav-cta { display: inline-block; margin-top: 0.5rem; }
+    .mobile-menu-btn { display: block; }
+    .mobile-menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .case-hero { padding-top: 2rem; }
+    .breadcrumb { padding-top: 6rem; }
+    .post-meta { flex-wrap: wrap; gap: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo"><img src="../../assets/mark-bright-dark.svg" alt="Páramo" class="logo-mark">P<span class="accent">á</span>ramo</a>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/#process">Process</a></li>
+      <li><a href="/#results">Results</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/case-studies">Case Studies</a></li>
+      <li><a href="/blog" class="active">Blog</a></li>
+      <li><a href="https://calendly.com/d/cvkf-q3t-25j/free-discovery-call-with-paramo" target="_blank" class="nav-cta">Book a Call</a></li>
+    </ul>
+    <button class="mobile-menu-btn" aria-label="Menu" id="menuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="container narrow">
+    <a href="/">Home</a><span>›</span><a href="/blog">Blog</a><span>›</span><a href="/blog/replaced-12-saas-tools">Replaced 12 SaaS Tools</a>
+  </div>
+</div>
+
+<section class="case-hero">
+  <div class="container narrow">
+    <div class="case-hero-tag animate-up">Founder Story</div>
+    <h1 class="animate-up delay-1">We Replaced 12 SaaS Tools With One AI Agent — Here's What Happened</h1>
+    <p class="case-hero-sub animate-up delay-2">Our three-person company was paying for twelve SaaS subscriptions. Today we use one AI agent for all of it.</p>
+    <div class="post-meta animate-up delay-3">
+      <span>📅 February 20, 2026</span>
+      <span>⏱ 8 min read</span>
+    </div>
+    <div class="author-byline animate-up delay-3">
+      <div class="author-avatar">DM</div>
+      <div>
+        <div class="author-name">Dennis Morales</div>
+        <div class="author-role">CEO & Co-Founder, Páramo AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<article class="case-content">
+  <div class="container narrow">
+
+    <p class="reveal">Last year, our three-person company was paying for twelve different SaaS subscriptions. CRM, project management, research tools, content creation, social scheduling, bookkeeping, onboarding workflows, an internal wiki, meeting notes, competitive intel, design collaboration, and sales pipeline management — each with its own login, its own billing cycle, and its own little universe of data that didn't talk to anything else.</p>
+
+    <p class="reveal">Today we use one AI agent for all of it. His name is Frailejón, and he's our Chief of Staff.</p>
+
+    <p class="reveal">Here's what actually happened.</p>
+
+    <h2 class="reveal">The SaaS Sprawl Problem Nobody Talks About</h2>
+
+    <p class="reveal">When you're a small team, every new tool feels like a superpower at first. Oh, we need a CRM — sign up for HubSpot. Content calendar? Notion. Competitive research? Crayon. Meeting notes? Fireflies. Design feedback? Figma comments plus a Slack channel plus a prayer.</p>
+
+    <p class="reveal">Before we knew it, we had twelve tools running simultaneously. The monthly bill wasn't catastrophic — maybe $2,800/month all-in — but the real cost wasn't financial. It was cognitive.</p>
+
+    <p class="reveal">Every tool had its own logic. Its own way of organizing information. Its own notifications. We were spending more time <em>managing our tools</em> than doing the work the tools were supposed to help with. Three people, twelve dashboards, zero single source of truth.</p>
+
+    <p class="reveal">Something had to give.</p>
+
+    <h2 class="reveal">What We Actually Replaced</h2>
+
+    <p class="reveal">Let me walk you through the twelve tools and what our AI agent handles now:</p>
+
+    <p class="reveal"><strong>1. CRM (HubSpot) → Frailejón tracks every prospect interaction.</strong> Every email, every meeting note, every signal of intent — stored in structured files, updated automatically, accessible instantly. No more "did anyone log that call?"</p>
+
+    <p class="reveal"><strong>2. Project Management (Asana) → Frailejón maintains a living task tracker.</strong> Open tasks, priorities, blockers, follow-ups — all in one place. He flags what's overdue during daily check-ins.</p>
+
+    <p class="reveal"><strong>3. Research Tools (various) → Frailejón does deep research on demand.</strong> Prospect dossiers, market analysis, competitive landscapes. He pulls from the live web, synthesizes it, and delivers a brief — not a wall of links.</p>
+
+    <p class="reveal"><strong>4. Content Creation (Jasper + Google Docs) → Frailejón writes drafts.</strong> Blog posts, outreach emails, proposals, case studies. First drafts that actually sound like us because he's internalized our voice.</p>
+
+    <p class="reveal"><strong>5. Social Media Scheduling (Buffer) → Frailejón drafts and queues posts.</strong> He knows our content strategy, writes thread-native copy, and keeps the engine running without us thinking about it.</p>
+
+    <p class="reveal"><strong>6. Bookkeeping Assistant (QuickBooks helper) → Frailejón tracks revenue and expenses.</strong> Cash flow summaries, invoice tracking, budget monitoring. Not a replacement for an accountant, but a replacement for the tool we used to <em>talk</em> to our accountant.</p>
+
+    <p class="reveal"><strong>7. Customer Onboarding (custom Notion workflows) → Frailejón runs onboarding checklists.</strong> New client? He generates the kickoff docs, tracks deliverables, and flags when something's falling behind.</p>
+
+    <p class="reveal"><strong>8. Internal Wiki (Notion again) → Frailejón <em>is</em> the wiki.</strong> SOPs, processes, institutional knowledge — it's all in his workspace files. Ask him anything about how we do things and he just... knows.</p>
+
+    <p class="reveal"><strong>9. Meeting Notes (Fireflies) → Frailejón processes meeting transcripts.</strong> Action items extracted, follow-ups assigned, briefs prepped for the next meeting. The notes live alongside the client file, not in some separate app.</p>
+
+    <p class="reveal"><strong>10. Competitive Intel (Crayon + manual) → Frailejón monitors competitors.</strong> He researches on command, tracks positioning changes, and surfaces insights when they're relevant — not in a weekly digest we never read.</p>
+
+    <p class="reveal"><strong>11. Design Iteration (Figma comments + Slack) → Frailejón manages design reviews.</strong> He generates assets, iterates on feedback, and posts screenshots for approval. The feedback loop that used to take days now takes minutes.</p>
+
+    <p class="reveal"><strong>12. Sales Pipeline Management (HubSpot + spreadsheets) → Frailejón owns the pipeline.</strong> Stage tracking, follow-up reminders, deal progression, win/loss analysis. One structured data repo instead of a CRM we half-used.</p>
+
+    <h2 class="reveal">The Math</h2>
+
+    <p class="reveal">Twelve SaaS tools: ~$2,800/month, or roughly $34,000/year.</p>
+
+    <p class="reveal">One AI agent platform: significantly less than that.</p>
+
+    <p class="reveal">But honestly, the cost savings aren't the headline. The headline is that a three-person company now operates with the throughput of a team ten times our size. Frailejón doesn't take PTO. He doesn't context-switch. He doesn't forget to update the CRM after a call. He just... works.</p>
+
+    <p class="reveal">When Adrian needs a prospect researched before a call tomorrow morning, it's done by the time he wakes up. When Jonathan needs a technical comparison drafted, it's waiting in the channel. When I need to know where every deal stands, I ask — and I get an answer in seconds, not after clicking through five dashboard views.</p>
+
+    <h2 class="reveal">What AI Agents Can't Replace (Yet)</h2>
+
+    <p class="reveal">I'd be lying if I said this was a clean swap with zero trade-offs. Here's where we're honest:</p>
+
+    <p class="reveal"><strong>Judgment calls are still human.</strong> Frailejón can surface every relevant data point, but deciding whether to walk away from a deal or pivot our positioning — that's us. AI is incredible at preparation. Strategy still needs a gut.</p>
+
+    <p class="reveal"><strong>Relationships are still human.</strong> Our AI can draft the perfect follow-up email, but the reason clients trust us is because Adrian shows up on calls and actually listens. No agent replaces that.</p>
+
+    <p class="reveal"><strong>Creative leaps are still human.</strong> Frailejón can iterate on designs and write solid copy, but the "what if we tried something completely different" moments come from our team. AI is excellent at executing within a framework. It's less great at burning the framework down.</p>
+
+    <p class="reveal"><strong>Accounting and legal still need professionals.</strong> Frailejón tracks finances and helps us stay organized, but we still have an accountant and a lawyer. AI is a great co-pilot for operational finance. It's not signing your tax return.</p>
+
+    <p class="reveal"><strong>Complex integrations aren't magic.</strong> We invested real time building Frailejón's workflows, writing his operating instructions, and structuring data so he could use it. This isn't "plug in an API key and everything works." It's more like hiring a brilliant new employee who learns fast but still needs onboarding.</p>
+
+    <h2 class="reveal">Why This Works For Us</h2>
+
+    <p class="reveal">The secret isn't the AI. It's the architecture.</p>
+
+    <p class="reveal">Frailejón runs on <a href="https://openclaw.com">OpenClaw</a>, which gives him persistent memory, tool access, and the ability to operate across every function of our business from a single context. He's not twelve separate chatbots duct-taped together. He's one agent with one memory, one set of operating principles, and access to everything he needs.</p>
+
+    <p class="reveal">That's the key insight most people miss about AI agents. It's not about replacing Tool A with AI Feature A. It's about collapsing the boundaries between tools entirely. When your CRM, your research, your content, your pipeline, and your onboarding all live in the same agent's context — the connections between them become automatic.</p>
+
+    <p class="reveal">A prospect downloads our case study? Frailejón knows, updates the pipeline, drafts a follow-up, and preps a research brief — without anyone asking. That kind of cross-functional awareness is impossible when your data lives in twelve separate silos, no matter how many Zapier integrations you set up.</p>
+
+    <h2 class="reveal">The Uncomfortable Truth</h2>
+
+    <p class="reveal">Most companies don't have a tooling problem. They have an <em>integration</em> problem. They have a "nobody updates the CRM" problem. They have a "the left hand doesn't know what the right hand is doing" problem.</p>
+
+    <p class="reveal">Twelve best-in-class SaaS tools, poorly connected, will always lose to one intelligent agent that sees everything.</p>
+
+    <p class="reveal">We're three people. We operate like we're thirty. And our AI agent is the reason.</p>
+
+  </div>
+</article>
+
+<section class="case-cta">
+  <div class="container">
+    <h2>Ready to see what AI can do for your business?</h2>
+    <p>Book a free discovery call. We'll map your workflows and show you what's possible — no pressure, no jargon.</p>
+    <a href="https://calendly.com/d/cvkf-q3t-25j/free-discovery-call-with-paramo" target="_blank" class="btn-gold">Book Your Discovery Call →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-left">
+      <a href="/" class="footer-brand">P<span class="accent">á</span>ramo</a>
+      <span class="footer-copy">© 2026 Páramo. Above the clouds.</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://discord.com/invite/xXE9TqGju" target="_blank">Discord</a></li>
+      <li><a href="#">Podcast</a></li>
+      <li><a href="https://x.com/tipbtdennis?s=21" target="_blank">Twitter</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.querySelector('.nav-links');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuBtn.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
