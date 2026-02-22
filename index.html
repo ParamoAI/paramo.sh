@@ -1196,9 +1196,51 @@
 </section>
 
 <!-- ══ NEWSLETTER ══ -->
-<section id="newsletter" style="padding:4rem 2rem;text-align:center;background:#1a1a2e;border-top:1px solid rgba(200,150,62,.2)">
-  <h2 style="font-size:1.8rem;color:var(--peak-snow);margin-bottom:.5rem">Stay above the clouds</h2>
-  <p style="color:rgba(247,250,248,.6);margin-bottom:1.5rem;max-width:480px;margin-left:auto;margin-right:auto">AI insights, case studies, and Páramo updates — straight to your inbox.</p>
+<style>
+  .newsletter-section {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: var(--paramo-deep);
+    border-top: 1px solid rgba(200,150,62,.15);
+    position: relative;
+  }
+  .newsletter-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(27,77,62,.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .newsletter-section h2 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--peak-snow);
+    margin-bottom: .5rem;
+  }
+  .newsletter-section h2 span { color: var(--frailejon-gold); }
+  .newsletter-section p {
+    font-family: var(--font-body);
+    color: var(--morning-mist);
+    margin-bottom: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  /* Kit form overrides */
+  .formkit-form { background: transparent !important; border: none !important; padding: 0 !important; max-width: 500px !important; margin: 0 auto !important; }
+  .formkit-form [data-style="clean"] { padding: 0 !important; }
+  .formkit-input { background: rgba(247,250,248,.08) !important; border: 1px solid rgba(168,197,184,.2) !important; border-radius: var(--radius) !important; color: var(--peak-snow) !important; font-family: var(--font-body) !important; padding: 14px 18px !important; font-size: 1rem !important; }
+  .formkit-input::placeholder { color: var(--misty-sage) !important; }
+  .formkit-input:focus { border-color: var(--frailejon-gold) !important; outline: none !important; box-shadow: 0 0 0 2px rgba(200,150,62,.2) !important; }
+  .formkit-submit { background: var(--frailejon-gold) !important; border-radius: var(--radius) !important; font-family: var(--font-body) !important; font-weight: 600 !important; color: var(--paramo-deep) !important; padding: 14px 28px !important; font-size: 1rem !important; border: none !important; transition: background .25s, transform .2s !important; }
+  .formkit-submit:hover { background: var(--sun-through-mist) !important; transform: translateY(-1px) !important; }
+  .formkit-powered-by-convertkit-container, .formkit-guarantee { display: none !important; }
+</style>
+<section id="newsletter" class="newsletter-section">
+  <h2>Stay above the <span>clouds</span></h2>
+  <p>AI insights, case studies, and Páramo updates — straight to your inbox.</p>
   <script async data-uid="4d6bdfd214" src="https://paramo-2.kit.com/4d6bdfd214/index.js"></script>
 </section>
 
