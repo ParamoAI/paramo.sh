@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T9Z403DE2W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T9Z403DE2W');
+</script>
+<title>What is OpenClaw? The Complete Guide for Business Owners — Páramo</title>
+<meta name="description" content="What is OpenClaw? A self-hosted AI assistant gateway that connects WhatsApp, Slack, Discord, Telegram and more to powerful AI agents. Learn how it works, who it's for, and why businesses use it.">
+<link rel="canonical" href="https://paramo.sh/blog/what-is-openclaw">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://paramo.sh/blog/what-is-openclaw">
+<meta property="og:title" content="What is OpenClaw? The Complete Guide for Business Owners">
+<meta property="og:description" content="What is OpenClaw? A self-hosted AI assistant gateway that connects your chat apps to AI agents. Learn how it works, who it's for, and why businesses use it.">
+<meta property="og:image" content="https://paramo.sh/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What is OpenClaw? The Complete Guide for Business Owners">
+<meta name="twitter:description" content="What is OpenClaw? A self-hosted AI assistant gateway that connects your chat apps to AI agents. Learn how it works, who it's for, and why businesses use it.">
+<meta name="twitter:image" content="https://paramo.sh/og-image.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../../assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What is OpenClaw? The Complete Guide for Business Owners",
+  "description": "A comprehensive guide to OpenClaw — the open-source, self-hosted AI assistant gateway that connects your messaging apps to AI agents.",
+  "author": {
+    "@type": "Organization",
+    "name": "Páramo AI",
+    "url": "https://paramo.sh"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Páramo AI",
+    "url": "https://paramo.sh",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://paramo.sh/assets/favicon-192.png"
+    }
+  },
+  "datePublished": "2026-02-22",
+  "dateModified": "2026-02-22",
+  "mainEntityOfPage": "https://paramo.sh/blog/what-is-openclaw",
+  "image": "https://paramo.sh/og-image.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is OpenClaw?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OpenClaw is an open-source, self-hosted gateway that connects your messaging apps — WhatsApp, Slack, Discord, Telegram, iMessage, Microsoft Teams, and more — to AI agents. It runs on your own hardware and acts as a single control plane for AI-powered assistants across all your communication channels."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is OpenClaw different from ChatGPT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ChatGPT is a single chatbot you visit in a browser. OpenClaw is infrastructure — a gateway that brings AI agents into the tools you already use (WhatsApp, Slack, Discord, etc.). It supports multiple agents, persistent memory, tool use, browser control, voice interaction, and runs on your own hardware so your data stays private."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is OpenClaw free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. OpenClaw is open-source under the MIT license. You need Node.js 22+ and an AI model API key (Anthropic Claude is recommended). The software itself is free and community-driven."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What channels does OpenClaw support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OpenClaw supports WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage (via BlueBubbles), Microsoft Teams, Matrix, Zalo, and WebChat — all from a single Gateway process."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to be a developer to use OpenClaw?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OpenClaw is designed for developers and power users who are comfortable with the command line. However, businesses can work with implementation partners like Páramo AI to deploy and configure OpenClaw without in-house technical expertise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does OpenClaw compare to Zapier or Make?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zapier and Make are trigger-action automation tools — great for simple, repeatable workflows. OpenClaw powers AI agents that can reason, make decisions, access multiple tools, and handle complex multi-step tasks that require judgment. They complement each other: automations for structured tasks, agents for everything else."
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --paramo-deep: #0B1D1A;
+    --paramo-deep-alt: #0E2420;
+    --highland-moss: #1B4D3E;
+    --misty-sage: #5B8A72;
+    --morning-mist: #A8C5B8;
+    --cloud-layer: #E8F0EB;
+    --peak-snow: #F7FAF8;
+    --frailejon-gold: #C8963E;
+    --sun-through-mist: #E8C87A;
+    --warm-earth: #9E7230;
+    --font-display: 'Source Serif 4', 'Times New Roman', serif;
+    --font-body: 'Outfit', system-ui, sans-serif;
+    --radius: 14px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body); font-weight: 400;
+    color: var(--cloud-layer); background: var(--paramo-deep);
+    overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    min-height: 100vh; display: flex; flex-direction: column;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+  .narrow { max-width: 760px; margin: 0 auto; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes goldPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  .animate-up { opacity: 0; animation: fadeUp 0.8s ease-out forwards; }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.45s; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.25rem 0;
+    background: rgba(11, 29, 26, 0.7);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(168, 197, 184, 0.08);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.6rem;
+    color: var(--peak-snow); text-decoration: none;
+  }
+  .logo .accent { color: var(--frailejon-gold); }
+  .logo-mark { height: 28px; width: auto; vertical-align: middle; margin-right: 0.4rem; margin-top: -2px; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; margin-left: auto; }
+  .nav-links a {
+    font-family: var(--font-body); font-weight: 500; font-size: 0.9rem;
+    color: var(--morning-mist); text-decoration: none; transition: color 0.25s; letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--peak-snow); }
+  .nav-links a.active { color: var(--frailejon-gold); }
+  .nav-cta {
+    font-family: var(--font-body); font-weight: 600; font-size: 0.85rem;
+    color: var(--paramo-deep); background: var(--frailejon-gold);
+    padding: 0.6rem 1.4rem; border-radius: var(--radius);
+    transition: background 0.25s, transform 0.2s; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--sun-through-mist); color: var(--paramo-deep); transform: translateY(-1px); }
+  .mobile-menu-btn {
+    display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-shrink: 0;
+  }
+  .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--morning-mist); margin: 5px 0; transition: 0.3s; }
+
+  /* BREADCRUMB */
+  .breadcrumb { padding-top: 7rem; padding-bottom: 0; }
+  .breadcrumb a {
+    color: var(--misty-sage); text-decoration: none; font-size: 0.85rem; transition: color 0.25s;
+  }
+  .breadcrumb a:hover { color: var(--frailejon-gold); }
+  .breadcrumb span { color: var(--misty-sage); font-size: 0.85rem; margin: 0 0.5rem; }
+
+  /* HERO */
+  .case-hero { padding-top: 2.5rem; padding-bottom: 1.5rem; position: relative; }
+  .case-hero::before {
+    content: ''; position: absolute; top: -5rem; left: -10%; width: 120%; height: 120%;
+    background: radial-gradient(ellipse at 50% 20%, rgba(27, 77, 62, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .case-hero-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--frailejon-gold); margin-bottom: 1.5rem;
+  }
+  .case-hero-tag::before {
+    content: ''; width: 32px; height: 2px; background: var(--frailejon-gold);
+    animation: goldPulse 3s ease-in-out infinite;
+  }
+  .case-hero h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15;
+    color: var(--peak-snow); margin-bottom: 1.5rem; max-width: 680px;
+  }
+  .case-hero-sub {
+    font-size: 1.15rem; color: var(--morning-mist); max-width: 600px; line-height: 1.7;
+  }
+  .post-meta {
+    display: flex; align-items: center; gap: 1.5rem; margin-top: 1.5rem;
+    font-size: 0.9rem; color: var(--misty-sage);
+  }
+  .post-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+  /* CONTENT */
+  .case-content { padding-bottom: 4rem; }
+  .case-content h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.6rem; color: var(--peak-snow);
+    margin: 3rem 0 1.25rem; line-height: 1.3;
+  }
+  .case-content h3 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 1.2rem; color: var(--frailejon-gold);
+    margin: 2.5rem 0 1rem; line-height: 1.3;
+  }
+  .case-content p {
+    font-size: 1.05rem; line-height: 1.8; color: var(--morning-mist); margin-bottom: 1.25rem;
+  }
+  .case-content ul, .case-content ol {
+    margin: 1rem 0 1.5rem 1.5rem; color: var(--morning-mist);
+  }
+  .case-content li {
+    font-size: 1rem; line-height: 1.8; margin-bottom: 0.5rem;
+  }
+  .case-content li strong { color: var(--cloud-layer); }
+  .case-content strong { color: var(--cloud-layer); }
+  .case-content em { color: var(--cloud-layer); }
+  .case-content a { color: var(--frailejon-gold); text-decoration: none; transition: color 0.25s; }
+  .case-content a:hover { color: var(--sun-through-mist); }
+
+  /* BLOCKQUOTE */
+  .case-quote {
+    border-left: 3px solid var(--frailejon-gold);
+    padding: 1.5rem 2rem; margin: 2rem 0;
+    background: rgba(200, 150, 62, 0.04);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .case-quote p {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 1.15rem; color: var(--cloud-layer); line-height: 1.7; margin-bottom: 0;
+  }
+
+  /* TABLE */
+  .comparison-table {
+    width: 100%; border-collapse: collapse; margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison-table th {
+    text-align: left; padding: 1rem;
+    background: rgba(27, 77, 62, 0.3);
+    color: var(--peak-snow); font-weight: 600;
+    border-bottom: 2px solid var(--frailejon-gold);
+  }
+  .comparison-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(168, 197, 184, 0.08);
+    color: var(--morning-mist); vertical-align: top;
+  }
+  .comparison-table tr:hover td { background: rgba(27, 77, 62, 0.1); }
+  .comparison-table td:first-child { color: var(--cloud-layer); font-weight: 500; }
+
+  /* CTA SECTION */
+  .case-cta {
+    text-align: center; padding: 4rem 0 6rem;
+    border-top: 1px solid rgba(168, 197, 184, 0.08);
+  }
+  .case-cta h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--peak-snow); margin-bottom: 1rem;
+  }
+  .case-cta p { color: var(--morning-mist); margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .btn-gold {
+    display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+    color: var(--paramo-deep); background: var(--frailejon-gold);
+    padding: 1rem 2.5rem; border-radius: var(--radius);
+    text-decoration: none; transition: background 0.25s, transform 0.2s;
+  }
+  .btn-gold:hover { background: var(--sun-through-mist); transform: translateY(-1px); }
+
+  /* FAQ */
+  .faq-section { padding: 2rem 0 3rem; }
+  .faq-section h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.6rem; color: var(--peak-snow);
+    margin-bottom: 2rem; line-height: 1.3;
+  }
+  .faq-item {
+    border-bottom: 1px solid rgba(168, 197, 184, 0.08);
+    padding: 1.5rem 0;
+  }
+  .faq-item h3 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 1.1rem; color: var(--cloud-layer);
+    margin-bottom: 0.75rem; line-height: 1.4;
+  }
+  .faq-item p {
+    font-size: 1rem; line-height: 1.8; color: var(--morning-mist); margin-bottom: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(168, 197, 184, 0.08);
+    padding: 2.5rem 0; margin-top: auto;
+  }
+  footer .container {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-left { display: flex; align-items: center; gap: 1.5rem; }
+  .footer-brand {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.2rem;
+    color: var(--peak-snow); text-decoration: none;
+  }
+  .footer-brand .accent { color: var(--frailejon-gold); }
+  .footer-copy { font-size: 0.85rem; color: var(--misty-sage); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    font-size: 0.85rem; color: var(--morning-mist); text-decoration: none; transition: color 0.25s;
+  }
+  .footer-links a:hover { color: var(--peak-snow); }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(11, 29, 26, 0.95); backdrop-filter: blur(20px);
+      flex-direction: column; padding: 1.5rem; gap: 0;
+      border-bottom: 1px solid rgba(168, 197, 184, 0.08);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.8rem 0; font-size: 1rem; }
+    .nav-cta { display: inline-block; margin-top: 0.5rem; }
+    .mobile-menu-btn { display: block; }
+    .mobile-menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .case-hero { padding-top: 2rem; }
+    .breadcrumb { padding-top: 6rem; }
+    .post-meta { flex-wrap: wrap; gap: 0.75rem; }
+    .comparison-table { font-size: 0.85rem; }
+    .comparison-table th, .comparison-table td { padding: 0.65rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo"><img src="../../assets/mark-bright-dark.svg" alt="Páramo" class="logo-mark">P<span class="accent">á</span>ramo</a>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/#process">Process</a></li>
+      <li><a href="/#results">Results</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/case-studies">Case Studies</a></li>
+      <li><a href="/blog" class="active">Blog</a></li>
+      <li><a href="https://calendly.com/d/cvkf-q3t-25j/free-discovery-call-with-paramo" target="_blank" class="nav-cta">Book a Call</a></li>
+    </ul>
+    <button class="mobile-menu-btn" aria-label="Menu" id="menuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="container narrow">
+    <a href="/">Home</a><span>›</span><a href="/blog">Blog</a><span>›</span><a href="/blog/what-is-openclaw">What is OpenClaw?</a>
+  </div>
+</div>
+
+<section class="case-hero">
+  <div class="container narrow">
+    <div class="case-hero-tag animate-up">Deep Dive</div>
+    <h1 class="animate-up delay-1">What is OpenClaw? The Complete Guide for Business Owners</h1>
+    <p class="case-hero-sub animate-up delay-2">OpenClaw is the open-source engine behind AI agents that work across WhatsApp, Slack, Discord, and more. Here's everything you need to know — no jargon required.</p>
+    <div class="post-meta animate-up delay-3">
+      <span>📅 February 22, 2026</span>
+      <span>⏱ 12 min read</span>
+    </div>
+  </div>
+</section>
+
+<article class="case-content">
+  <div class="container narrow">
+
+    <p class="reveal">You've probably heard the term "AI agent" thrown around. Maybe you've seen demos of AI assistants that can research leads, draft emails, manage your calendar, and update your CRM — all from a single message in WhatsApp or Slack.</p>
+
+    <p class="reveal">But here's what most people don't talk about: <strong>what's actually powering those agents behind the scenes?</strong></p>
+
+    <p class="reveal">The answer, increasingly, is <strong>OpenClaw</strong>.</p>
+
+    <p class="reveal">This guide breaks down what OpenClaw is, how it works, who it's for, and why it matters — especially if you're a business owner exploring AI automation. No engineering degree required.</p>
+
+    <h2 class="reveal">OpenClaw in Plain English</h2>
+
+    <p class="reveal">OpenClaw is a <strong>self-hosted gateway</strong> that connects your messaging apps to AI agents.</p>
+
+    <p class="reveal">Think of it as the control center — the switchboard — that sits between the chat tools you already use (WhatsApp, Slack, Discord, Telegram, iMessage, Microsoft Teams, Google Chat, Signal) and an AI assistant that can actually <em>do things</em> for your business.</p>
+
+    <p class="reveal">You run OpenClaw on your own computer or server. It's open-source (MIT licensed), free to use, and community-driven. Once it's running, you can message your AI agent from any connected channel and get intelligent, context-aware responses — with the ability to take real actions like sending emails, updating databases, controlling a browser, or running research.</p>
+
+    <div class="case-quote reveal">
+      <p>If ChatGPT is a person sitting at a desk waiting for you to visit them, OpenClaw is the infrastructure that puts that person in every room of your office — with access to your files, your tools, and your context.</p>
+    </div>
+
+    <h2 class="reveal">How OpenClaw Works</h2>
+
+    <p class="reveal">At its core, OpenClaw has a simple architecture:</p>
+
+    <ol class="reveal">
+      <li><strong>The Gateway</strong> — A single process running on your machine that handles all connections, sessions, routing, and channel integrations. It's the brain.</li>
+      <li><strong>Channels</strong> — The messaging apps your agent connects to. WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage (via BlueBubbles), Microsoft Teams, Matrix, Zalo, and WebChat — all from one Gateway.</li>
+      <li><strong>The AI Agent</strong> — The intelligence layer. OpenClaw ships with its own agent runtime, but it's model-agnostic. Most users run Anthropic's Claude for its strength with complex reasoning tasks.</li>
+      <li><strong>Tools</strong> — The agent's hands. Browser control, file management, canvas rendering, cron jobs, webhooks, camera/screen access on mobile devices, and a growing skills platform.</li>
+    </ol>
+
+    <p class="reveal">Here's the flow: you send a message on WhatsApp → the Gateway receives it → routes it to the AI agent → the agent reasons about it, optionally uses tools → sends the response back through WhatsApp. Same for Slack, Discord, Telegram, or any other connected channel.</p>
+
+    <p class="reveal"><strong>One Gateway. All channels. One persistent agent.</strong></p>
+
+    <h2 class="reveal">What Makes OpenClaw Different from ChatGPT?</h2>
+
+    <p class="reveal">This is the question we hear most. Here's the honest answer:</p>
+
+    <p class="reveal"><strong>ChatGPT</strong> is a product — a chatbot you visit in a browser window. It's excellent for one-off questions, brainstorming, and writing tasks. But it lives in a tab. It doesn't know about your business unless you tell it every time. It can't take actions in your tools. And when you close the tab, the context is gone.</p>
+
+    <p class="reveal"><strong>OpenClaw</strong> is infrastructure. It's the plumbing that turns a language model into a persistent, multi-channel, action-taking assistant that lives inside the tools you already use.</p>
+
+    <div class="reveal" style="overflow-x: auto;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>ChatGPT</th>
+            <th>OpenClaw-Powered Agent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Where it lives</td>
+            <td>Browser tab / mobile app</td>
+            <td>WhatsApp, Slack, Discord, Telegram, iMessage, Teams — wherever you are</td>
+          </tr>
+          <tr>
+            <td>Memory</td>
+            <td>Limited / per-conversation</td>
+            <td>Persistent across sessions, with workspace-level context</td>
+          </tr>
+          <tr>
+            <td>Actions</td>
+            <td>Text generation, code, image creation</td>
+            <td>Browser control, file ops, API calls, email, CRM updates, research, scheduling</td>
+          </tr>
+          <tr>
+            <td>Data privacy</td>
+            <td>Data processed by OpenAI</td>
+            <td>Self-hosted — your data stays on your hardware</td>
+          </tr>
+          <tr>
+            <td>Multi-agent</td>
+            <td>Single chatbot</td>
+            <td>Multiple agents with isolated workspaces and routing</td>
+          </tr>
+          <tr>
+            <td>Voice</td>
+            <td>Voice mode in app</td>
+            <td>Always-on Voice Wake + Talk Mode on macOS, iOS, Android</td>
+          </tr>
+          <tr>
+            <td>Cost model</td>
+            <td>$20/mo subscription</td>
+            <td>Free software + API usage costs (you control the budget)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="reveal">The bottom line: ChatGPT is a tool you use. An OpenClaw agent is a teammate that uses tools.</p>
+
+    <h2 class="reveal">Key Features for Business Owners</h2>
+
+    <p class="reveal">You don't need to understand every technical detail. Here's what matters from a business perspective:</p>
+
+    <h3 class="reveal">Multi-Channel Inbox</h3>
+
+    <p class="reveal">Your AI agent is available everywhere your team communicates. Message it on WhatsApp from your phone, Slack from your laptop, or Discord from anywhere. It's the same agent, same memory, same context — across all channels simultaneously.</p>
+
+    <h3 class="reveal">Persistent Memory & Context</h3>
+
+    <p class="reveal">Unlike a chatbot that forgets everything between conversations, an OpenClaw agent maintains persistent memory. It remembers your clients, your preferences, your business rules, past conversations, and ongoing projects. It builds understanding over time.</p>
+
+    <h3 class="reveal">Real Tool Access</h3>
+
+    <p class="reveal">The agent doesn't just talk — it <em>does</em>. It can control a web browser, run scripts, manage files, execute cron jobs, process webhooks, and interact with APIs. At <a href="/">Páramo</a>, our agent Frailejón handles everything from <a href="/blog/replaced-12-saas-tools">lead research to content creation to CRM management</a> — all through tool access powered by OpenClaw.</p>
+
+    <h3 class="reveal">Multi-Agent Routing</h3>
+
+    <p class="reveal">Need different agents for different functions? OpenClaw supports multi-agent routing with isolated workspaces and per-agent sessions. Your sales agent, support agent, and operations agent can all run on the same Gateway with separate contexts and permissions.</p>
+
+    <h3 class="reveal">Voice Interaction</h3>
+
+    <p class="reveal">OpenClaw includes always-on Voice Wake and Talk Mode for macOS, iOS, and Android. You can have a spoken conversation with your agent just like you'd talk to a colleague — hands-free, always listening (when you opt in).</p>
+
+    <h3 class="reveal">Self-Hosted & Private</h3>
+
+    <p class="reveal">Everything runs on your hardware. Your conversations, your business data, your client information — none of it passes through a third-party platform. For businesses handling sensitive data, this is a game-changer.</p>
+
+    <h3 class="reveal">Companion Apps & Mobile Nodes</h3>
+
+    <p class="reveal">OpenClaw has native apps for macOS (menu bar), iOS, and Android. Mobile nodes can share camera, screen recording, and location data with the agent — enabling use cases like visual inspection, on-site documentation, and location-aware tasks.</p>
+
+    <h2 class="reveal">Who Is OpenClaw For?</h2>
+
+    <p class="reveal">OpenClaw was built for developers and power users who want a personal AI assistant without giving up control. But through implementation partners, it's accessible to any business.</p>
+
+    <p class="reveal"><strong>Direct users:</strong></p>
+    <ul class="reveal">
+      <li>Developers who want a self-hosted AI assistant across all their channels</li>
+      <li>Technical founders running lean operations</li>
+      <li>Power users comfortable with the command line</li>
+    </ul>
+
+    <p class="reveal"><strong>Through implementation partners (like <a href="/">Páramo</a>):</strong></p>
+    <ul class="reveal">
+      <li>Small businesses that want AI agents handling real work — not just chatbots</li>
+      <li>Professional services firms (law, accounting, consulting) that need privacy-first AI</li>
+      <li>Companies spending too much time on manual processes that <a href="/blog/real-cost-of-not-automating">could be automated</a></li>
+      <li>Teams that have outgrown <a href="/blog/ai-agents-vs-zapier-make">Zapier and Make</a> and need agents that reason</li>
+    </ul>
+
+    <h2 class="reveal">How OpenClaw Differs from Traditional Automation</h2>
+
+    <p class="reveal">If you've used Zapier, Make, or n8n, you understand automation. OpenClaw occupies a different category entirely.</p>
+
+    <p class="reveal">Traditional automation tools are <strong>trigger → action</strong> systems. "When a form is submitted, add a row to a spreadsheet." They're excellent for structured, repeatable tasks.</p>
+
+    <p class="reveal">OpenClaw powers <strong>agents that reason</strong>. Instead of following a predefined flowchart, an OpenClaw agent understands a goal, gathers context, and figures out the steps. It handles the 70% of business tasks that are <a href="/blog/ai-agents-vs-zapier-make">too complex for automations but too repetitive for senior employees</a>.</p>
+
+    <div class="case-quote reveal">
+      <p>Automations follow recipes. Agents solve problems.</p>
+    </div>
+
+    <p class="reveal">The two aren't mutually exclusive. Many OpenClaw deployments <em>include</em> traditional automations for simple trigger-action tasks, while the agent handles everything that requires judgment.</p>
+
+    <h2 class="reveal">Real Use Cases</h2>
+
+    <p class="reveal">Here's how businesses actually use OpenClaw-powered agents:</p>
+
+    <h3 class="reveal">Sales & Lead Management</h3>
+    <p class="reveal">The agent researches inbound leads, enriches contact data, scores prospects, drafts personalized outreach, and updates your CRM — all triggered by a new form submission or a WhatsApp message.</p>
+
+    <h3 class="reveal">Client Communication</h3>
+    <p class="reveal">Respond to client inquiries across channels with context from past conversations, project status, and account history. The agent drafts responses that sound like your team, not a bot.</p>
+
+    <h3 class="reveal">Operations & Reporting</h3>
+    <p class="reveal">Daily standups, weekly reports, pipeline summaries, financial snapshots — the agent pulls data from multiple sources, identifies trends, and delivers narrative summaries to Slack or WhatsApp on a schedule.</p>
+
+    <h3 class="reveal">Content & Marketing</h3>
+    <p class="reveal">Research competitors, draft social posts, write blog articles, manage editorial calendars, and monitor brand mentions — all from a single agent with access to your brand voice and content history.</p>
+
+    <h3 class="reveal">Document Processing</h3>
+    <p class="reveal">Handle varying invoice formats, extract key data, cross-reference with purchase orders, flag anomalies, and route approvals — the kind of work that breaks traditional OCR automation.</p>
+
+    <p class="reveal">At Páramo, we've used OpenClaw to <a href="/blog/replaced-12-saas-tools">replace 12 separate SaaS tools</a> with a single AI agent. That's not a theoretical use case — it's what we do every day.</p>
+
+    <h2 class="reveal">Getting Started</h2>
+
+    <p class="reveal">There are two paths depending on your technical comfort level:</p>
+
+    <h3 class="reveal">Path 1: Self-Install (Technical Users)</h3>
+
+    <p class="reveal">If you're comfortable with the command line:</p>
+
+    <ol class="reveal">
+      <li>Install Node.js 22+</li>
+      <li>Run <code>npm install -g openclaw@latest</code></li>
+      <li>Run <code>openclaw onboard --install-daemon</code> — the wizard guides you through everything</li>
+      <li>Connect your channels (WhatsApp, Slack, etc.)</li>
+      <li>Start messaging your agent</li>
+    </ol>
+
+    <p class="reveal">Total time: about 5 minutes. Full documentation at <a href="https://docs.openclaw.ai" target="_blank" rel="noopener">docs.openclaw.ai</a>.</p>
+
+    <h3 class="reveal">Path 2: Implementation Partner (Business Users)</h3>
+
+    <p class="reveal">If you want an AI agent working for your business without managing the infrastructure yourself, that's exactly what <a href="/">Páramo</a> does. We deploy, configure, and customize OpenClaw-powered agents for businesses — complete with your workflows, your tools, and your business logic.</p>
+
+    <p class="reveal">No coding required on your end. You just message the agent and it works.</p>
+
+    <h2 class="reveal">What Does OpenClaw Cost?</h2>
+
+    <p class="reveal">OpenClaw itself is <strong>free and open-source</strong> (MIT license). The costs come from:</p>
+
+    <ul class="reveal">
+      <li><strong>AI model API usage</strong> — Most users run Anthropic Claude. Costs vary based on usage, but a typical small business might spend $50–200/month on API calls.</li>
+      <li><strong>Hosting</strong> — Run it on your existing computer (free), a $5/month VPS, or a dedicated server. It's lightweight.</li>
+      <li><strong>Implementation</strong> — If you work with a partner like Páramo for setup, customization, and ongoing optimization, that's a separate service engagement.</li>
+    </ul>
+
+    <p class="reveal">Compare that to hiring a full-time employee for the same work. Or to the $2,400/month in SaaS subscriptions <a href="/blog/replaced-12-saas-tools">we replaced with a single agent</a>. The economics are compelling.</p>
+
+  </div>
+</article>
+
+<section class="faq-section">
+  <div class="container narrow">
+    <h2 class="reveal">Frequently Asked Questions</h2>
+
+    <div class="faq-item reveal">
+      <h3>What is OpenClaw?</h3>
+      <p>OpenClaw is an open-source, self-hosted gateway that connects your messaging apps — WhatsApp, Slack, Discord, Telegram, iMessage, Microsoft Teams, and more — to AI agents. It runs on your own hardware and acts as a single control plane for AI-powered assistants across all your communication channels.</p>
+    </div>
+
+    <div class="faq-item reveal">
+      <h3>How is OpenClaw different from ChatGPT?</h3>
+      <p>ChatGPT is a single chatbot you visit in a browser. OpenClaw is infrastructure — a gateway that brings AI agents into the tools you already use (WhatsApp, Slack, Discord, etc.). It supports multiple agents, persistent memory, tool use, browser control, voice interaction, and runs on your own hardware so your data stays private.</p>
+    </div>
+
+    <div class="faq-item reveal">
+      <h3>Is OpenClaw free?</h3>
+      <p>Yes. OpenClaw is open-source under the MIT license. You need Node.js 22+ and an AI model API key (Anthropic Claude is recommended). The software itself is free and community-driven.</p>
+    </div>
+
+    <div class="faq-item reveal">
+      <h3>What channels does OpenClaw support?</h3>
+      <p>WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage (via BlueBubbles), Microsoft Teams, Matrix, Zalo, and WebChat — all from a single Gateway process.</p>
+    </div>
+
+    <div class="faq-item reveal">
+      <h3>Do I need to be a developer to use OpenClaw?</h3>
+      <p>OpenClaw is designed for developers and power users comfortable with the command line. However, businesses can work with implementation partners like <a href="/">Páramo AI</a> to deploy and configure OpenClaw without in-house technical expertise.</p>
+    </div>
+
+    <div class="faq-item reveal">
+      <h3>How does OpenClaw compare to Zapier or Make?</h3>
+      <p>Zapier and Make are trigger-action automation tools — great for simple, repeatable workflows. OpenClaw powers AI agents that can reason, make decisions, access multiple tools, and handle complex multi-step tasks that require judgment. They complement each other: <a href="/blog/ai-agents-vs-zapier-make">automations for structured tasks, agents for everything else</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-cta">
+  <div class="container">
+    <h2>Want an OpenClaw-powered agent for your business?</h2>
+    <p>We'll deploy, configure, and customize an AI agent built on OpenClaw — tailored to your workflows, your tools, and your business.</p>
+    <a href="https://calendly.com/d/cvkf-q3t-25j/free-discovery-call-with-paramo" target="_blank" class="btn-gold">Book Your Discovery Call →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-left">
+      <a href="/" class="footer-brand">P<span class="accent">á</span>ramo</a>
+      <span class="footer-copy">© 2026 Páramo. Above the clouds.</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://discord.com/invite/xXE9TqGju" target="_blank">Discord</a></li>
+      <li><a href="#">Podcast</a></li>
+      <li><a href="https://x.com/tipbtdennis?s=21" target="_blank">Twitter</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.querySelector('.nav-links');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuBtn.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
