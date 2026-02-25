@@ -39,3 +39,4 @@ yarn-error.log*
 
 # Legacy build scripts
 gen-og.mjs
+docs/
