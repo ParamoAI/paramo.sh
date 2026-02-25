@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="20%" r="40%">
+      <stop offset="0%" stop-color="#E8C87A" stop-opacity="0.5"/>
+      <stop offset="30%" stop-color="#D4A853" stop-opacity="0.2"/>
+      <stop offset="60%" stop-color="#D4A853" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#D4A853" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="inner" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="30%" stop-color="#E8C87A" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#D4A853" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Subtle vignette -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0F1F1A" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.4"/>
+    </radialGradient>
+    <!-- Clip content below top rule -->
+    <clipPath id="contentClip">
+      <rect x="0" y="50" width="1200" height="580"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0F1F1A"/>
+  <rect width="1200" height="630" fill="url(#vignette)"/>
+
+  <!-- Top rule line -->
+  <line x1="80" y1="45" x2="1120" y2="45" stroke="#7AAA8A" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Logo mark — clipped below top rule -->
+  <g clip-path="url(#contentClip)">
+  <circle cx="600" cy="135" r="100" fill="url(#glow)"/>
+  <circle cx="600" cy="145" r="7" fill="url(#inner)"/>
+  <circle cx="600" cy="145" r="3.5" fill="#FFFAED"/>
+  <circle cx="600" cy="145" r="12" fill="none" stroke="#E8C87A" stroke-width="0.5" opacity="0.35"/>
+
+  <!-- Outer triangle -->
+  <polygon points="600,135 710,270 490,270" fill="none" stroke="#7AAA8A" stroke-width="1.2" opacity="0.6"/>
+
+  <!-- Inner mountain -->
+  <polygon points="600,158 680,270 520,270" fill="#2A6B50"/>
+
+  <!-- Cloud lines -->
+  <path d="M470,260 Q540,252 600,260 Q660,268 730,260" fill="none" stroke="#7AAA8A" stroke-width="1" opacity="0.5"/>
+  <path d="M455,272 Q535,264 600,272 Q665,280 745,272" fill="none" stroke="#7AAA8A" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Wordmark — gold á -->
+  <text x="600" y="340" text-anchor="middle" font-family="'Playfair Display','Georgia',serif" font-size="68" font-weight="700" letter-spacing="1">
+    <tspan fill="#E8E0D0">P</tspan><tspan fill="#D4A853">á</tspan><tspan fill="#E8E0D0">ramo</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="600" y="375" text-anchor="middle" font-family="'Montserrat','Helvetica',sans-serif" font-size="13" fill="#D4A853" letter-spacing="8" font-weight="500">ABOVE THE CLOUDS</text>
+
+  </g>
+
+  <!-- Description -->
+  <text x="600" y="430" text-anchor="middle" font-family="'Outfit','Helvetica',sans-serif" font-size="18" fill="#A8C5B8" font-weight="300">Custom AI automation for business owners.</text>
+  <text x="600" y="458" text-anchor="middle" font-family="'Outfit','Helvetica',sans-serif" font-size="18" fill="#A8C5B8" font-weight="300">We show you what's possible, then we build it.</text>
+
+  <!-- Bottom rule line -->
+  <line x1="80" y1="540" x2="1120" y2="540" stroke="#7AAA8A" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Footer -->
+  <text x="600" y="580" text-anchor="middle" font-family="'Outfit','Courier New',monospace" font-size="16" fill="#5A8A72" letter-spacing="2">paramo.sh</text>
+</svg>
