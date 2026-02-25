@@ -7,51 +7,53 @@ const SITE_URL = 'https://paramo.sh';
 const BUILD_DIR = 'docs';
 
 interface SitemapEntry {
-  url: string;
-  lastmod?: string;
-  changefreq?: string;
-  priority?: string;
+  path: string;
+  priority?: number;
+  changefreq?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
 }
 
-function generateSitemap() {
-  const today = new Date().toISOString().split('T')[0];
-  
-  const entries: SitemapEntry[] = [
-    // Main pages
-    { url: '/', lastmod: today, changefreq: 'weekly', priority: '1.0' },
-    { url: '/blog/', lastmod: today, changefreq: 'weekly', priority: '0.8' },
-    { url: '/case-studies/', lastmod: today, changefreq: 'weekly', priority: '0.8' },
-    
-    // Blog posts
-    ...blogPosts.map(post => ({
-      url: `/blog/${post.slug}/`,
-      lastmod: today,
-      changefreq: 'monthly' as const,
-      priority: '0.7',
-    })),
-    
-    // Case studies
-    ...caseStudies.map(study => ({
-      url: `/case-studies/${study.slug}/`,
-      lastmod: today,
-      changefreq: 'monthly' as const,
-      priority: '0.7',
-    })),
-  ];
+// Main pages
+const pages: SitemapEntry[] = [
+  { path: '/', priority: 1.0, changefreq: 'weekly' },
+  { path: '/blog/', priority: 0.8, changefreq: 'weekly' },
+  { path: '/case-studies/', priority: 0.8, changefreq: 'weekly' },
+];
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+// Dynamic content pages
+const additionalPages: SitemapEntry[] = [
+  ...blogPosts.map(post => ({
+    path: `/blog/${post.slug}/`,
+    priority: 0.7,
+    changefreq: 'monthly' as const,
+  })),
+  ...caseStudies.map(study => ({
+    path: `/case-studies/${study.slug}/`,
+    priority: 0.7,
+    changefreq: 'monthly' as const,
+  })),
+];
+
+function generateSitemap(): string {
+  const now = new Date().toISOString();
+  const allPages = [...pages, ...additionalPages];
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${entries.map(entry => `  <url>
-    <loc>${SITE_URL}${entry.url}</loc>
-    ${entry.lastmod ? `<lastmod>${entry.lastmod}</lastmod>` : ''}
-    ${entry.changefreq ? `<changefreq>${entry.changefreq}</changefreq>` : ''}
-    ${entry.priority ? `<priority>${entry.priority}</priority>` : ''}
-  </url>`).join('\n')}
-</urlset>`;
-
-  const outputPath = path.join(process.cwd(), BUILD_DIR, 'sitemap.xml');
-  fs.writeFileSync(outputPath, sitemap);
-  console.log(`✅ Sitemap generated at ${outputPath}`);
+${allPages
+  .map(
+    (page) => `  <url>
+    <loc>${SITE_URL}${page.path}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>${page.changefreq ?? 'daily'}</changefreq>
+    <priority>${page.priority ?? 0.8}</priority>
+  </url>`
+  )
+  .join('\n')}
+</urlset>
+`;
 }
 
-generateSitemap();
+const sitemap = generateSitemap();
+const outputPath = path.join(process.cwd(), BUILD_DIR, 'sitemap.xml');
+fs.writeFileSync(outputPath, sitemap);
+console.log(`✅ Sitemap generated at ${outputPath}`);
