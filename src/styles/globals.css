@@ -1247,6 +1247,20 @@ footer .container {
 .article-content a:hover {
   color: var(--sun-through-mist);
 }
+.article-content a.btn-primary {
+  color: var(--paramo-deep);
+  text-decoration: none;
+}
+.article-content a.btn-primary:hover {
+  color: var(--paramo-deep);
+}
+.article-content a.btn-primary {
+  color: var(--paramo-deep);
+  text-decoration: none;
+}
+.article-content a.btn-primary:hover {
+  color: var(--paramo-deep);
+}
 
 /* ── PAGE RESPONSIVE ── */
 @media (max-width: 768px) {
