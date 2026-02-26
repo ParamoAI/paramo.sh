@@ -1,16 +1,20 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import fs from 'fs';
+import path from 'path';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import ScrollReveal from '@/components/ScrollReveal';
 import { caseStudies, CaseStudy } from '@/data/case-studies';
 import { SITE_URL, SITE_NAME, OG_IMAGE, CALENDLY_URL } from '@/config/site';
 
 interface Props {
   study: CaseStudy;
+  htmlContent: string | null;
 }
 
-export default function CaseStudyPage({ study }: Props) {
+export default function CaseStudyPage({ study, htmlContent }: Props) {
   const pageTitle = `${study.name}: ${study.stat.split('.')[0]} — ${SITE_NAME}`;
   
   return (
@@ -33,6 +37,7 @@ export default function CaseStudyPage({ study }: Props) {
       </Head>
 
       <Nav activeLink="case-studies" />
+      <ScrollReveal />
 
       <section className="article-hero">
         <div className="container narrow">
@@ -61,24 +66,35 @@ export default function CaseStudyPage({ study }: Props) {
         </div>
       </section>
 
-      <section className="article-content">
-        <div className="container narrow">
-          <p>
-            <em>Full case study content coming soon. This page is a placeholder for the NextJS migration.</em>
-          </p>
-          <p>
-            Want to see similar results for your business? Book a discovery call to explore what's possible.
-          </p>
-          <p style={{ marginTop: '2rem' }}>
-            <a 
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              Book Your Discovery Call →
-            </a>
-          </p>
+      {htmlContent ? (
+        <article className="case-content">
+          <div className="container narrow" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+        </article>
+      ) : (
+        <section className="article-content">
+          <div className="container narrow">
+            <p>
+              <em>Full case study content coming soon.</em>
+            </p>
+            <p>
+              Want to see similar results for your business? Book a discovery call to explore what&apos;s possible.
+            </p>
+          </div>
+        </section>
+      )}
+
+      <section className="cta-section" style={{ padding: '4rem 2rem 6rem', borderTop: '1px solid rgba(168, 197, 184, 0.08)' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <h2 className="section-title">Curious whether an agent could handle your toughest workflow?</h2>
+          <p className="section-subtitle">Book a free discovery call. We&apos;ll look at your current operations and show you where an AI agent could take over.</p>
+          <a 
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            Book Your Discovery Call →
+          </a>
         </div>
       </section>
 
@@ -102,5 +118,20 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     return { notFound: true };
   }
 
-  return { props: { study } };
+  // Try to load HTML content from content files
+  let htmlContent: string | null = null;
+  const contentPath = path.join(process.cwd(), 'src', 'content', 'case-studies', `${study.slug}.html`);
+  try {
+    const raw = fs.readFileSync(contentPath, 'utf-8');
+    // Strip outer <article> and <div class="container narrow"> wrappers
+    // Strip outer <article> and <div class="container narrow"> wrappers
+    htmlContent = raw
+      .replace(/^<article[^>]*>[\s\S]*?<div[^>]*>/, '')
+      .replace(/<\/div>\s*<\/article>\s*$/, '')
+      .trim();
+  } catch {
+    // No content file — will show placeholder
+  }
+
+  return { props: { study, htmlContent } };
 };
