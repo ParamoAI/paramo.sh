@@ -7,6 +7,7 @@ export interface CaseStudy {
   avatar: string;
   name: string;
   role: string;
+  htmlContent?: string;
 }
 
 export const caseStudies: CaseStudy[] = [
