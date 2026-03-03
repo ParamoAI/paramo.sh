@@ -18,13 +18,11 @@ export default function Footer() {
               Discord
             </a>
           </li>
-          <li><a href="#">Podcast</a></li>
           <li>
             <a href="https://x.com/tipbtdennis?s=21" target="_blank" rel="noopener noreferrer">
               Twitter
             </a>
           </li>
-          <li><a href="#">Contact</a></li>
         </ul>
       </div>
     </footer>
