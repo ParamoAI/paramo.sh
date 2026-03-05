@@ -43,6 +43,7 @@ export default function BlogPostPage({ post }: Props) {
             <span className="article-tag">{post.tag}</span>
             <span>📅 {post.date}</span>
             <span>⏱ {post.readTime}</span>
+            <span>✍️ {post.author}</span>
           </div>
           <h1 className="article-title">{post.title}</h1>
           <p className="article-subtitle">{post.description}</p>
@@ -51,12 +52,18 @@ export default function BlogPostPage({ post }: Props) {
 
       <section className="article-content">
         <div className="container narrow">
-          <p>
-            <em>Full article content coming soon. This page is a placeholder for the NextJS migration.</em>
-          </p>
-          <p>
-            In the meantime, book a discovery call to learn more about how we can help automate your business.
-          </p>
+          {post.contentHtml ? (
+            <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+          ) : (
+            <>
+              <p>
+                <em>Full article content coming soon. This page is a placeholder for the NextJS migration.</em>
+              </p>
+              <p>
+                In the meantime, book a discovery call to learn more about how we can help automate your business.
+              </p>
+            </>
+          )}
           <p style={{ marginTop: '2rem' }}>
             <a 
               href={CALENDLY_URL}
