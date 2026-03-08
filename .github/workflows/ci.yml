@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Verify .nojekyll exists in docs/
+        run: |
+          if [ ! -f docs/.nojekyll ]; then
+            echo "::error::docs/.nojekyll is missing! GitHub Pages will break without it."
+            exit 1
+          fi
+
+      - name: Verify GA tags in built HTML
+        run: |
+          if ! grep -q "googletagmanager" docs/index.html; then
+            echo "::error::Google Analytics tags missing from built HTML."
+            exit 1
+          fi
