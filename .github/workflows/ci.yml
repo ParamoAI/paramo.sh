@@ -19,7 +19,9 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build
+      - run: |
+          npm run build
+          touch docs/.nojekyll
 
       - name: Verify .nojekyll exists in docs/
         run: |
