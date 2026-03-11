@@ -28,9 +28,9 @@ jobs:
             exit 1
           fi
 
-      - name: Verify GA tags in built HTML
+      - name: Verify GA tags in built output
         run: |
-          if ! grep -q "googletagmanager" docs/index.html; then
-            echo "::error::Google Analytics tags missing from built HTML."
+          if ! grep -rq "googletagmanager" docs/_next/; then
+            echo "::error::Google Analytics tags missing from built JS bundles."
             exit 1
           fi
