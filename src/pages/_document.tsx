@@ -1,9 +1,29 @@
 import { Head, Html, Main, NextScript } from 'next/document';
+import { GA_MEASUREMENT_IDS } from '@/config/site';
 
 export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        {/* Google Analytics */}
+        {GA_MEASUREMENT_IDS.map((id) => (
+          <script
+            key={`ga-src-${id}`}
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${id}`}
+          />
+        ))}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              ${GA_MEASUREMENT_IDS.map((id) => `gtag('config', '${id}');`).join('\n              ')}
+            `,
+          }}
+        />
+
         {/* Favicons */}
         <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
