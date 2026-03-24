@@ -13,6 +13,38 @@ interface Props {
 export default function BlogPostPage({ post }: Props) {
   const pageTitle = `${post.title} — ${SITE_NAME}`;
   
+  // Parse date for structured data (e.g. "Feb 20, 2026" → "2026-02-20")
+  const dateObj = new Date(post.date);
+  const isoDate = !isNaN(dateObj.getTime()) ? dateObj.toISOString().split('T')[0] : post.date;
+
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.description,
+    "url": `${SITE_URL}/blog/${post.slug}/`,
+    "datePublished": isoDate,
+    "dateModified": isoDate,
+    "author": {
+      "@type": "Person",
+      "name": post.author,
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Páramo AI",
+      "url": SITE_URL,
+      "logo": {
+        "@type": "ImageObject",
+        "url": OG_IMAGE,
+      },
+    },
+    "image": OG_IMAGE,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/blog/${post.slug}/`,
+    },
+  };
+
   return (
     <>
       <Head>
@@ -30,6 +62,11 @@ export default function BlogPostPage({ post }: Props) {
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
         <meta name="twitter:image" content={OG_IMAGE} />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+        />
       </Head>
 
       <Nav activeLink="blog" />
@@ -74,6 +111,41 @@ export default function BlogPostPage({ post }: Props) {
               Book Your Discovery Call →
             </a>
           </p>
+        </div>
+      </section>
+
+      {/* Related Posts */}
+      <section className="related-posts" style={{ padding: '4rem 2rem', borderTop: '1px solid rgba(168, 197, 184, 0.08)' }}>
+        <div className="container narrow">
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '2rem', color: 'var(--cloud-layer)' }}>Keep Reading</h2>
+          <div style={{ display: 'grid', gap: '1.5rem' }}>
+            {blogPosts
+              .filter(p => p.slug !== post.slug)
+              .slice(0, 3)
+              .map(p => (
+                <Link
+                  key={p.slug}
+                  href={`/blog/${p.slug}`}
+                  style={{
+                    display: 'block',
+                    padding: '1.25rem',
+                    borderRadius: '8px',
+                    border: '1px solid rgba(168, 197, 184, 0.12)',
+                    textDecoration: 'none',
+                    transition: 'border-color 0.2s',
+                  }}
+                >
+                  <span className="article-tag" style={{ fontSize: '0.75rem', marginBottom: '0.5rem', display: 'inline-block' }}>{p.tag}</span>
+                  <h3 style={{ fontSize: '1.1rem', color: 'var(--cloud-layer)', margin: '0.25rem 0' }}>{p.title}</h3>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--misty-sage)', margin: 0 }}>{p.description}</p>
+                </Link>
+              ))}
+          </div>
+          <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+            <Link href="/case-studies" className="btn-secondary" style={{ textDecoration: 'none' }}>
+              View Our Case Studies →
+            </Link>
+          </div>
         </div>
       </section>
 

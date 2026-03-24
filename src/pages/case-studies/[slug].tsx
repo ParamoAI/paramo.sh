@@ -83,6 +83,26 @@ export default function CaseStudyPage({ study, htmlContent }: Props) {
         </section>
       )}
 
+      {/* Related Reading */}
+      <section style={{ padding: '3rem 2rem', borderTop: '1px solid rgba(168, 197, 184, 0.08)' }}>
+        <div className="container narrow">
+          <h2 style={{ fontSize: '1.3rem', marginBottom: '1.5rem', color: 'var(--cloud-layer)' }}>Related Reading</h2>
+          <div style={{ display: 'grid', gap: '1rem' }}>
+            <Link href="/blog/ai-agents-vs-zapier-make" style={{ display: 'block', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(168, 197, 184, 0.12)', textDecoration: 'none' }}>
+              <h3 style={{ fontSize: '1rem', color: 'var(--cloud-layer)', margin: 0 }}>AI Agents vs Zapier &amp; Make: What Automation Tools Can&apos;t Do →</h3>
+            </Link>
+            <Link href="/blog/replaced-12-saas-tools" style={{ display: 'block', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(168, 197, 184, 0.12)', textDecoration: 'none' }}>
+              <h3 style={{ fontSize: '1rem', color: 'var(--cloud-layer)', margin: 0 }}>We Replaced 12 SaaS Tools with AI Agents →</h3>
+            </Link>
+          </div>
+          <div style={{ marginTop: '1.5rem' }}>
+            <Link href="/case-studies" style={{ color: 'var(--frailejon-gold)', textDecoration: 'none', fontSize: '0.9rem' }}>
+              ← More Case Studies
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="cta-section" style={{ padding: '4rem 2rem 6rem', borderTop: '1px solid rgba(168, 197, 184, 0.08)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <h2 className="section-title">Curious whether an agent could handle your toughest workflow?</h2>
