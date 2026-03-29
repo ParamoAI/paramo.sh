@@ -32,6 +32,16 @@ export const caseStudies: CaseStudy[] = [
     role: 'getclawhelp.com',
   },
   {
+    slug: 'dr-osborn-neurosurgeon',
+    industry: 'Healthcare / Longevity Medicine',
+    industryEmoji: '🧠',
+    stat: 'A neurosurgeon\'s brand, amplified. Content that sounds like a real doctor — because it learned from one.',
+    title: 'A board-certified neurosurgeon and longevity physician deployed a locally-installed AI assistant to handle content creation, trend monitoring, and brand management across three platforms — without compromising patient privacy or his voice.',
+    avatar: 'BO',
+    name: 'Dr. Brett Osborn',
+    role: 'Neurosurgeon & Longevity Physician, West Palm Beach, FL',
+  },
+  {
     slug: 'skilletz-cafe',
     industry: 'Restaurant / Food & Beverage',
     industryEmoji: '🍳',
