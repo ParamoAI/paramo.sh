@@ -14,6 +14,11 @@ export default function Footer() {
         </div>
         <ul className="footer-links">
           <li>
+            <Link href="/architect-prep">
+              Architect Prep
+            </Link>
+          </li>
+          <li>
             <a href="https://discord.com/invite/xXE9TqGju" target="_blank" rel="noopener noreferrer">
               Discord
             </a>

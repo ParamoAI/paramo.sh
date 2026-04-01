@@ -1,21 +1,24 @@
 self.__BUILD_MANIFEST = {
   "/": [
-    "static/chunks/0ae689f8a6a1945d.js"
+    "static/chunks/80a2be170416beae.js"
   ],
   "/_error": [
     "static/chunks/ab954d63e2e04adb.js"
   ],
+  "/architect-prep": [
+    "static/chunks/fad030611f0f0fcd.js"
+  ],
   "/blog": [
-    "static/chunks/5bbec1e605cadfeb.js"
+    "static/chunks/bfef675e480d14b0.js"
   ],
   "/blog/[slug]": [
-    "static/chunks/21abb01a71fa2478.js"
+    "static/chunks/8a4a68c4b6197c88.js"
   ],
   "/case-studies": [
-    "static/chunks/1efab8bac5d06ba5.js"
+    "static/chunks/f6d9f174c186b25e.js"
   ],
   "/case-studies/[slug]": [
-    "static/chunks/17578ff4e86f3d22.js"
+    "static/chunks/5da0ecd4cbd84437.js"
   ],
   "__rewrites": {
     "afterFiles": [],
@@ -26,6 +29,7 @@ self.__BUILD_MANIFEST = {
     "/",
     "/_app",
     "/_error",
+    "/architect-prep",
     "/blog",
     "/blog/[slug]",
     "/case-studies",
