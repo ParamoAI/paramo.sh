@@ -4,6 +4,7 @@ import StructuredData from '@/components/StructuredData';
 import { GA_MEASUREMENT_IDS } from '@/config/site';
 
 import '@/styles/globals.css';
+import '@/styles/architect-prep.css';
 
 import type { AppProps } from 'next/app';
 

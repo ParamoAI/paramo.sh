@@ -1,0 +1,383 @@
+/* ── Architect Prep — Flashcard Study Tool ── */
+
+.ap-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paramo-deep);
+  color: var(--cloud-layer);
+  font-family: var(--font-body);
+}
+
+/* ── Header ── */
+.ap-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(27, 77, 62, 0.3);
+}
+
+.ap-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ap-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cloud-layer);
+  text-decoration: none;
+}
+
+.ap-logo-mark {
+  height: 28px;
+  width: auto;
+}
+
+.ap-header-title {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  color: var(--frailejon-gold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── Progress ── */
+.ap-progress-section {
+  padding: 1rem 1.25rem 0.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ap-progress-bar-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(27, 77, 62, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ap-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--highland-moss), var(--frailejon-gold));
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.ap-progress-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.ap-stat-known {
+  color: var(--success);
+}
+
+.ap-stat-learning {
+  color: var(--frailejon-gold);
+}
+
+.ap-stat-remaining {
+  color: var(--misty-sage);
+}
+
+/* ── Main ── */
+.ap-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1.25rem;
+}
+
+/* ── Card Area ── */
+.ap-card-area {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ap-card-counter {
+  font-size: 0.8rem;
+  color: var(--misty-sage);
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ap-review-badge {
+  background: var(--frailejon-gold);
+  color: var(--paramo-deep);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ap-tag {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--frailejon-gold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Flip Card ── */
+.ap-card {
+  width: 100%;
+  min-height: 280px;
+  perspective: 1000px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.ap-card-inner {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.ap-card-flipped .ap-card-inner {
+  transform: rotateY(180deg);
+}
+
+.ap-card-front,
+.ap-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 280px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ap-card-front {
+  background: linear-gradient(145deg, var(--paramo-deep-alt), rgba(27, 77, 62, 0.15));
+  border: 1px solid rgba(27, 77, 62, 0.4);
+}
+
+.ap-card-back {
+  background: linear-gradient(145deg, rgba(27, 77, 62, 0.25), rgba(200, 150, 62, 0.08));
+  border: 1px solid rgba(200, 150, 62, 0.3);
+  transform: rotateY(180deg);
+}
+
+.ap-card-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--cloud-layer);
+}
+
+.ap-card-back .ap-card-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--morning-mist);
+}
+
+.ap-card-hint {
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  color: var(--misty-sage);
+  opacity: 0.6;
+}
+
+/* ── Action Buttons ── */
+.ap-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.ap-btn {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  min-height: 56px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ap-btn:active {
+  transform: scale(0.97);
+}
+
+.ap-btn-learning {
+  background: rgba(200, 150, 62, 0.15);
+  color: var(--frailejon-gold);
+  border: 1px solid rgba(200, 150, 62, 0.3);
+}
+
+.ap-btn-known {
+  background: rgba(58, 139, 92, 0.2);
+  color: var(--success);
+  border: 1px solid rgba(58, 139, 92, 0.3);
+}
+
+.ap-btn-primary {
+  background: var(--frailejon-gold);
+  color: var(--paramo-deep);
+}
+
+.ap-btn-secondary {
+  background: rgba(27, 77, 62, 0.3);
+  color: var(--cloud-layer);
+  border: 1px solid rgba(27, 77, 62, 0.5);
+}
+
+/* ── Summary ── */
+.ap-summary {
+  width: 100%;
+  max-width: 600px;
+}
+
+.ap-summary-card {
+  background: linear-gradient(145deg, var(--paramo-deep-alt), rgba(27, 77, 62, 0.15));
+  border: 1px solid rgba(27, 77, 62, 0.4);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.ap-summary-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--frailejon-gold);
+  margin-bottom: 1.5rem;
+}
+
+.ap-summary-score {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.ap-score-number {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--cloud-layer);
+  line-height: 1;
+}
+
+.ap-score-total {
+  font-size: 1.5rem;
+  color: var(--misty-sage);
+}
+
+.ap-summary-label {
+  font-size: 0.9rem;
+  color: var(--misty-sage);
+  margin-top: 0.5rem;
+}
+
+.ap-summary-still-learning {
+  color: var(--frailejon-gold);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.ap-summary-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* ── Footer ── */
+.ap-footer {
+  padding: 1.5rem 1.25rem;
+  border-top: 1px solid rgba(27, 77, 62, 0.3);
+  text-align: center;
+}
+
+.ap-footer-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ap-footer-cta {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--cloud-layer);
+  margin-bottom: 0.5rem;
+}
+
+.ap-footer-cta a {
+  color: var(--frailejon-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ap-footer-cta a:hover {
+  color: var(--sun-through-mist);
+}
+
+.ap-footer-copy {
+  font-size: 0.75rem;
+  color: var(--misty-sage);
+  opacity: 0.6;
+}
+
+/* ── Responsive — tablet+ ── */
+@media (min-width: 768px) {
+  .ap-card {
+    min-height: 320px;
+  }
+
+  .ap-card-inner {
+    min-height: 320px;
+  }
+
+  .ap-card-front,
+  .ap-card-back {
+    min-height: 320px;
+    padding: 2.5rem 2rem;
+  }
+
+  .ap-card-text {
+    font-size: 1.25rem;
+  }
+
+  .ap-card-back .ap-card-text {
+    font-size: 1.1rem;
+  }
+
+  .ap-summary-actions {
+    flex-direction: row;
+  }
+}
