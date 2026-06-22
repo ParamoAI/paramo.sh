@@ -795,7 +795,7 @@ export default function Home() {
         .paramo-process-label {
           font-size: 0.72rem;
           font-weight: 700;
-          letter-spacing: 0.16em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
         }
 
@@ -815,14 +815,15 @@ export default function Home() {
         .paramo-process-number {
           font-family: 'Newsreader', 'Times New Roman', serif;
           font-weight: 500;
-          letter-spacing: -0.03em;
+          letter-spacing: -0.035em;
+          text-wrap: balance;
         }
 
         .paramo-homepage h1 {
-          margin: 1rem 0 1.5rem;
-          font-size: clamp(3rem, 7vw, 5.75rem);
-          line-height: 0.94;
-          max-width: 10.8ch;
+          margin: 1.1rem 0 1.35rem;
+          font-size: clamp(2.85rem, 6.35vw, 5.2rem);
+          line-height: 0.965;
+          max-width: 9.6ch;
         }
 
         .paramo-homepage h1 em {
@@ -833,9 +834,9 @@ export default function Home() {
 
         .paramo-homepage h2 {
           font-size: clamp(2.25rem, 4.5vw, 3.5rem);
-          line-height: 1;
-          max-width: 12ch;
-          margin-top: 0.8rem;
+          line-height: 0.98;
+          max-width: 10.8ch;
+          margin-top: 0.95rem;
         }
 
         .paramo-homepage h3 {
@@ -850,13 +851,14 @@ export default function Home() {
         .paramo-homepage input,
         .paramo-homepage button {
           font-size: 16px;
-          line-height: 1.65;
+          line-height: 1.72;
         }
 
         .paramo-lead {
-          max-width: 46rem;
-          color: var(--text-sub);
-          font-size: clamp(1.06rem, 2.1vw, 1.19rem);
+          max-width: 39rem;
+          color: rgba(232, 240, 235, 0.82);
+          font-size: clamp(1.1rem, 1.95vw, 1.27rem);
+          line-height: 1.76;
         }
 
         .paramo-lead-centered {
@@ -867,7 +869,8 @@ export default function Home() {
         .paramo-intro,
         .paramo-offer-description {
           color: var(--text-sub);
-          max-width: 44rem;
+          max-width: 38rem;
+          font-size: 1.02rem;
         }
 
         .paramo-note,
@@ -911,11 +914,12 @@ export default function Home() {
           display: flex;
           align-items: center;
           gap: 1rem 1.5rem;
-          margin-top: 2rem;
+          margin-top: 2.15rem;
         }
 
         .paramo-quiet-link {
           color: var(--text-sub);
+          font-size: 0.98rem;
         }
 
         .paramo-stats {
@@ -962,7 +966,13 @@ export default function Home() {
         }
 
         .paramo-two-column > div > p + p {
-          margin-top: 1rem;
+          margin-top: 1.25rem;
+        }
+
+        .paramo-two-column > div:first-child > p,
+        .paramo-two-column-wide > div:first-child > p {
+          max-width: 35rem;
+          color: rgba(232, 240, 235, 0.76);
         }
 
         .paramo-problem-list {
@@ -973,7 +983,7 @@ export default function Home() {
           display: grid;
           grid-template-columns: 2rem 1fr;
           gap: 1rem;
-          padding: 1.2rem 0;
+          padding: 1.35rem 0;
           border-bottom: 1px solid var(--border-soft);
         }
 
@@ -986,15 +996,16 @@ export default function Home() {
 
         .paramo-problem-item h3 {
           font-family: 'Hanken Grotesk', system-ui, sans-serif;
-          font-size: 1rem;
+          font-size: 1.02rem;
           font-weight: 700;
           line-height: 1.5;
           letter-spacing: 0;
         }
 
         .paramo-problem-item p {
-          color: var(--text-sub);
-          margin-top: 0.25rem;
+          color: rgba(232, 240, 235, 0.66);
+          margin-top: 0.38rem;
+          max-width: 33ch;
         }
 
         .paramo-rule,
@@ -1009,7 +1020,11 @@ export default function Home() {
         }
 
         .paramo-section-heading {
-          margin-bottom: 2.75rem;
+          margin-bottom: 3.2rem;
+        }
+
+        .paramo-section-heading .paramo-intro {
+          margin-top: 1rem;
         }
 
         .paramo-offers {
@@ -1022,12 +1037,15 @@ export default function Home() {
           background: var(--card);
           border: 1px solid var(--border);
           border-radius: 10px;
-          padding: 2rem;
+          padding: 2.15rem 2rem 1.95rem;
+          display: flex;
+          flex-direction: column;
         }
 
         .paramo-offer-card-featured {
           background: var(--card-raised);
           border-color: var(--accent-dim);
+          box-shadow: inset 0 0 0 1px rgba(200, 150, 62, 0.08);
         }
 
         .paramo-offer-flag-muted {
@@ -1035,13 +1053,14 @@ export default function Home() {
         }
 
         .paramo-offer-kicker {
-          margin-top: 0.6rem;
+          margin-top: 0.7rem;
+          margin-bottom: 0.2rem;
         }
 
         .paramo-price {
           font-size: clamp(2.5rem, 4vw, 2.75rem);
           line-height: 1;
-          margin: 0.9rem 0 1.25rem;
+          margin: 1rem 0 1.35rem;
         }
 
         .paramo-price span {
@@ -1054,16 +1073,16 @@ export default function Home() {
 
         .paramo-check-list {
           list-style: none;
-          margin: 1.6rem 0;
+          margin: 1.75rem 0 1.9rem;
           padding: 0;
           display: grid;
-          gap: 0.85rem;
+          gap: 0.95rem;
         }
 
         .paramo-check-item {
           display: grid;
           grid-template-columns: 1.5rem 1fr;
-          gap: 0.8rem;
+          gap: 0.9rem;
           align-items: start;
         }
 
@@ -1084,9 +1103,10 @@ export default function Home() {
         .paramo-ideal-box {
           border: 1px solid var(--border);
           border-radius: 8px;
-          padding: 1rem 1rem 1.05rem;
-          color: var(--text-sub);
-          margin-bottom: 1.25rem;
+          padding: 1.05rem 1rem 1.1rem;
+          color: rgba(232, 240, 235, 0.72);
+          margin-bottom: 1.4rem;
+          background: rgba(168, 197, 184, 0.03);
         }
 
         .paramo-ideal-box strong {
@@ -1094,7 +1114,9 @@ export default function Home() {
         }
 
         .paramo-offer-card .paramo-note {
-          margin-top: 1rem;
+          margin-top: auto;
+          padding-top: 1.15rem;
+          border-top: 1px solid var(--border-soft);
         }
 
         .paramo-process-grid {
@@ -1120,11 +1142,12 @@ export default function Home() {
         }
 
         .paramo-process-card h3 {
-          margin: 0.55rem 0 0.75rem;
+          margin: 0.65rem 0 0.85rem;
         }
 
         .paramo-process-card p {
           color: var(--text-sub);
+          max-width: 31ch;
         }
 
         .paramo-two-column-wide {
@@ -1149,12 +1172,13 @@ export default function Home() {
         .paramo-table thead th {
           background: var(--fill-muted);
           color: var(--text);
-          font-weight: 500;
+          font-weight: 600;
+          font-size: 0.95rem;
         }
 
         .paramo-table th,
         .paramo-table td {
-          padding: 0.95rem 1rem;
+          padding: 1.05rem 1rem;
           border-bottom: 1px solid var(--border-soft);
         }
 
@@ -1166,8 +1190,9 @@ export default function Home() {
         .paramo-table th[scope='row'] {
           text-align: left;
           width: 46%;
-          color: var(--text-sub);
+          color: rgba(232, 240, 235, 0.78);
           font-weight: 500;
+          line-height: 1.5;
         }
 
         .paramo-table td,
@@ -1175,9 +1200,15 @@ export default function Home() {
           text-align: center;
         }
 
+        .paramo-table tbody td:last-child,
+        .paramo-table thead th:last-child {
+          background: rgba(200, 150, 62, 0.025);
+        }
+
         .paramo-yes {
           color: var(--accent);
           font-weight: 700;
+          font-size: 1.05rem;
         }
 
         .paramo-no {
@@ -1202,14 +1233,14 @@ export default function Home() {
           align-items: center;
           justify-content: space-between;
           gap: 1rem;
-          padding: 1.25rem 0;
+          padding: 1.35rem 0;
           cursor: pointer;
           text-align: left;
         }
 
         .paramo-faq-trigger span:first-child {
-          font-size: 1.05rem;
-          line-height: 1.4;
+          font-size: 1.08rem;
+          line-height: 1.45;
         }
 
         .paramo-faq-icon {
@@ -1408,8 +1439,25 @@ export default function Home() {
             padding-right: 0;
           }
 
+          .paramo-offer-card {
+            padding: 2rem 1.75rem 1.85rem;
+          }
+
           .paramo-footer {
             padding-bottom: 1.5rem;
+          }
+
+          .paramo-homepage h2,
+          .paramo-closing h2 {
+            max-width: 12ch;
+          }
+
+          .paramo-two-column > div:first-child > p,
+          .paramo-two-column-wide > div:first-child > p,
+          .paramo-intro,
+          .paramo-offer-description,
+          .paramo-process-card p {
+            max-width: none;
           }
         }
 
@@ -1417,6 +1465,26 @@ export default function Home() {
           .paramo-container,
           .paramo-rule {
             width: min(1120px, calc(100% - 2.5rem));
+          }
+
+          .paramo-section {
+            padding: 82px 0;
+          }
+
+          .paramo-homepage h1 {
+            margin: 0.95rem 0 1.1rem;
+            line-height: 0.99;
+            max-width: 9.1ch;
+          }
+
+          .paramo-homepage h2 {
+            line-height: 1.01;
+          }
+
+          .paramo-lead {
+            max-width: 31rem;
+            font-size: 1.05rem;
+            line-height: 1.74;
           }
 
           .paramo-nav-cta {
@@ -1445,6 +1513,32 @@ export default function Home() {
           .paramo-stat-divider {
             width: 100%;
             height: 1px;
+          }
+
+          .paramo-problem-item {
+            padding: 1.55rem 0;
+          }
+
+          .paramo-check-list {
+            gap: 0.85rem;
+            margin: 1.55rem 0 1.75rem;
+          }
+
+          .paramo-ideal-box {
+            margin-bottom: 1.25rem;
+          }
+
+          .paramo-table th,
+          .paramo-table td {
+            padding: 0.9rem 0.82rem;
+          }
+
+          .paramo-section-heading {
+            margin-bottom: 2.6rem;
+          }
+
+          .paramo-faq-trigger {
+            padding: 1.45rem 0;
           }
 
           .paramo-footer-bottom {
