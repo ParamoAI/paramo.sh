@@ -1468,12 +1468,16 @@ export default function Home() {
           }
 
           .paramo-section {
-            padding: 82px 0;
+            padding: 88px 0;
+          }
+
+          .paramo-hero {
+            padding: 92px 0 88px;
           }
 
           .paramo-homepage h1 {
-            margin: 0.95rem 0 1.1rem;
-            line-height: 0.99;
+            margin: 1rem 0 1.2rem;
+            line-height: 1;
             max-width: 9.1ch;
           }
 
@@ -1493,6 +1497,11 @@ export default function Home() {
             font-size: 0.92rem;
           }
 
+          .paramo-hero-actions {
+            gap: 0.85rem;
+            margin-top: 2rem;
+          }
+
           .paramo-hero-actions,
           .paramo-stats,
           .paramo-sample-form,
@@ -1501,13 +1510,31 @@ export default function Home() {
             align-items: stretch;
           }
 
+          .paramo-button {
+            width: 100%;
+          }
+
+          .paramo-quiet-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0.7rem 1rem;
+            border: 1px solid var(--border-soft);
+            border-radius: 6px;
+            background: rgba(168, 197, 184, 0.035);
+          }
+
           .paramo-stats {
             width: 100%;
-            gap: 1rem;
+            gap: 1.15rem;
+            margin-top: 2.6rem;
+            padding-top: 1.35rem;
           }
 
           .paramo-stat {
             min-width: 0;
+            gap: 0.45rem;
           }
 
           .paramo-stat-divider {
@@ -1516,7 +1543,7 @@ export default function Home() {
           }
 
           .paramo-problem-item {
-            padding: 1.55rem 0;
+            padding: 1.7rem 0;
           }
 
           .paramo-check-list {
@@ -1534,11 +1561,45 @@ export default function Home() {
           }
 
           .paramo-section-heading {
-            margin-bottom: 2.6rem;
+            margin-bottom: 2.8rem;
           }
 
           .paramo-faq-trigger {
-            padding: 1.45rem 0;
+            padding: 1.55rem 0;
+          }
+
+          .paramo-faq-trigger span:first-child {
+            font-size: 1rem;
+            padding-right: 0.6rem;
+          }
+
+          .paramo-closing {
+            padding-top: 96px;
+          }
+
+          .paramo-closing h2 {
+            max-width: 10ch;
+          }
+
+          .paramo-closing-rule {
+            margin-top: 2.6rem;
+          }
+
+          .paramo-sample-block {
+            margin-top: 2.3rem;
+          }
+
+          .paramo-sample-label {
+            margin-bottom: 0.55rem;
+          }
+
+          .paramo-sample-form {
+            gap: 0.85rem;
+            margin-top: 1.2rem;
+          }
+
+          .paramo-sample-form input {
+            min-height: 50px;
           }
 
           .paramo-footer-bottom {
