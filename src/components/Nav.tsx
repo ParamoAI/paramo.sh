@@ -22,10 +22,9 @@ export default function Nav({ activeLink }: NavProps) {
           P<span className="accent">á</span>ramo
         </Link>
         <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-          <li><a href="/#services" onClick={closeMenu}>Services</a></li>
-          <li><a href="/#process" onClick={closeMenu}>Process</a></li>
-          <li><a href="/#results" onClick={closeMenu}>Results</a></li>
-          <li><a href="/#pricing" onClick={closeMenu}>Pricing</a></li>
+          <li><a href="/#offers" onClick={closeMenu}>Services</a></li>
+          <li><a href="/#process" onClick={closeMenu}>How we work</a></li>
+          <li><a href="/#faq" onClick={closeMenu}>FAQ</a></li>
           <li>
             <Link href="/case-studies" className={activeLink === 'case-studies' ? 'active' : ''} onClick={closeMenu}>
               Case Studies
@@ -38,7 +37,7 @@ export default function Nav({ activeLink }: NavProps) {
           </li>
           <li>
             <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="nav-cta" onClick={closeMenu}>
-              Book a Call
+              Book a discovery call
             </a>
           </li>
         </ul>
