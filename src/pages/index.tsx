@@ -15,6 +15,7 @@ const offerAssessment = [
 ];
 
 const offerConcierge = [
+  'Assessment included to diagnose and prioritize the highest-leverage workflow first',
   'Two 45-minute working sessions each month',
   'Direct access between sessions, answered the same business day',
   'A shared workspace documenting every system we build',
@@ -326,7 +327,7 @@ export default function Home() {
                 <div className="paramo-offer-flag">Most clients start here</div>
                 <div className="paramo-offer-kicker">One-time engagement</div>
                 <h3>The Assessment</h3>
-                <div className="paramo-price">$1,499</div>
+                <div className="paramo-price">$997</div>
                 <p className="paramo-offer-description">
                   A focused workflow audit where we pull the real bottlenecks out of your business, then
                   deliver a custom report showing precisely where AI creates leverage, with named tools,
@@ -350,8 +351,8 @@ export default function Home() {
                   Book a discovery call
                 </a>
                 <p className="paramo-note">
-                  If we don&apos;t surface at least one opportunity to recover five or more hours a week,
-                  the Assessment is on us.
+                  Money-back guarantee: if we can&apos;t find three to five hours of weekly time savings
+                  in your business, the Assessment is on us.
                 </p>
               </article>
 
