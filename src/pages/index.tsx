@@ -15,6 +15,7 @@ const offerAssessment = [
 ];
 
 const offerConcierge = [
+  'Assessment included to diagnose and prioritize the highest-leverage workflow first',
   'Two 45-minute working sessions each month',
   'Direct access between sessions, answered the same business day',
   'A shared workspace documenting every system we build',
@@ -249,7 +250,7 @@ export default function Home() {
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="paramo-button paramo-button-primary"
+                className="paramo-button paramo-button-primary paramo-closing-cta"
               >
                 Book a discovery call
               </a>
@@ -326,7 +327,7 @@ export default function Home() {
                 <div className="paramo-offer-flag">Most clients start here</div>
                 <div className="paramo-offer-kicker">One-time engagement</div>
                 <h3>The Assessment</h3>
-                <div className="paramo-price">$1,499</div>
+                <div className="paramo-price">$997</div>
                 <p className="paramo-offer-description">
                   A focused workflow audit where we pull the real bottlenecks out of your business, then
                   deliver a custom report showing precisely where AI creates leverage, with named tools,
@@ -350,8 +351,8 @@ export default function Home() {
                   Book a discovery call
                 </a>
                 <p className="paramo-note">
-                  If we don&apos;t surface at least one opportunity to recover five or more hours a week,
-                  the Assessment is on us.
+                  Money-back guarantee: if we can&apos;t find three to five hours of weekly time savings
+                  in your business, the Assessment is on us.
                 </p>
               </article>
 
@@ -698,7 +699,7 @@ export default function Home() {
           grid-template-columns: auto 1fr auto;
           align-items: center;
           gap: 1.5rem;
-          min-height: 78px;
+          min-height: 82px;
         }
 
         .paramo-brand {
@@ -729,7 +730,8 @@ export default function Home() {
 
         .paramo-nav-links a {
           color: var(--text-sub);
-          font-size: 0.98rem;
+          font-size: 1rem;
+          font-weight: 500;
         }
 
         .paramo-nav-links a:hover,
@@ -749,6 +751,12 @@ export default function Home() {
           transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
           cursor: pointer;
           text-align: center;
+        }
+
+        .paramo-nav-cta,
+        .paramo-hero-actions .paramo-button-primary,
+        .paramo-closing-cta {
+          min-width: 14.5rem;
         }
 
         .paramo-button-primary {
@@ -781,13 +789,22 @@ export default function Home() {
         }
 
         .paramo-section {
-          padding: 96px 0;
+          padding: 104px 0;
         }
 
         .paramo-band {
           background: var(--base-darkest);
           border-top: 1px solid var(--border-soft);
           border-bottom: 1px solid var(--border-soft);
+          position: relative;
+        }
+
+        .paramo-band::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: rgba(168, 197, 184, 0.02);
+          pointer-events: none;
         }
 
         .paramo-eyebrow,
@@ -883,7 +900,7 @@ export default function Home() {
         .paramo-hero {
           position: relative;
           overflow: clip;
-          padding: 110px 0 96px;
+          padding: 120px 0 104px;
         }
 
         .paramo-hero-inner {
@@ -893,10 +910,11 @@ export default function Home() {
 
         .paramo-ridges {
           position: absolute;
-          inset: 0 0 auto;
-          height: 100%;
+          inset: 2.5rem 0 auto;
+          height: calc(100% - 2.5rem);
           pointer-events: none;
           z-index: 0;
+          opacity: 0.86;
         }
 
         .paramo-ridges svg {
@@ -907,7 +925,7 @@ export default function Home() {
         .paramo-ridges polyline {
           fill: none;
           stroke: var(--ridge);
-          stroke-width: 1.1;
+          stroke-width: 1;
         }
 
         .paramo-hero-actions {
@@ -920,6 +938,9 @@ export default function Home() {
         .paramo-quiet-link {
           color: var(--text-sub);
           font-size: 0.98rem;
+          text-decoration: underline;
+          text-decoration-color: rgba(168, 197, 184, 0.22);
+          text-underline-offset: 0.28rem;
         }
 
         .paramo-stats {
@@ -927,8 +948,8 @@ export default function Home() {
           align-items: stretch;
           gap: 1.5rem;
           width: fit-content;
-          margin-top: 3.25rem;
-          padding-top: 1.1rem;
+          margin-top: 3.5rem;
+          padding-top: 1.25rem;
           border-top: 1px solid var(--border-soft);
         }
 
@@ -976,15 +997,18 @@ export default function Home() {
         }
 
         .paramo-problem-list {
-          border-top: 1px solid var(--border-soft);
+          display: grid;
+          gap: 0.9rem;
         }
 
         .paramo-problem-item {
           display: grid;
           grid-template-columns: 2rem 1fr;
           gap: 1rem;
-          padding: 1.35rem 0;
-          border-bottom: 1px solid var(--border-soft);
+          padding: 1.3rem 1.15rem 1.35rem;
+          border: 1px solid var(--border-soft);
+          border-radius: 10px;
+          background: rgba(168, 197, 184, 0.03);
         }
 
         .paramo-roman {
@@ -1017,10 +1041,11 @@ export default function Home() {
         .paramo-rule {
           width: min(1120px, calc(100% - 4.5rem));
           margin: 0 auto;
+          opacity: 0.78;
         }
 
         .paramo-section-heading {
-          margin-bottom: 3.2rem;
+          margin-bottom: 3.45rem;
         }
 
         .paramo-section-heading .paramo-intro {
@@ -1122,11 +1147,12 @@ export default function Home() {
         .paramo-process-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 2rem;
+          gap: 2.35rem;
         }
 
         .paramo-process-card {
-          padding-right: 0.5rem;
+          padding: 0 0.5rem 0 1rem;
+          border-left: 1px solid var(--border-soft);
         }
 
         .paramo-process-number {
@@ -1167,6 +1193,7 @@ export default function Home() {
           border-radius: 10px;
           overflow: hidden;
           background: var(--card);
+          margin-top: 0.4rem;
         }
 
         .paramo-table thead th {
@@ -1227,6 +1254,10 @@ export default function Home() {
           border-bottom: 1px solid var(--border-soft);
         }
 
+        .paramo-faq-item.is-open {
+          background: rgba(168, 197, 184, 0.025);
+        }
+
         .paramo-faq-trigger {
           width: 100%;
           display: flex;
@@ -1245,8 +1276,8 @@ export default function Home() {
 
         .paramo-faq-icon {
           position: relative;
-          width: 1rem;
-          height: 1rem;
+          width: 1.1rem;
+          height: 1.1rem;
           color: var(--accent);
           flex: 0 0 auto;
         }
@@ -1274,7 +1305,7 @@ export default function Home() {
         }
 
         .paramo-faq-panel {
-          padding: 0 0 1.35rem;
+          padding: 0 2.4rem 1.45rem 0;
         }
 
         .paramo-faq-panel p {
@@ -1286,7 +1317,7 @@ export default function Home() {
         }
 
         .paramo-closing-inner {
-          max-width: 760px;
+          max-width: 800px;
           margin: 0 auto;
         }
 
@@ -1297,13 +1328,17 @@ export default function Home() {
         }
 
         .paramo-closing-rule {
-          margin: 2.3rem auto 0;
+          margin: 2.6rem auto 0;
           width: 100%;
         }
 
         .paramo-sample-block {
           max-width: 480px;
-          margin: 2rem auto 0;
+          margin: 2.15rem auto 0;
+          padding: 1.45rem 1.35rem 1.5rem;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          background: rgba(168, 197, 184, 0.03);
         }
 
         .paramo-sample-label {
@@ -1342,14 +1377,15 @@ export default function Home() {
         }
 
         .paramo-footer {
-          padding: 0 0 2rem;
+          padding: 2.4rem 0 2rem;
+          border-top: 1px solid var(--border-soft);
         }
 
         .paramo-footer-grid {
           display: grid;
           grid-template-columns: 1.45fr repeat(3, minmax(0, 1fr));
-          gap: 2rem;
-          padding: 0 0 2.2rem;
+          gap: 2.4rem;
+          padding: 0 0 2.45rem;
         }
 
         .paramo-footer-brand {
@@ -1367,6 +1403,7 @@ export default function Home() {
           font-weight: 700;
           letter-spacing: 0;
           margin-bottom: 0.9rem;
+          color: var(--text);
         }
 
         .paramo-footer-grid ul {
@@ -1468,11 +1505,11 @@ export default function Home() {
           }
 
           .paramo-section {
-            padding: 88px 0;
+            padding: 92px 0;
           }
 
           .paramo-hero {
-            padding: 92px 0 88px;
+            padding: 96px 0 92px;
           }
 
           .paramo-homepage h1 {
@@ -1495,6 +1532,7 @@ export default function Home() {
             padding-inline: 1rem;
             min-height: 44px;
             font-size: 0.92rem;
+            min-width: 0;
           }
 
           .paramo-hero-actions {
@@ -1543,7 +1581,7 @@ export default function Home() {
           }
 
           .paramo-problem-item {
-            padding: 1.7rem 0;
+            padding: 1.45rem 1rem 1.5rem;
           }
 
           .paramo-check-list {
@@ -1561,7 +1599,7 @@ export default function Home() {
           }
 
           .paramo-section-heading {
-            margin-bottom: 2.8rem;
+            margin-bottom: 3rem;
           }
 
           .paramo-faq-trigger {
@@ -1587,6 +1625,7 @@ export default function Home() {
 
           .paramo-sample-block {
             margin-top: 2.3rem;
+            padding: 1.25rem 1rem 1.3rem;
           }
 
           .paramo-sample-label {
