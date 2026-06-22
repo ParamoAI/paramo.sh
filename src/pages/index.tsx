@@ -1572,6 +1572,10 @@ export default function Home() {
             width: 100%;
           }
 
+          .paramo-nav-cta {
+            width: auto;
+          }
+
           .paramo-quiet-link {
             display: inline-flex;
             align-items: center;
