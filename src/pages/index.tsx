@@ -118,15 +118,6 @@ const faqItems = [
   },
 ];
 
-function LogoMark() {
-  return (
-    <svg viewBox="0 0 44 38" aria-hidden="true" focusable="false">
-      <path d="M4 33.5 22 4.5 40 33.5Z" fill="none" stroke="currentColor" strokeWidth="1.6" />
-      <path d="m16 33.5 6-10.5 6 10.5Z" fill="currentColor" />
-    </svg>
-  );
-}
-
 function CheckItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="paramo-check-item">
@@ -201,10 +192,10 @@ export default function Home() {
         <nav className="paramo-nav">
           <div className="paramo-container">
             <Link href="/" className="paramo-brand" aria-label="Páramo home">
-              <span className="paramo-brand-mark">
-                <LogoMark />
+              <img src="/assets/mark-bright-dark.svg" alt="" className="paramo-brand-mark" />
+              <span className="paramo-brand-wordmark">
+                P<span className="paramo-brand-accent">á</span>ramo
               </span>
-              <span className="paramo-brand-wordmark">Páramo</span>
             </Link>
 
             <div className="paramo-nav-links" aria-label="Primary">
@@ -555,10 +546,10 @@ export default function Home() {
             <div className="paramo-footer-grid">
               <div>
                 <Link href="/" className="paramo-brand paramo-footer-brand" aria-label="Páramo home">
-                  <span className="paramo-brand-mark">
-                    <LogoMark />
+                  <img src="/assets/mark-bright-dark.svg" alt="" className="paramo-brand-mark" />
+                  <span className="paramo-brand-wordmark">
+                    P<span className="paramo-brand-accent">á</span>ramo
                   </span>
-                  <span className="paramo-brand-wordmark">Páramo</span>
                 </Link>
                 <p className="paramo-footer-copy">
                   AI systems for business owners. We find the work that shouldn&apos;t require you, then
@@ -709,8 +700,8 @@ export default function Home() {
         }
 
         .paramo-brand-mark {
-          width: 1.85rem;
-          color: var(--accent);
+          width: auto;
+          height: 2rem;
           flex: 0 0 auto;
         }
 
@@ -719,6 +710,10 @@ export default function Home() {
           font-size: 1.55rem;
           font-weight: 500;
           letter-spacing: -0.02em;
+        }
+
+        .paramo-brand-accent {
+          color: var(--accent);
         }
 
         .paramo-nav-links {
