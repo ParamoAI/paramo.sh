@@ -211,6 +211,8 @@ export default function Home() {
               <a href="#offers">Services</a>
               <a href="#process">How we work</a>
               <a href="#faq">FAQ</a>
+              <Link href="/case-studies">Case Studies</Link>
+              <Link href="/blog">Blog</Link>
             </div>
 
             <a
@@ -590,9 +592,6 @@ export default function Home() {
                   </li>
                   <li>
                     <Link href="/blog">Blog</Link>
-                  </li>
-                  <li>
-                    <Link href="/architect-prep">Architect Prep</Link>
                   </li>
                   <li>
                     <a href="https://discord.com/invite/xXE9TqGju" target="_blank" rel="noopener noreferrer">
@@ -1463,12 +1462,25 @@ export default function Home() {
 
           .paramo-nav .paramo-container {
             display: flex;
+            flex-wrap: wrap;
+            align-items: center;
             justify-content: space-between;
+            gap: 0.9rem 1.25rem;
             min-height: 72px;
+            padding-block: 1rem;
           }
 
           .paramo-nav-links {
-            display: none;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            order: 3;
+            justify-content: flex-start;
+            gap: 0.75rem 1.15rem;
+          }
+
+          .paramo-nav-links a {
+            font-size: 0.95rem;
           }
 
           .paramo-offer-card,
@@ -1533,6 +1545,19 @@ export default function Home() {
             min-height: 44px;
             font-size: 0.92rem;
             min-width: 0;
+            width: auto;
+          }
+
+          .paramo-nav .paramo-container {
+            gap: 0.8rem 1rem;
+          }
+
+          .paramo-nav-links {
+            gap: 0.6rem 1rem;
+          }
+
+          .paramo-nav-links a {
+            font-size: 0.9rem;
           }
 
           .paramo-hero-actions {
