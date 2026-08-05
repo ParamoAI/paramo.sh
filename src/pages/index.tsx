@@ -5,25 +5,6 @@ import { CALENDLY_URL, OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@
 
 const pageTitle = `${SITE_NAME} | AI systems for business owners`;
 
-const offerAssessment = [
-  'A 45-minute live workflow audit',
-  'A custom report tailored to your business',
-  'Three to seven tools matched to your workflows',
-  'An impact and effort priority matrix',
-  'A four-day quick-start implementation plan',
-  'A 30-minute walkthrough of your report',
-];
-
-const offerConcierge = [
-  'Assessment included to diagnose and prioritize the highest-leverage workflow first',
-  'Two 45-minute working sessions each month',
-  'Direct access between sessions, answered the same business day',
-  'A shared workspace documenting every system we build',
-  'We build on your screen, and you keep everything',
-  "Workflows audited and optimized before they're automated",
-  'A deliberately small roster, so your engagement gets full attention',
-];
-
 const problemItems = [
   {
     numeral: 'i',
@@ -94,7 +75,7 @@ const faqItems = [
   {
     question: "What's the difference between the Assessment and the Concierge?",
     answer:
-      'The Assessment is a one-time diagnostic: a custom report showing where AI creates leverage in your business, with named tools, realistic time savings, and a plan to start. The Concierge is the ongoing engagement where we implement those systems with you, across two working sessions a month, until they run reliably.',
+      'Some clients start by getting clarity on where AI creates the most leverage in the business. Others are ready to start implementing immediately. We use the discovery call to determine the right entry point based on urgency, workflow complexity, and internal capacity.',
   },
   {
     question: `What does "done-with-you" actually mean?`,
@@ -114,20 +95,9 @@ const faqItems = [
   {
     question: 'Can I begin with the Concierge without an Assessment first?',
     answer:
-      "Yes. If you already know where your bottlenecks are and you're ready to build, we begin the Concierge directly with a focused audit on the first session. The Assessment is the right starting point when you want clarity before committing to a monthly engagement.",
+      "Yes. If you already know where your bottlenecks are and you're ready to build, we can begin implementation directly with a focused workflow audit in the first session.",
   },
 ];
-
-function CheckItem({ children }: { children: React.ReactNode }) {
-  return (
-    <li className="paramo-check-item">
-      <span className="paramo-check-icon" aria-hidden="true">
-        <span>✓</span>
-      </span>
-      <span>{children}</span>
-    </li>
-  );
-}
 
 export default function Home() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -199,8 +169,8 @@ export default function Home() {
             </Link>
 
             <div className="paramo-nav-links" aria-label="Primary">
-              <a href="#offers">Services</a>
               <a href="#process">How we work</a>
+              <a href="#start">Get started</a>
               <a href="#faq">FAQ</a>
               <Link href="/case-studies">Case Studies</Link>
               <Link href="/blog">Blog</Link>
@@ -302,91 +272,6 @@ export default function Home() {
         </section>
 
         <hr className="paramo-rule" />
-
-        <section className="paramo-section" id="offers">
-          <div className="paramo-container">
-            <div className="paramo-section-heading">
-              <div className="paramo-eyebrow">Two ways to work with us</div>
-              <h2>Start with a diagnosis, or start building.</h2>
-              <p className="paramo-intro">
-                If you want clarity first, the Assessment maps exactly where AI creates leverage in your
-                business. If you&apos;re ready to build, the Concierge is where we implement it together, one
-                workflow at a time. Both begin with a conversation.
-              </p>
-            </div>
-
-            <div className="paramo-offers">
-              <article className="paramo-offer-card paramo-offer-card-featured">
-                <div className="paramo-offer-flag">Most clients start here</div>
-                <div className="paramo-offer-kicker">One-time engagement</div>
-                <h3>The Assessment</h3>
-                <div className="paramo-price">$997</div>
-                <p className="paramo-offer-description">
-                  A focused workflow audit where we pull the real bottlenecks out of your business, then
-                  deliver a custom report showing precisely where AI creates leverage, with named tools,
-                  conservative time-savings estimates, and a sequenced plan to start.
-                </p>
-                <ul className="paramo-check-list">
-                  {offerAssessment.map((item) => (
-                    <CheckItem key={item}>{item}</CheckItem>
-                  ))}
-                </ul>
-                <div className="paramo-ideal-box">
-                  <strong>Right for you if</strong> you want clarity before committing to implementation.
-                  You know manual work is costing you, but not yet where to begin.
-                </div>
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="paramo-button paramo-button-primary paramo-button-block"
-                >
-                  Book a discovery call
-                </a>
-                <p className="paramo-note">
-                  Money-back guarantee: if we can&apos;t find three to five hours of weekly time savings
-                  in your business, the Assessment is on us.
-                </p>
-              </article>
-
-              <article className="paramo-offer-card">
-                <div className="paramo-offer-flag paramo-offer-flag-muted">When you&apos;re ready to build</div>
-                <div className="paramo-offer-kicker">Ongoing engagement</div>
-                <h3>The Concierge</h3>
-                <div className="paramo-price">
-                  From $999 <span>/ per month</span>
-                </div>
-                <p className="paramo-offer-description">
-                  A done-with-you engagement where we implement AI systems alongside you. Two working
-                  sessions each month, direct access between them, and a shared workspace where every
-                  system we build is documented and yours to keep.
-                </p>
-                <ul className="paramo-check-list">
-                  {offerConcierge.map((item) => (
-                    <CheckItem key={item}>{item}</CheckItem>
-                  ))}
-                </ul>
-                <div className="paramo-ideal-box">
-                  <strong>Right for you if</strong> you&apos;ve completed an assessment, ours or your own,
-                  and you&apos;re ready to implement with a partner rather than figure out another report
-                  alone.
-                </div>
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="paramo-button paramo-button-secondary paramo-button-block"
-                >
-                  Book a discovery call
-                </a>
-                <p className="paramo-note">
-                  Project work (full builds, integrations, custom agents) is scoped from within the
-                  engagement, once we know exactly what&apos;s worth building.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
 
         <section className="paramo-section paramo-band" id="process">
           <div className="paramo-container">
@@ -564,13 +449,13 @@ export default function Home() {
                 <h3>Services</h3>
                 <ul>
                   <li>
-                    <a href="#offers">The Assessment</a>
-                  </li>
-                  <li>
-                    <a href="#offers">The Concierge</a>
-                  </li>
-                  <li>
                     <a href="#process">How we work</a>
+                  </li>
+                  <li>
+                    <a href="#start">Book a call</a>
+                  </li>
+                  <li>
+                    <Link href="/case-studies">Case studies</Link>
                   </li>
                 </ul>
               </div>
