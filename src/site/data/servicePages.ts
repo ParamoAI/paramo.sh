@@ -8,7 +8,7 @@
   projections are labelled as projections.
 */
 
-import { STRATEGY_PROCESS } from './services'
+import { AGENTS_PROCESS, CAIO_PROCESS, STRATEGY_PROCESS, WORKSHOP_PROCESS } from './services'
 
 export type ServicePage = {
   slug: string
@@ -108,9 +108,192 @@ export const SERVICE_PAGES: ServicePage[] = [
       title: 'After the strategy',
       body: 'The plan usually leads to one of these.',
       links: [
-        { label: 'Team AI Workshops', href: '/what-we-do/' },
-        { label: 'Fractional Chief AI Officer', href: '/what-we-do/' },
-        { label: 'Managed Agents', href: '/what-we-do/' },
+        { label: 'Team AI Workshops', href: '/what-we-do/team-ai-workshops/' },
+        { label: 'Fractional Chief AI Officer', href: '/what-we-do/fractional-chief-ai-officer/' },
+        { label: 'Managed Agents', href: '/what-we-do/managed-agents/' },
+      ],
+    },
+  },
+
+  {
+    slug: 'team-ai-workshops',
+    // aims at "ai training for employees" (320 searches a month in the US)
+    seoTitle: 'AI Training for Employees: Team AI Workshops | Páramo',
+    seoDescription:
+      'Hands-on AI training for employees, built around the work your team actually does. On-site workshops in the Twin Cities, from 90 minutes to a full day.',
+    eyebrow: 'What we do · Team AI Workshops',
+    title: 'AI training for your whole team, on their real work.',
+    lede: 'Hands-on sessions in plain language, built around the tasks your people actually do, so AI becomes part of the job instead of another login.',
+    forWho: {
+      title: 'Who it is for',
+      intro: 'Teams where a few people use AI well and most have not started, or started and stopped.',
+      signs: [
+        'Leadership wants the team using AI, but the team is not sure where it fits their job.',
+        'People have tried ChatGPT or Claude on their own, with mixed results.',
+        'You are rolling out a business AI plan and want people to actually use it.',
+        'You want everyone working from the same habits and the same rules.',
+      ],
+    },
+    deliverables: {
+      title: 'What you get',
+      items: [
+        { name: 'An assessment first', body: 'We learn where your team’s hours go and where everyone stands with AI today, so the session fits your people.' },
+        { name: 'A working session on site', body: '90 minutes, a half day or a full day, practiced on your own tools and simple builds, not generic demos.' },
+        { name: 'Done-with-you hours', body: 'Time after the session, as a group or one on one, building the workflows your team asked for.' },
+        { name: 'Material to keep', body: 'A prompt guide, a simple framework for writing good prompts, and first-week homework.' },
+      ],
+    },
+    process: { title: 'How a workshop works', steps: WORKSHOP_PROCESS.steps },
+    examples: {
+      title: 'What it looks like in practice',
+      intro: 'Workshops are measured: we survey the team before and after.',
+      items: [
+        {
+          who: 'SafeRide Health, medical transportation',
+          body: 'A paid hands-on Claude workshop for the account management team. Clarity on where AI could help rose from 2.3 to 4.2 out of 5, and confidence using it from 2.5 to 3.7.',
+          href: '/case-studies/saferide-health/',
+        },
+        {
+          who: 'Free lunch and learns',
+          body: 'About eight so far across five Twin Cities coworking spaces, with rooms of 5 to 30 people. The SafeRide Health workshop came out of one of them.',
+        },
+      ],
+    },
+    faq: [
+      { q: 'Does our team need to be technical?', a: 'No. Everything is in plain language and practiced on the work people already do.' },
+      { q: 'Which AI tools do you teach?', a: 'Mostly Claude and ChatGPT on business plans, connected to the tools your team already uses. If you already pay for Microsoft 365 or Google Workspace, we start there.' },
+      { q: 'Is it in person or remote?', a: 'The working session is on site. Follow-up hours can be in person or remote.' },
+      { q: 'What happens after the workshop?', a: 'The done-with-you hours turn what people learned into workflows they use every week. Some teams then add an AI Strategy or a fractional chief AI officer.' },
+    ],
+    next: {
+      title: 'Often paired with',
+      body: 'Teams that want more than one session usually add one of these.',
+      links: [
+        { label: 'AI Strategy', href: '/what-we-do/ai-strategy/' },
+        { label: 'Fractional Chief AI Officer', href: '/what-we-do/fractional-chief-ai-officer/' },
+        { label: 'AI Concierge', href: '/what-we-do/' },
+      ],
+    },
+  },
+  {
+    slug: 'fractional-chief-ai-officer',
+    // aims at "fractional chief ai officer" (70 searches a month, growing)
+    seoTitle: 'Fractional Chief AI Officer for Growing Businesses | Páramo',
+    seoDescription:
+      'A fractional chief AI officer for growing businesses: senior AI leadership without a full-time hire. Roadmap, vendor decisions, AI policy and rollout.',
+    eyebrow: 'What we do · Fractional Chief AI Officer',
+    title: 'A fractional chief AI officer, without the full-time hire.',
+    lede: 'We own your AI roadmap alongside your leadership team: choosing tools and vendors, setting the rules, and leading the rollout, part time.',
+    forWho: {
+      title: 'Who it is for',
+      intro: 'Companies that need someone senior to own AI, but not a full-time executive salary.',
+      signs: [
+        'AI is on the leadership agenda every month, and nobody owns it.',
+        'Vendors keep pitching AI features and you need someone to say which are worth it.',
+        'You need an AI use policy your team will actually follow.',
+        'You want progress reviewed on a schedule, not when someone remembers.',
+      ],
+    },
+    deliverables: {
+      title: 'What you get',
+      items: [
+        { name: 'An AI roadmap and priorities', body: 'Built from an AI Strategy, kept current as the business changes.' },
+        { name: 'Tool and vendor decisions', body: 'We vet software before you buy it, sit in on sales demos and tell you what to skip.' },
+        { name: 'An AI use policy and training', body: 'Written for your company, kept current, and taught to the people who use each tool, new hires included.' },
+        { name: 'A monthly leadership meeting', body: 'Progress, next priorities, and a quarterly review of what saved time and what did not.' },
+      ],
+    },
+    process: { title: 'How it works', steps: CAIO_PROCESS.steps },
+    examples: {
+      title: 'What it looks like in practice',
+      intro: 'Much of the role is the groundwork that lets AI spread safely across a company.',
+      items: [
+        {
+          who: 'SafeRide Health, medical transportation',
+          body: 'Alongside their team workshop, we drafted their AI use policy and a connector-by-connector rollout plan, starting with meeting notes and Microsoft 365, with a point of view on data retention for a healthcare company.',
+          href: '/case-studies/saferide-health/',
+        },
+      ],
+    },
+    faq: [
+      { q: 'How is this different from AI Strategy?', a: 'AI Strategy is a plan. A fractional chief AI officer stays on to lead it: monthly with your leadership team, every quarter for a review.' },
+      { q: 'Do we need an AI Strategy first?', a: 'It is the starting point. If we have not done one yet, that is the first month.' },
+      { q: 'Will you replace our IT team or vendors?', a: 'No. We work with them, help choose the right tools, and make sure what gets bought actually gets used.' },
+      { q: 'How much of our time does it take?', a: 'A standing monthly leadership meeting, plus time with the people rolling out each new tool.' },
+    ],
+    next: {
+      title: 'Often paired with',
+      body: 'The role usually draws on these.',
+      links: [
+        { label: 'AI Strategy', href: '/what-we-do/ai-strategy/' },
+        { label: 'Team AI Workshops', href: '/what-we-do/team-ai-workshops/' },
+        { label: 'Managed Agents', href: '/what-we-do/managed-agents/' },
+      ],
+    },
+  },
+  {
+    slug: 'managed-agents',
+    // aims at "ai agents for business" and "managed ai agents"
+    seoTitle: 'Managed AI Agents for Business | Páramo',
+    seoDescription:
+      'AI agents built on the tools your business already uses, then monitored, maintained and improved by us. Lead replies, follow-ups, records and reports.',
+    eyebrow: 'What we do · Managed Agents',
+    title: 'AI agents that work for your business, run by us.',
+    lede: 'Agents built around your business that answer, follow up, report and keep work moving. We monitor them, improve them and maintain them so you do not have to.',
+    forWho: {
+      title: 'Who it is for',
+      intro: 'Businesses with repeat work that follows the same steps every time, and no one free to build or babysit an AI system.',
+      signs: [
+        'New inquiries wait because one person handles them by hand.',
+        'Information gets typed from one system into another.',
+        'Follow-ups and reports happen when someone remembers.',
+        'You want it running on your own tools, with a person approving what goes to customers.',
+      ],
+    },
+    deliverables: {
+      title: 'What you get',
+      items: [
+        { name: 'Agents built on your tools', body: 'Connected to the email, customer records, accounting and documents you already use.' },
+        { name: 'A person in the loop', body: 'Anything a customer sees is drafted for someone on your team to approve, until you choose otherwise.' },
+        { name: 'A simple record', body: 'Each run reports what it did, so you can see the work without opening the system.' },
+        { name: 'Monitoring and upkeep', body: 'We watch it, fix what breaks, and keep it current as your business changes. It stays yours.' },
+      ],
+    },
+    process: { title: 'How it works', steps: AGENTS_PROCESS.steps },
+    examples: {
+      title: 'What it looks like in practice',
+      intro: 'A few agents we have built and run:',
+      items: [
+        {
+          who: 'Storage Advisors, commercial real estate',
+          body: 'Every new inquiry is matched to the right confidentiality agreement, logged in HubSpot and drafted as a Gmail reply for a person to send. Two weeks after launch the broker was approving replies from his phone.',
+          href: '/case-studies/storage-advisors/',
+        },
+        {
+          who: 'Junk removal company',
+          body: 'Website leads now land in QuickBooks on their own, checked for duplicates, with a report on every run.',
+          href: '/case-studies/junk-removal-quickbooks/',
+        },
+        {
+          who: 'Business coaching firm',
+          body: 'Every evening at 6pm, the day’s client meetings are summarized and filed in the right client folder.',
+          href: '/case-studies/coaching-meeting-notes/',
+        },
+      ],
+    },
+    faq: [
+      { q: 'Will the agent talk to our customers on its own?', a: 'Not at first. It drafts, a person approves. Automatic sending is a later choice, made after weeks of drafts that work.' },
+      { q: 'Where does it run?', a: 'On the tools and accounts you already have. Nothing is hidden in a platform you cannot see.' },
+      { q: 'What if something breaks?', a: 'Monitoring is part of the service. We fix it, and each run’s report shows you what happened.' },
+      { q: 'Do we own it?', a: 'Yes. It is built in your accounts and documented.' },
+    ],
+    next: {
+      title: 'Often paired with',
+      body: 'Agents work best with a plan behind them.',
+      links: [
+        { label: 'AI Strategy', href: '/what-we-do/ai-strategy/' },
+        { label: 'Fractional Chief AI Officer', href: '/what-we-do/fractional-chief-ai-officer/' },
+        { label: 'Team AI Workshops', href: '/what-we-do/team-ai-workshops/' },
       ],
     },
   },
