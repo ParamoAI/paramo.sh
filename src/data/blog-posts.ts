@@ -63,7 +63,7 @@ export const blogPosts: BlogPost[] = [
       <p>That's not a threat to implementation-focused firms. It's the biggest validation we could ask for.</p>
       <p>The question for every business leader is simple: do you want a lab's generic consulting team learning your industry on your dime, or a partner who already lives in your world?</p>
       <hr />
-      <p><em>Páramo AI is an AI-native company that deploys autonomous AI systems for businesses with complex operations. We operate a 3-person team that performs like a 300-person org — and we help our clients do the same. <a href="https://calendly.com/paramo-ai/discovery">Book a discovery call</a> to see what AI-native operations look like.</em></p>
+      <p><em>Páramo AI is an AI-native company that deploys autonomous AI systems for businesses with complex operations. We operate a 3-person team that performs like a 300-person org — and we help our clients do the same. <a href="https://calendly.com/paramoai/set-up-call">Book a discovery call</a> to see what AI-native operations look like.</em></p>
     `,
   },
   {

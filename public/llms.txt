@@ -31,4 +31,4 @@ Páramo is an AI implementation partner based in the Twin Cities (Minneapolis an
 ## Contact
 
 - Website: https://paramo.sh
-- Book a call: https://calendly.com/d/cvkf-q3t-25j/free-discovery-call-with-paramo
+- Book a call: https://calendly.com/paramoai/set-up-call

@@ -34,4 +34,4 @@ export const BRAND_COLORS = {
 };
 
 // Contact
-export const CALENDLY_URL = 'https://calendly.com/d/cvkf-q3t-25j/free-discovery-call-with-paramo';
+export const CALENDLY_URL = 'https://calendly.com/paramoai/set-up-call';
