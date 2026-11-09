@@ -1,4 +1,4 @@
-import type { Ref } from 'react'
+import { useEffect, useState, type Ref } from 'react'
 import { CALENDLY_URL } from '../data/home'
 import { SHOW_EVENTS } from '../data/site'
 
@@ -28,7 +28,16 @@ export default function Masthead({
   tone?: 'dark' | 'light'
 }) {
   const light = tone === 'light'
+  const [open, setOpen] = useState(false)
+  // no scrolling behind the open phone menu
+  useEffect(() => {
+    document.documentElement.style.overflow = open ? 'hidden' : ''
+    return () => {
+      document.documentElement.style.overflow = ''
+    }
+  }, [open])
   return (
+    <>
     <div
       ref={ref}
       className={light ? 'masthead-light' : undefined}
@@ -76,6 +85,39 @@ export default function Masthead({
       <a href={CALENDLY_URL} className="micro masthead-cta">
         Book a call
       </a>
+      {/* phones: the links move into a full-screen menu */}
+      <button
+        type="button"
+        className="micro masthead-menu-btn"
+        aria-expanded={open}
+        aria-controls="phone-menu"
+        onClick={() => setOpen(true)}
+      >
+        Menu
+      </button>
     </div>
+    {open && (
+      <div id="phone-menu" role="dialog" aria-modal="true" aria-label="Menu" className="phone-menu">
+        <div className="phone-menu-top">
+          <a href="/" className="display-cut" style={{ fontFamily: 'var(--font-display)', fontSize: 26, color: '#f1ede3' }}>
+            Páramo
+          </a>
+          <button type="button" className="micro masthead-menu-btn is-open" onClick={() => setOpen(false)}>
+            Close
+          </button>
+        </div>
+        <nav aria-label="Main" className="phone-menu-links">
+          {NAV.map(({ label, href }) => (
+            <a key={label} href={href} aria-current={current === href ? 'page' : undefined}>
+              {label}
+            </a>
+          ))}
+        </nav>
+        <a href={CALENDLY_URL} className="phone-menu-cta">
+          Book a call
+        </a>
+      </div>
+    )}
+    </>
   )
 }
