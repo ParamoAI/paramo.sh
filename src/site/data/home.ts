@@ -99,18 +99,21 @@ export const PROCESS = {
       title: 'Audit',
       body: 'We spend time inside your week and find the work that should not need you.',
       outcome: 'A ranked list of what to fix first',
+      href: '/what-we-do/ai-strategy/',
     },
     {
       step: '02',
       title: 'Optimize',
       body: 'We build the systems and connect them to the tools you already use.',
       outcome: 'Working systems, tested on real jobs',
+      href: '/what-we-do/managed-agents/',
     },
     {
       step: '03',
       title: 'Automate',
       body: 'We run it alongside your team until it runs on its own.',
       outcome: 'A team that owns it',
+      href: '/what-we-do/team-ai-workshops/',
     },
   ],
 }
@@ -217,6 +220,13 @@ export const FOOTER = {
   social: [
     { label: 'Discord', href: 'https://discord.com/invite/xXE9TqGju' },
     { label: 'X', href: 'https://x.com/tipbtdennis' },
+  ],
+  // every page links to the service pages so Google finds them
+  services: [
+    { label: 'AI consulting for small business', href: '/what-we-do/ai-strategy/' },
+    { label: 'AI training for employees', href: '/what-we-do/team-ai-workshops/' },
+    { label: 'Fractional chief AI officer', href: '/what-we-do/fractional-chief-ai-officer/' },
+    { label: 'AI agents for small business', href: '/what-we-do/managed-agents/' },
   ],
   legal: '© 2026 Páramo. All rights reserved.',
 }

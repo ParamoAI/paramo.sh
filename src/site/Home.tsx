@@ -108,6 +108,10 @@ export default function App() {
   const [play, setPlay] = useState(false)
   const [run] = useState(0) // bump to replay the intro; a refresh does the same
   const [word, setWord] = useState(false)
+  // true when the phone refuses to autoplay the clip (iOS Low Power Mode does
+  // this): the still hummingbird then flies in on its own instead
+  const [blocked, setBlocked] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   const plateParam =
     typeof window !== 'undefined' ? new URLSearchParams(location.search).get('plate') : null
@@ -197,6 +201,36 @@ export default function App() {
     }
   }, [run, plate, plateEmpty])
 
+  /* Some phones block autoplay (iOS Low Power Mode, data saver). The clip
+     then sits on its first frame with a play button over it. Ask it to play;
+     if it refuses, or has not started within a moment, skip the clip and let
+     the still bird fly in. */
+  useEffect(() => {
+    if (plate) return
+    setBlocked(false)
+    const v = videoRef.current
+    if (!v) return
+    let started = false
+    const onPlaying = () => {
+      started = true
+    }
+    v.addEventListener('playing', onPlaying)
+    const give = () => {
+      if (started) return
+      setBlocked(true)
+      setWord(true)
+    }
+    const tryPlay = v.play()
+    if (tryPlay) tryPlay.catch(give)
+    const t = setTimeout(() => {
+      if (v.paused || v.currentTime === 0) give()
+    }, 1500)
+    return () => {
+      clearTimeout(t)
+      v.removeEventListener('playing', onPlaying)
+    }
+  }, [run, plate])
+
   /* The sequence plays once when the page loads and then holds. It used to
      restart on a timer, which makes a landing page feel like a screensaver.
      A refresh is the replay. */
@@ -265,6 +299,7 @@ export default function App() {
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
       />
       <motion.video
+        ref={videoRef}
         key={`bgvid-${run}`}
         autoPlay
         muted
@@ -273,7 +308,7 @@ export default function App() {
         initial={{ opacity: 1 }}
         animate={{ opacity: word ? 0 : 1 }}
         transition={{ duration: 0.4, ease: 'easeIn' }}
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: blocked ? 'none' : undefined }}
       >
         {/* phones get a version about a seventh of the size */}
         <source src="/assets/hummingbird-flight-phone.webm" type="video/webm" media="(max-width: 767px)" />
@@ -312,7 +347,21 @@ export default function App() {
           </div>
           </div>
           <div ref={birdRef} style={{ position: 'absolute', inset: 0, willChange: 'transform, opacity' }}>
-          <div style={{ position: 'absolute', inset: 0 }}>
+          {/* when the clip could not play, the still bird flies in from the
+              upper right, roughly the path it takes in the footage */}
+          <motion.div
+            key={blocked ? 'fly' : 'still'}
+            style={{ position: 'absolute', inset: 0 }}
+            initial={
+              blocked
+                ? typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                  ? { opacity: 0 }
+                  : { x: 520, y: -260, scale: 0.55, rotate: -8, opacity: 0 }
+                : false
+            }
+            animate={{ x: 0, y: 0, scale: 1, rotate: 0, opacity: 1 }}
+            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1], opacity: { duration: 0.6 } }}
+          >
           <img
             src="/assets/haze.webp"
             alt=""
@@ -323,7 +372,7 @@ export default function App() {
             alt=""
             style={{ ...box(205, -75, 1290, 1596), objectFit: 'cover' }}
           />
-          </div>
+          </motion.div>
           </div>
         </motion.div>
       </div>
