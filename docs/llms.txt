@@ -1,26 +1,32 @@
-# Páramo AI
+# Páramo
 
-> OpenClaw Implementation Studio. We show you what's possible, then we build it.
+> Your AI transformation partner. Páramo puts AI to work inside growing companies, then makes sure their teams can run it.
 
-Páramo AI builds custom AI automation for business owners using OpenClaw. We set up AI command centers, workflow automation, custom AI agents, data pipelines, smart outreach systems, and integration architecture.
+Páramo is an AI implementation partner based in the Twin Cities (Minneapolis and St. Paul, Minnesota), founded by brothers Dennis Morales (CEO) and Adrian Morales (COO). We work with growing companies whose teams are ready for AI: we find the work that should not need a person, build systems on the tools a company already uses, and train the team to own them. Official partner of OpenAI, DevRev and Jotform.
 
-## Services
+## What we do
 
-- **OpenClaw Setup ($500):** Your own AI assistant, fully set up and ready to go. Runs 24/7, controllable from any messenger, 10 skills pre-installed.
-- **Summit (Custom):** Full-stack AI infrastructure — unlimited automations, dedicated automation lead, custom AI agent development, integration architecture, white-glove onboarding.
+- [AI Concierge](https://paramo.sh/what-we-do/): side-by-side help for owners and CEOs, setting up Claude for the way they work and building agentic workflows together.
+- [Team AI Workshops](https://paramo.sh/what-we-do/): hands-on sessions in plain language, built around the tasks a team actually does.
+- [AI Strategy](https://paramo.sh/what-we-do/): a map of where hours and money go, and a ranked plan of what to automate now, what can wait, and what to leave alone.
+- [Fractional Chief AI Officer](https://paramo.sh/what-we-do/): part-time senior AI leadership: roadmap, tool and vendor decisions, an AI use policy, training, and a monthly leadership meeting.
+- [Managed Agents](https://paramo.sh/what-we-do/): AI agents built on a company's own tools, which we monitor, maintain and improve.
 
-## How It Works
+## How we work
 
-1. Discovery Call — We map your workflows and identify highest-leverage automation opportunities.
-2. We Build It — Custom automation designed, built, and tested with demos at every stage.
-3. You Grow — We deploy, train your team, and provide ongoing support.
+1. Audit: we sit with the people doing the work and find the work that should not need them.
+2. Optimize: we fix the process, then build systems connected to the tools the team already uses.
+3. Automate: we run it alongside the team until it runs on its own. Client-facing messages stay human-approved until the client chooses otherwise.
 
-## Results
+## Pages
 
-- 5x AI capacity from a single interface
-- 40hrs saved per month on operations
-- 98% client retention
-- 120+ automations deployed
+- [Home](https://paramo.sh/)
+- [What we do](https://paramo.sh/what-we-do/)
+- [Results](https://paramo.sh/case-studies/): client stories, each with what we built and what changed
+- [Who we are](https://paramo.sh/who-we-are/)
+- [Why us](https://paramo.sh/why-us/)
+- [Blog](https://paramo.sh/blog/)
+- [Full version of this file](https://paramo.sh/llms-full.txt)
 
 ## Contact
 
