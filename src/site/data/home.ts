@@ -79,6 +79,14 @@ export const SERVICES = {
 export const PARTNERS = {
   label: 'Official partner of',
   names: ['OpenAI', 'DevRev', 'Jotform'],
+  // Official logos, white versions for the dark ridge photo. OpenAI and DevRev
+  // as published on their own sites; Jotform's "transparent, white text" file
+  // from jotform.com/resources. Heights balance each logo's built-in padding.
+  logos: [
+    { name: 'OpenAI', src: '/assets/partners/openai.svg', h: 'h-[24px] sm:h-[34px]' },
+    { name: 'DevRev', src: '/assets/partners/devrev.svg', h: 'h-[20px] sm:h-[28px]' },
+    { name: 'Jotform', src: '/assets/partners/jotform.svg', h: 'h-[64px] sm:h-[92px] -my-4 sm:-my-6' },
+  ],
 }
 
 export const PROCESS = {
