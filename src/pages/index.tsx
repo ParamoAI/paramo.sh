@@ -5,7 +5,7 @@ import Home from '@/site/Home';
 
 // Title changed on purpose by Dennis on 2026-11-08 (see SEARCH_CHECKLIST.md);
 // the description is unchanged.
-const pageTitle = `${SITE_NAME} | Preferred AI Transformation Partner for SMBs`;
+const pageTitle = `${SITE_NAME} | AI Transformation Partner for Growing Businesses`;
 
 export default function HomePage() {
   return (
