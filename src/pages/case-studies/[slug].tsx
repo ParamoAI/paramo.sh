@@ -1,157 +1,51 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { GetStaticPaths, GetStaticProps } from 'next';
 import fs from 'fs';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import path from 'path';
-import Nav from '@/components/Nav';
-import Footer from '@/components/Footer';
-import ScrollReveal from '@/components/ScrollReveal';
-import { caseStudies, CaseStudy } from '@/data/case-studies';
-import { SITE_URL, SITE_NAME, OG_IMAGE, CALENDLY_URL } from '@/config/site';
+
+import { SITE_NAME } from '@/config/site';
+import { caseStudies } from '@/data/case-studies';
+import SeoHead from '@/site/components/SeoHead';
+import { RESULTS } from '@/site/data/results';
+import CaseStudyPage from '@/site/views/CaseStudyPage';
 
 interface Props {
-  study: CaseStudy;
-  htmlContent: string | null;
+  slug: string;
+  title: string;
+  description: string;
+  legacyHtml: string | null;
 }
 
-export default function CaseStudyPage({ study, htmlContent }: Props) {
-  const pageTitle = `${study.name}: ${study.stat.split('.')[0]} — ${SITE_NAME}`;
-  
+export default function CaseStudy({ slug, title, description, legacyHtml }: Props) {
   return (
     <>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={study.title} />
-        <link rel="canonical" href={`${SITE_URL}/case-studies/${study.slug}/`} />
-        
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={`${SITE_URL}/case-studies/${study.slug}`} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={study.title} />
-        <meta property="og:image" content={OG_IMAGE} />
-        
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={study.title} />
-        <meta name="twitter:image" content={OG_IMAGE} />
-      </Head>
-
-      <Nav activeLink="case-studies" />
-      <ScrollReveal />
-
-      <section className="article-hero">
-        <div className="container narrow">
-          <Link href="/case-studies" className="article-back">
-            ← Back to Case Studies
-          </Link>
-          <div className="article-meta">
-            <span className="article-tag">{study.industryEmoji} {study.industry}</span>
-          </div>
-          <h1 className="article-title">{study.stat}</h1>
-          <p className="article-subtitle">{study.title}</p>
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '0.75rem',
-            marginTop: '2rem' 
-          }}>
-            <div className="case-avatar" style={{ background: 'var(--highland-moss)' }}>
-              {study.avatar}
-            </div>
-            <div>
-              <div style={{ fontWeight: 500, color: 'var(--cloud-layer)' }}>{study.name}</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--misty-sage)' }}>{study.role}</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {htmlContent ? (
-        <article className="case-content">
-          <div className="container narrow" dangerouslySetInnerHTML={{ __html: htmlContent }} />
-        </article>
-      ) : (
-        <section className="article-content">
-          <div className="container narrow">
-            <p>
-              <em>Full case study content coming soon.</em>
-            </p>
-            <p>
-              Want to see similar results for your business? Book a discovery call to explore what&apos;s possible.
-            </p>
-          </div>
-        </section>
-      )}
-
-      {/* Related Reading */}
-      <section style={{ padding: '3rem 2rem', borderTop: '1px solid rgba(168, 197, 184, 0.08)' }}>
-        <div className="container narrow">
-          <h2 style={{ fontSize: '1.3rem', marginBottom: '1.5rem', color: 'var(--cloud-layer)' }}>Related Reading</h2>
-          <div style={{ display: 'grid', gap: '1rem' }}>
-            <Link href="/blog/ai-agents-vs-zapier-make" style={{ display: 'block', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(168, 197, 184, 0.12)', textDecoration: 'none' }}>
-              <h3 style={{ fontSize: '1rem', color: 'var(--cloud-layer)', margin: 0 }}>AI Agents vs Zapier &amp; Make: What Automation Tools Can&apos;t Do →</h3>
-            </Link>
-            <Link href="/blog/replaced-12-saas-tools" style={{ display: 'block', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(168, 197, 184, 0.12)', textDecoration: 'none' }}>
-              <h3 style={{ fontSize: '1rem', color: 'var(--cloud-layer)', margin: 0 }}>We Replaced 12 SaaS Tools with AI Agents →</h3>
-            </Link>
-          </div>
-          <div style={{ marginTop: '1.5rem' }}>
-            <Link href="/case-studies" style={{ color: 'var(--frailejon-gold)', textDecoration: 'none', fontSize: '0.9rem' }}>
-              ← More Case Studies
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="cta-section" style={{ padding: '4rem 2rem 6rem', borderTop: '1px solid rgba(168, 197, 184, 0.08)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h2 className="section-title">Curious whether an agent could handle your toughest workflow?</h2>
-          <p className="section-subtitle">Book a free discovery call. We&apos;ll look at your current operations and show you where an AI agent could take over.</p>
-          <a 
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
-            Book Your Discovery Call →
-          </a>
-        </div>
-      </section>
-
-      <Footer />
+      <SeoHead title={title} description={description} path={`/case-studies/${slug}/`} type="article" />
+      <CaseStudyPage slug={slug} legacyHtml={legacyHtml} />
     </>
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = caseStudies.map((study) => ({
-    params: { slug: study.slug },
-  }));
-
-  return { paths, fallback: false };
-};
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: RESULTS.map((r) => ({ params: { slug: r.slug } })),
+  fallback: false,
+});
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const study = caseStudies.find((s) => s.slug === params?.slug);
+  const slug = String(params?.slug);
+  const result = RESULTS.find((r) => r.slug === slug);
+  if (!result) return { notFound: true };
 
-  if (!study) {
-    return { notFound: true };
-  }
+  // The seven stories already on paramo.sh keep their exact title and
+  // description (SEARCH_CHECKLIST.md) and their published write-up.
+  const legacy = caseStudies.find((c) => c.slug === slug);
+  const file = path.join(process.cwd(), 'src/site/content/case-studies', `${slug}.html`);
+  const legacyHtml = legacy && fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null;
 
-  // Try to load HTML content from content files
-  let htmlContent: string | null = null;
-  const contentPath = path.join(process.cwd(), 'src', 'content', 'case-studies', `${study.slug}.html`);
-  try {
-    const raw = fs.readFileSync(contentPath, 'utf-8');
-    // Strip outer <article> and <div class="container narrow"> wrappers
-    // Strip outer <article> and <div class="container narrow"> wrappers
-    htmlContent = raw
-      .replace(/^<article[^>]*>[\s\S]*?<div[^>]*>/, '')
-      .replace(/<\/div>\s*<\/article>\s*$/, '')
-      .trim();
-  } catch {
-    // No content file — will show placeholder
-  }
-
-  return { props: { study, htmlContent } };
+  return {
+    props: {
+      slug,
+      title: legacy ? `${legacy.name}: ${legacy.stat.split('.')[0]} — ${SITE_NAME}` : `${result.client}: ${result.headline} | ${SITE_NAME}`,
+      description: legacy ? legacy.title : result.description,
+      legacyHtml,
+    },
+  };
 };

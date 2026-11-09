@@ -1,0 +1,343 @@
+@import "tailwindcss";
+@source not "../../docs";
+@source not "../../public";
+
+/*
+  Páramo — the brand system laid over the hummingbird hero.
+
+  Palette is the Páramo brand set, not sampled from the photograph:
+
+      pine        #18231e   the field
+      pine-raised #202c26   cards and panels
+      contour     #2c3a33   hairlines and dividers
+      gold        #c6a05a   the one accent: eyebrow rule, italic, button
+      cream       #f1ede3   headlines and primary text
+      sage        #c6cec5   body copy
+
+  Gold is a highlighter, not a fill. Keep it to three places per frame.
+*/
+@theme {
+  --color-pine: #18231e;
+  --color-pine-raised: #202c26;
+  --color-contour: #2c3a33;
+  --color-gold: #c6a05a;
+  --color-gold-soft: #d4b676;
+  --color-cream: #f1ede3;
+  --color-sage: #c6cec5;
+
+  /* Below the hero: the muted sage haze sampled from the ridge photographs,
+     so the page reads as the same misty air as the landscape. */
+  --color-mist: #bdc1ae;
+  --color-mist-raised: #c9ccbb;
+  --color-slate: #3d4840;
+  --color-line: #a6ab97;
+  --color-gold-deep: #8c6b2f;
+
+  --font-display: "Fraunces", "Canela", Georgia, serif;
+  /* The wordmark is the display serif too: Páramo is always set in it. */
+  --font-wordmark: "Fraunces", "Canela", Georgia, serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+:root {
+  --stage-w: 1920;
+  --stage-h: 1080;
+  --hair: rgba(44, 58, 51, 0.6);
+  --hair-strong: #2c3a33;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+}
+
+body {
+  background: var(--color-mist);
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Legibility scrim.
+
+   A pine shade behind the hero copy, peak 0.55. The brand rule is cream text
+   over a pine scrim, never straight on the photograph, and the bokeh behind
+   the copy is pale enough that cream needs the help.
+
+   Sized to the centred headline that sits over the bird's tail feathers. An earlier version spread
+   a wide ellipse across a third of the frame, which read as haze over the
+   photograph rather than as light behind the text.
+
+   The noise is a dither, not texture. A ramp this shallow over dark footage
+   quantises to 8-bit and the steps show as rings -- plainly visible once the
+   scrim is isolated against the clip. About a level of noise breaks them up.
+
+   The element is oversized (-20%) because a background paints only inside its
+   own box: at artboard size the falloff was clipped into a hard seam. It sits
+   inside the artboard so it tracks the copy at any aspect ratio; at the
+   viewport it would drift, the artboard being contain-scaled and centred.
+
+   Geometry, in artboard px, re-expressed against the 140% element:
+     copy block  x 60-480, y 540-880   centre (270, 710)
+     falloff     460 x 380             -> 17% x 25% at 24% 61% */
+.scrim {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
+    radial-gradient(
+      ellipse 30% 16% at 50% 62%,
+      color-mix(in srgb, var(--color-pine) 55%, transparent) 0%,
+      color-mix(in srgb, var(--color-pine) 50%, transparent) 30%,
+      color-mix(in srgb, var(--color-pine) 40%, transparent) 50%,
+      color-mix(in srgb, var(--color-pine) 22%, transparent) 72%,
+      color-mix(in srgb, var(--color-pine) 7%, transparent) 88%,
+      transparent 100%
+    );
+  background-repeat: repeat, no-repeat;
+  background-size: 180px 180px, 100% 100%;
+}
+
+/* Hero copy colour, from the brand: cream headline, gold eyebrow and
+   italic, sage body. Kept as variables so the hero reads from one place. */
+:root {
+  --hero-ink: var(--color-cream);
+  --hero-ink-soft: var(--color-gold);
+  --hero-ink-body: var(--color-sage);
+  --hero-em: var(--color-gold);
+  --hero-rule: rgba(241,237,227,0.34);
+}
+
+.stage-bg {
+  background: linear-gradient(180deg, #202c26 38.6%, #18231e 116%);
+}
+
+/* A micro-label: uppercase, tracked out, set small. Used for eyebrows and
+   the index numbers in the spec panel. */
+.micro {
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Hairlines carry most of the structure here instead of boxes and shadows. */
+.hair-t {
+  border-top: 1px solid var(--hair);
+}
+.hair-b {
+  border-bottom: 1px solid var(--hair);
+}
+
+/* The spec panel. Deliberately not a glass card: a single translucent plane
+   with a hairline edge and an inner highlight, so it reads as a pane of the
+   page rather than an object floating over it. */
+.panel {
+  background: linear-gradient(
+    168deg,
+    rgba(255, 255, 255, 0.62) 0%,
+    rgba(255, 255, 255, 0.3) 46%,
+    rgba(109, 133, 70, 0.2) 100%
+  );
+  backdrop-filter: blur(18px) saturate(115%);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 24px 60px -32px rgba(22, 43, 13, 0.55);
+}
+
+/* Tabular figures so the numbers in the spec rows hold their columns. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* The wordmark behind the bird. */
+.wordmark {
+  background: linear-gradient(
+    180deg,
+    rgba(241, 237, 227, 1) 0%,
+    rgba(241, 237, 227, 0) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Plate mode (?plate): backdrop only, for exporting video conditioning frames. */
+.plate > *:not(.backdrop) {
+  display: none !important;
+}
+.plate .wordmark {
+  display: none !important;
+}
+
+/* Masthead. Lives at the viewport in real px, so it has to absorb width
+   changes itself: the nav gap shrinks with the window, nothing wraps, and
+   below 860px the links step aside until the mobile layout exists. */
+.masthead-nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 2.4vw, 46px);
+  min-width: 0;
+  height: 36px;
+  pointer-events: auto;
+}
+.masthead-link {
+  white-space: nowrap;
+  color: rgba(198, 206, 197, 0.78);
+  transition: color 0.2s;
+}
+.masthead-link:hover {
+  color: #f1ede3;
+}
+.masthead-cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(241, 237, 227, 0.45);
+  color: #f1ede3;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  pointer-events: auto;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.masthead-cta:hover {
+  border-color: #f1ede3;
+  background: rgba(241, 237, 227, 0.08);
+}
+@media (max-width: 860px) {
+  .masthead-nav {
+    visibility: hidden;
+  }
+}
+
+/* Páramo mist: two speeds so the bands slide past each other. */
+@keyframes pm-drift {
+  0%, 100% { transform: translateX(-30px); }
+  50% { transform: translateX(30px); }
+}
+.pm-drift { animation: pm-drift 26s ease-in-out infinite; }
+.pm-drift-slow { animation: pm-drift 44s ease-in-out infinite reverse; }
+@media (prefers-reduced-motion: reduce) {
+  .pm-drift, .pm-drift-slow { animation: none; }
+}
+
+/* Páramo fog banks: soft cream bands, blurred so they read as weather. */
+.pm-mist {
+  position: absolute;
+  left: -120px;
+  right: -120px;
+  filter: blur(30px);
+}
+.pm-mist-far {
+  top: 560px;
+  height: 260px;
+  background:
+    radial-gradient(ellipse 30% 40% at 20% 50%, rgba(238, 241, 232, 0.55), transparent 70%),
+    radial-gradient(ellipse 34% 36% at 62% 55%, rgba(238, 241, 232, 0.45), transparent 70%),
+    radial-gradient(ellipse 26% 40% at 92% 45%, rgba(250, 228, 205, 0.4), transparent 70%);
+}
+.pm-mist-near {
+  top: 850px;
+  height: 240px;
+  background:
+    radial-gradient(ellipse 32% 40% at 35% 50%, rgba(214, 224, 212, 0.4), transparent 70%),
+    radial-gradient(ellipse 30% 38% at 78% 60%, rgba(214, 224, 212, 0.32), transparent 70%);
+}
+/* The foot of the hero dissolves into a bank of cloud the page rises into. */
+.pm-floor {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 260px;
+  background: linear-gradient(180deg, transparent, rgba(189, 193, 174, 0.55) 62%, rgba(189, 193, 174, 0.92));
+  pointer-events: none;
+}
+
+/* Fog for the seam under the hero and the floor of the closing scene. */
+.seam-fog {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -20%;
+  height: 70%;
+  filter: blur(34px);
+  background:
+    radial-gradient(ellipse 28% 45% at 18% 55%, rgba(214, 217, 202, 0.5), transparent 70%),
+    radial-gradient(ellipse 32% 40% at 58% 60%, rgba(214, 217, 202, 0.4), transparent 70%),
+    radial-gradient(ellipse 24% 45% at 88% 50%, rgba(222, 214, 190, 0.35), transparent 70%);
+}
+.seam-fog-low {
+  bottom: -10%;
+  height: 45%;
+}
+
+/* Display type matches the PÁRAMO wordmark behind the bird. Fraunces picks
+   its optical size from the font size, so the 365px wordmark gets the
+   hairline display cut and smaller headings get the sturdier text cut. Pin
+   the headlines and the logo to the display cut so they share the wordmark's
+   voice. Smaller headings keep the sturdier cut, where hairlines would break. */
+h1,
+h2,
+.wordmark,
+.display-cut {
+  font-variation-settings: "opsz" 144;
+}
+
+/* Homepage scenes: each blurred-light plate fades out at its top and bottom,
+   so neighbouring scenes dissolve into the sage mist between them. */
+.scene-plate {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
+}
+
+/* The gold ribbon: two copies of the line side by side, slid by half its
+   width so the loop never shows a seam. */
+@keyframes ribbon {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ribbon { animation: ribbon 60s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .ribbon { animation: none; }
+}
+
+/* The masthead on the sage pages: pine type, outlined pine call to action. */
+.masthead-light .masthead-link { color: rgba(24, 35, 30, 0.62); }
+.masthead-light .masthead-link:hover { color: #18231e; }
+.masthead-light .masthead-cta { border-color: rgba(24, 35, 30, 0.35); color: #18231e; }
+.masthead-light .masthead-cta:hover { border-color: #18231e; background: rgba(24, 35, 30, 0.06); }
+
+/* The case study write-ups already published on paramo.sh, restyled to the
+   new page: serif section heads, slate body, gold-edged quotes and cards. */
+.case-body .container { max-width: none; padding: 0; }
+.case-body h2 { font-family: var(--font-display); font-variation-settings: "opsz" 144; color: var(--color-pine); font-size: clamp(28px, 3vw, 36px); line-height: 1.15; margin: 3.25rem 0 0; letter-spacing: -0.015em; }
+.case-body h2:first-child { margin-top: 0; }
+.case-body h3 { font-family: var(--font-display); color: var(--color-pine); font-size: 22px; margin: 1.5rem 0 0.5rem; }
+.case-body p, .case-body li { color: var(--color-slate); font-size: 17px; line-height: 1.65; }
+.case-body p { margin-top: 1.1rem; }
+.case-body strong { color: var(--color-pine); font-weight: 600; }
+.case-body ul { margin-top: 1.1rem; display: grid; gap: 0.7rem; }
+.case-body ul li { padding-left: 1.1rem; position: relative; }
+.case-body ul li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 4px; height: 4px; border-radius: 9999px; background: var(--color-gold-deep); }
+.case-body .case-quote { border-left: 2px solid var(--color-gold-deep); padding-left: 1.5rem; margin: 2rem 0; }
+.case-body .case-quote p { font-family: var(--font-display); font-style: italic; color: var(--color-pine); font-size: clamp(22px, 2.4vw, 28px); line-height: 1.35; margin: 0; }
+.case-body .auto-card { border: 1px solid color-mix(in srgb, var(--color-pine) 22%, transparent); padding: 1.5rem; margin-top: 1rem; }
+.case-body .auto-card-title { font-family: var(--font-display); color: var(--color-pine); font-size: 22px; }
+.case-body .auto-card-num { color: var(--color-gold-deep); margin-right: 0.5rem; }
+.case-body .results-highlights, .case-body .living-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin-top: 1.5rem; }
+.case-body .result-highlight, .case-body .living-metric { border-top: 1px solid var(--color-line); padding-top: 0.9rem; }
+.case-body .result-highlight-icon { display: none; }
+.case-body .result-highlight-text, .case-body .living-metric-value { font-family: var(--font-display); color: var(--color-pine); font-size: 24px; line-height: 1.15; }
+.case-body .result-highlight-sub, .case-body .living-metric-label { color: var(--color-slate); font-size: 14px; margin-top: 0.3rem; }
+.case-body .living-banner { border: 1px solid color-mix(in srgb, var(--color-pine) 22%, transparent); padding: 1.5rem; margin-top: 2.5rem; }
+.case-body .living-banner-tag { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-gold-deep); }
+.case-body .internal-links { display: none; } /* the page has its own next-story link */
+.case-body code { font-size: 0.9em; }

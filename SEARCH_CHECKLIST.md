@@ -53,7 +53,7 @@ These come from `docs/sitemap.xml`. The sitemap is built automatically by `src/s
 
 These also exist today. Keep them at the same address unless Dennis decides otherwise.
 
-- [ ] `https://paramo.sh/architect-prep/` (flashcard study tool, not linked from the menu)
+- ~~`https://paramo.sh/architect-prep/`~~ (flashcard study tool). **Removed on purpose by Dennis on 2026-11-08** during the redesign. The address will show the "page not found" page after launch.
 
 ---
 
@@ -84,7 +84,7 @@ Taken from the published `docs/` folder. "Canonical" is the address each page te
 | `/` | Páramo \| AI systems for business owners | Custom AI automation for business owners. We show you what's possible, then we build it. | `src/pages/index.tsx` |
 | `/blog/` | Blog — Páramo | Insights on AI automation, AI agents, and building smarter businesses. From the team at Páramo AI. | `src/pages/blog/index.tsx` |
 | `/case-studies/` | Case Studies — Páramo | See how businesses transform with custom AI automation. Real clients, real results. | `src/pages/case-studies/index.tsx` |
-| `/architect-prep/` | Architect Prep — Páramo | Mobile-first flashcard study tool for the Claude Certified Architect exam. 20 cards covering agentic loops, multi-agent systems, context passing, safety, and more. | `src/pages/architect-prep.tsx` |
+| ~~`/architect-prep/`~~ (removed by Dennis, 2026-11-08) | Architect Prep — Páramo | Mobile-first flashcard study tool for the Claude Certified Architect exam. 20 cards covering agentic loops, multi-agent systems, context passing, safety, and more. | `src/pages/architect-prep.tsx` |
 | `/404.html` | 404: This page could not be found | *(none)* | Generated automatically |
 
 ### Blog posts

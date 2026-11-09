@@ -3,8 +3,7 @@ import { GoogleAnalytics } from '@hacktoolkit/nextjs-htk';
 import StructuredData from '@/components/StructuredData';
 import { GA_MEASUREMENT_IDS } from '@/config/site';
 
-import '@/styles/globals.css';
-import '@/styles/architect-prep.css';
+import '@/styles/site.css';
 
 import type { AppProps } from 'next/app';
 
