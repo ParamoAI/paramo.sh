@@ -144,7 +144,7 @@ function Approach() {
                   <h3 className={`${display} mt-4 text-[36px] leading-none sm:text-[44px]`}>{s.title}</h3>
                   <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-slate">{s.body}</p>
                 </div>
-                <a href="/what-we-do/" className="mt-8 inline-flex items-center gap-2 text-[13px] font-medium text-pine">
+                <a href={s.href ?? '/what-we-do/'} className="mt-8 inline-flex items-center gap-2 text-[13px] font-medium text-pine">
                   {s.outcome} <Arrow />
                 </a>
               </div>
