@@ -39,7 +39,7 @@ export const FOUNDERS = {
       role: { text: 'Co-founder and COO.' } as Slot,
       // bio from Adrian (2026-11-09)
       background: {
-        text: 'Adrian is co-founder and COO of Páramo, which he started with his brother Dennis. He leads hands-on workshops and lunch and learns, helping small-business owners find practical ways to use AI in their day-to-day work. His approach starts with understanding how a business runs, simplifying the process, and helping people feel confident using the tools.',
+        text: 'Adrian is co-founder and COO of Páramo, which he started with his brother Dennis. He leads hands-on workshops and lunch and learns, helping small-business owners find practical ways to use AI in their day-to-day work. His approach starts with understanding how a business runs, simplifying the process, and helping people feel confident using the tools. Outside work, he enjoys dancing bachata, coaching youth soccer and playing pool with friends.',
       } as Slot,
     },
   ],
