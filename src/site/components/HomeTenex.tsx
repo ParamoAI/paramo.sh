@@ -164,6 +164,7 @@ function ImageBreak() {
   return (
     <section ref={ref} className="relative overflow-hidden">
       <motion.img
+        loading="lazy"
         src="/assets/paramo/rays.webp"
         alt=""
         initial={{ scale: 1.12 }}
@@ -186,9 +187,9 @@ function ImageBreak() {
           <span className="micro text-cream/90" style={{ fontSize: 'clamp(15px, 1.35vw, 19px)' }}>
             {PARTNERS.label}
           </span>
-          <span className="flex items-center gap-12 sm:gap-16">
+          <span className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 sm:gap-16">
             {PARTNERS.names.map((n) => (
-              <span key={n} className="text-[34px] font-medium tracking-[-0.01em] text-cream sm:text-[44px]">
+              <span key={n} className="text-[26px] font-medium tracking-[-0.01em] text-cream sm:text-[44px]">
                 {n}
               </span>
             ))}

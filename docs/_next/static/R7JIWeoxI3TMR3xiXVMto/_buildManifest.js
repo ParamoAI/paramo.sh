@@ -1,30 +1,30 @@
 self.__BUILD_MANIFEST = {
   "/": [
-    "static/chunks/ef929f758c5a582c.js"
+    "static/chunks/451619d607dea6ee.js"
   ],
   "/_error": [
     "static/chunks/1f52a8017f2f5ac1.js"
   ],
   "/blog": [
-    "static/chunks/bf8ff5d5b6e491dc.js"
+    "static/chunks/965c2dd93de41c32.js"
   ],
   "/blog/[slug]": [
-    "static/chunks/c8cead8f497bbe6c.js"
+    "static/chunks/6a41210cbde60b6f.js"
   ],
   "/case-studies": [
-    "static/chunks/3884c7f4c22cf1d3.js"
+    "static/chunks/08b054e1935e3362.js"
   ],
   "/case-studies/[slug]": [
-    "static/chunks/0850cdf5dd5db175.js"
+    "static/chunks/e8dbe21cf90c370a.js"
   ],
   "/what-we-do": [
-    "static/chunks/e3f05aa1ab90dbf1.js"
+    "static/chunks/e8b4ed4cf2b824dd.js"
   ],
   "/who-we-are": [
-    "static/chunks/290f9505df2b6492.js"
+    "static/chunks/5c6e6204298e69e1.js"
   ],
   "/why-us": [
-    "static/chunks/4a7d6a9b0fdade9a.js"
+    "static/chunks/fb65d5cf139ba2e2.js"
   ],
   "__rewrites": {
     "afterFiles": [],
