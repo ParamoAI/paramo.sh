@@ -43,8 +43,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   return {
     props: {
       slug,
-      title: legacy ? `${legacy.name}: ${legacy.stat.split('.')[0]} — ${SITE_NAME}` : `${result.client}: ${result.headline} | ${SITE_NAME}`,
-      description: legacy ? legacy.title : result.description,
+      title: legacy ? `${legacy.name}: ${legacy.stat.split('.')[0]} — ${SITE_NAME}` : `${result.seoTitle ?? result.client} | ${SITE_NAME}`,
+      description: legacy ? legacy.title : result.seoDescription ?? result.description,
       legacyHtml,
     },
   };

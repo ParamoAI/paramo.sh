@@ -12,10 +12,10 @@ self.__BUILD_MANIFEST = {
     "static/chunks/5bea61458eb03891.js"
   ],
   "/case-studies": [
-    "static/chunks/a8e969aa14e900b2.js"
+    "static/chunks/231372c39b476296.js"
   ],
   "/case-studies/[slug]": [
-    "static/chunks/0813e3de4d80f8dc.js"
+    "static/chunks/b48208cf23cdf8d1.js"
   ],
   "/what-we-do": [
     "static/chunks/81b2c460e7636275.js"
