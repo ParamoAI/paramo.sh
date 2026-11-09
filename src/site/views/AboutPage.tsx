@@ -90,6 +90,7 @@ export default function AboutPage() {
                   {/* photo slot: a real portrait goes here, never stock */}
                   {'photo' in p && p.photo ? (
                     <img
+                      loading="lazy"
                       src={p.photo.src}
                       alt={`${p.name}, co-founder of Páramo`}
                       className="aspect-[4/3] w-full border-b border-pine/25 object-cover"

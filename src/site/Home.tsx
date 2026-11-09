@@ -37,6 +37,21 @@ const STAGE_H = 1080
   crossfade even slightly early and you see a ghost.
 */
 const REVEAL_AT = 3.00
+// On phones the headline does not wait for mid-flight: it rises early, so a
+// slow connection never shows an empty screen.
+const PHONE_REVEAL_AT = 0.9
+
+/*
+  Phones. The desktop scene is a 16:9 frame scaled to cover the window; on a
+  tall phone screen that zooms in so far the bird is cut off. On phones the
+  frame is zoomed out instead, so the whole flight stays in view, and framed
+  on the bird: (BIRD_X, BIRD_Y) is the middle of the bird on the 1920x1080
+  frame, and PHONE_SPAN is how much of the frame's width fills the screen.
+*/
+const BIRD_X = 900
+const BIRD_Y = 500
+const PHONE_SPAN = 1240
+const PHONE_BIRD_AT = 0.36 // the bird's middle sits 36% down the screen
 const HANDOFF_AT = 6.05
 
 // Snappier and tighter than the original's 2555ms drift - precision reads as
@@ -88,6 +103,7 @@ function Reveal({
 
 export default function App() {
   const [scale, setScale] = useState(1)   // contain: the UI artboard
+  const [phone, setPhone] = useState<{ s: number; x: number; y: number; h: number } | null>(null)
   const [cover, setCover] = useState(1)   // cover: the photographic scene
   const [play, setPlay] = useState(false)
   const [run] = useState(0) // bump to replay the intro; a refresh does the same
@@ -104,7 +120,8 @@ export default function App() {
   const veilRef = useRef<HTMLDivElement>(null)
   const mastRef = useRef<HTMLDivElement>(null)
   const scaleRef = useRef({ scale: 1, cover: 1 })
-  scaleRef.current = { scale, cover }
+  // the phone headline is not on the scaled artboard, so its scroll offsets are 1:1
+  scaleRef.current = { scale: phone ? 1 : scale, cover }
 
   /* Leaving the hero, after the Scrolltide Tarn template: the copy sinks and
      blurs back into the fog, the hummingbird lifts up and away faster than
@@ -148,8 +165,17 @@ export default function App() {
       // Width-locked: the interface is exactly as wide as the window at
       // any size. Fitting it with Math.min pillarboxed it on anything
       // that was not 16:9. The backdrop keeps its own cover scale below.
-      setScale(window.innerWidth / STAGE_W)
-      setCover(Math.max(window.innerWidth / STAGE_W, window.innerHeight / STAGE_H))
+      const w = window.innerWidth
+      const h = window.innerHeight
+      setScale(w / STAGE_W)
+      if (w < 768 && h > w) {
+        const s = w / PHONE_SPAN
+        setPhone({ s, x: w / 2 - BIRD_X * s, y: h * PHONE_BIRD_AT - BIRD_Y * s, h })
+        setCover(s)
+      } else {
+        setPhone(null)
+        setCover(Math.max(w / STAGE_W, h / STAGE_H))
+      }
     }
     fit()
     window.addEventListener('resize', fit)
@@ -163,7 +189,7 @@ export default function App() {
       setWord(!plateEmpty)
       return
     }
-    const a = setTimeout(() => setPlay(true), REVEAL_AT * 1000)
+    const a = setTimeout(() => setPlay(true), (window.innerWidth < 768 ? PHONE_REVEAL_AT : REVEAL_AT) * 1000)
     const b = setTimeout(() => setWord(true), HANDOFF_AT * 1000)
     return () => {
       clearTimeout(a)
@@ -185,6 +211,14 @@ export default function App() {
           scaling a fixed 1920x1080 artboard to fit leaves bars on any window
           that is not 16:9 */}
       <div className="stage-bg" style={{ position: 'absolute', inset: 0 }} />
+      {phone && (
+        <img
+          src="/assets/hummingbird-ground.webp"
+          alt=""
+          aria-hidden
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
+        />
+      )}
 
       {/* ---- the scene ---------------------------------------------------
           Ground, clip and hero share ONE coordinate system, scaled to COVER.
@@ -196,15 +230,31 @@ export default function App() {
           the swap is invisible at any aspect ratio. The UI stays on the
           artboard below, which is what the layout was measured against. */}
       <div
-        style={{
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
-          width: px(STAGE_W),
-          height: px(STAGE_H),
-          transform: `translate(-50%, -50%) scale(${cover})`,
-          zIndex: 1,
-        }}
+        style={
+          phone
+            ? {
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: px(STAGE_W),
+                height: px(STAGE_H),
+                transform: `translate(${phone.x}px, ${phone.y}px) scale(${phone.s})`,
+                transformOrigin: 'top left',
+                zIndex: 1,
+                // the frame's edges dissolve into the full-screen ground behind it
+                maskImage: 'radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%)',
+              }
+            : {
+                position: 'absolute',
+                left: '50%',
+                top: '50%',
+                width: px(STAGE_W),
+                height: px(STAGE_H),
+                transform: `translate(-50%, -50%) scale(${cover})`,
+                zIndex: 1,
+              }
+        }
       >
       {/* The footage's own soft-focus ground plate. It stays after the clip
           hands off to the still: the hero is just the hummingbird. The
@@ -225,6 +275,9 @@ export default function App() {
         transition={{ duration: 0.4, ease: 'easeIn' }}
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
       >
+        {/* phones get a version about a seventh of the size */}
+        <source src="/assets/hummingbird-flight-phone.webm" type="video/webm" media="(max-width: 767px)" />
+        <source src="/assets/hummingbird-flight-phone.mp4" type="video/mp4" media="(max-width: 767px)" />
         <source src="/assets/hummingbird-flight.webm" type="video/webm" />
         <source src="/assets/hummingbird-flight.mp4" type="video/mp4" />
       </motion.video>
@@ -239,7 +292,8 @@ export default function App() {
           transition={{ duration: 0.4, ease: 'easeIn' }}
           style={{ position: 'absolute', inset: 0 }}
         >
-          <div ref={wordRef} style={{ position: 'absolute', inset: 0, willChange: 'transform, opacity' }}>
+          {/* the giant PÁRAMO is wider than a phone frame, so phones skip it */}
+          <div ref={wordRef} style={{ position: 'absolute', inset: 0, willChange: 'transform, opacity', display: phone ? 'none' : undefined }}>
           <div style={{ position: 'absolute', inset: 0 }}>
           <div
             className="wordmark"
@@ -293,6 +347,40 @@ export default function App() {
       {/* masthead: at the viewport edge, present from the first frame */}
       <Masthead ref={mastRef} />
 
+      {phone && (
+        <div
+          ref={copyRef}
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: Math.round(phone.h * 0.6),
+            zIndex: 3,
+            padding: '0 20px',
+            textAlign: 'center',
+            willChange: 'transform, opacity, filter',
+          }}
+        >
+          <Reveal play={play} from={{ y: 40, fade: true, delay: 0, duration: 1.6 }}>
+            <h1
+              style={{
+                margin: 0,
+                fontFamily: 'var(--font-display)',
+                fontWeight: 400,
+                fontSize: 'clamp(36px, 10.5vw, 48px)',
+                lineHeight: 1.08,
+                letterSpacing: '-0.015em',
+                color: 'var(--hero-ink)',
+                textShadow: '0 2px 24px rgba(24,35,30,0.55)',
+              }}
+            >
+              Your AI transformation <em className="display-cut" style={{ fontStyle: 'italic' }}>partner.</em>
+            </h1>
+          </Reveal>
+        </div>
+      )}
+
+      {!phone && (
       <div
         className={`relative${plate ? ' plate' : ''}`}
         style={{
@@ -357,6 +445,7 @@ export default function App() {
 
         </div>
       </div>
+      )}
 
     </div>
     {!plate && <HomeTenex />}
