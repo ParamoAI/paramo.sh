@@ -4,7 +4,7 @@ import Masthead from '../components/Masthead'
 import { Arrow, BlurWords, Footer } from '../components/HomeSections'
 import { CALENDLY_URL } from '../data/home'
 import { HUMANITY, REASONS, VOICES, WHY_HEADER, WORKSHOPS, type Slot } from '../data/whyus'
-import { SHOW_EVENTS } from '../data/site'
+import { SHOW_DRAFTS, SHOW_EVENTS } from '../data/site'
 import { startScroll } from '../lib/scroll'
 
 /*
@@ -38,6 +38,7 @@ function Eyebrow({ children }: { children: string }) {
 }
 
 function Copy({ slot, className = '' }: { slot: Slot; className?: string }) {
+  if (slot.placeholder && !SHOW_DRAFTS) return null
   if (slot.placeholder)
     return (
       <p className={`border border-dashed border-slate/40 px-4 py-3 text-[14px] leading-relaxed text-slate/70 italic ${className}`}>
@@ -118,7 +119,7 @@ export default function WhyUsPage() {
                   <h2 className={`${display} text-[40px] leading-[1.06] sm:text-[56px]`}>
                     <BlurWords text={REASONS.title} />
                   </h2>
-                  <p className="micro mt-6 text-gold-deep">Draft reasons for Dennis and Adrian to confirm</p>
+                  {SHOW_DRAFTS && <p className="micro mt-6 text-gold-deep">Draft reasons for Dennis and Adrian to confirm</p>}
                 </div>
               </div>
               <div className="space-y-5 lg:col-span-7">
@@ -203,14 +204,14 @@ export default function WhyUsPage() {
           <section className={`${wrap} pb-20 sm:pb-24`}>
             <div className="border-t border-line pt-16 sm:pt-20">
               <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-                <div className="lg:col-span-6">
+                <div className={SHOW_DRAFTS ? 'lg:col-span-6' : 'lg:col-span-8'}>
                   <motion.div {...RISE} transition={{ duration: 0.8, ease }}>
                     <Eyebrow>{HUMANITY.eyebrow}</Eyebrow>
                   </motion.div>
                   <h2 className={`${display} text-[38px] leading-[1.08] sm:text-[52px]`}>
                     <BlurWords text={HUMANITY.title} />
                   </h2>
-                  <p className="micro mt-5 text-gold-deep">Draft line for Dennis and Adrian to confirm</p>
+                  {SHOW_DRAFTS && <p className="micro mt-5 text-gold-deep">Draft line for Dennis and Adrian to confirm</p>}
                   <div className="mt-8 space-y-5">
                     {HUMANITY.body.map((b, i) => (
                       <motion.div key={i} {...RISE} transition={{ duration: 0.8, delay: 0.1 + i * 0.1, ease }}>
@@ -220,6 +221,8 @@ export default function WhyUsPage() {
                     <Copy slot={HUMANITY.next} />
                   </div>
                 </div>
+                {/* dance event photos, once there are some */}
+                {SHOW_DRAFTS && (
                 <motion.div {...RISE} transition={{ duration: 0.9, delay: 0.15, ease }} className="grid auto-rows-[180px] grid-cols-2 gap-3 lg:col-span-6">
                   <div className="row-span-2">
                     <PhotoSlot label="Dance event photo to add" />
@@ -228,6 +231,7 @@ export default function WhyUsPage() {
                     <PhotoSlot key={i} label="Dance event photo to add" />
                   ))}
                 </motion.div>
+                )}
               </div>
             </div>
           </section>

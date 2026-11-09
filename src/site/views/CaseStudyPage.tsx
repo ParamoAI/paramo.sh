@@ -4,6 +4,7 @@ import Masthead from '../components/Masthead'
 import { Arrow, BlurWords, Footer, RISE, ease, wrap } from '../components/HomeSections'
 import { CALENDLY_URL } from '../data/home'
 import { RESULTS, type Result } from '../data/results'
+import { SHOW_DRAFTS } from '../data/site'
 import { startScroll } from '../lib/scroll'
 
 /*
@@ -117,7 +118,7 @@ export default function CaseStudyPage({ slug, legacyHtml }: { slug: string; lega
           </section>
 
           {/* 3. video testimonial, when there is one */}
-          {r.video && (
+          {r.video && (SHOW_DRAFTS || !r.video.placeholder) && (
             <section className={`${wrap} pb-16`}>
               <div className="micro mb-5 text-slate/70">In their words</div>
               <div className="flex aspect-video max-w-4xl items-center justify-center border border-dashed border-slate/40 bg-mist-raised/40 p-6 text-center">

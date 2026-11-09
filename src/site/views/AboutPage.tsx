@@ -4,6 +4,7 @@ import Masthead from '../components/Masthead'
 import { BlurWords, Footer } from '../components/HomeSections'
 import { CALENDLY_URL } from '../data/home'
 import { FOUNDERS, NAME, type Slot } from '../data/about'
+import { SHOW_DRAFTS } from '../data/site'
 import { startScroll } from '../lib/scroll'
 
 /*
@@ -35,6 +36,7 @@ function Eyebrow({ children }: { children: string }) {
 
 /* Copy still to be written shows as an obvious note, never as finished text. */
 function Copy({ slot, className = '' }: { slot: Slot; className?: string }) {
+  if (slot.placeholder && !SHOW_DRAFTS) return null
   if (slot.placeholder)
     return (
       <p className={`border border-dashed border-slate/40 px-4 py-3 text-[14px] leading-relaxed text-slate/70 italic ${className}`}>
