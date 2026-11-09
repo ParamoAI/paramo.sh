@@ -388,7 +388,7 @@ function Counter({ value }: { value: number }) {
 function Questions() {
   const [open, setOpen] = useState<number | null>(0)
   return (
-    <section className={`${wrap} pb-20 sm:pb-24`}>
+    <section id="faq" className={`${wrap} scroll-mt-24 pb-20 sm:pb-24`}>
       <div className="grid gap-10 border-t border-line pt-16 sm:pt-20 lg:grid-cols-12 lg:gap-16">
         <motion.div {...RISE} transition={{ duration: 0.8, ease }} className="lg:col-span-4">
           <Eyebrow>{FAQ.eyebrow}</Eyebrow>
