@@ -5,6 +5,10 @@ import { BlurWords, Footer } from '../components/HomeSections'
 import { CALENDLY_URL } from '../data/home'
 import { AGENTS_PROCESS, CAIO_PROCESS, CONCIERGE_FIT, OFFERINGS, SERVICES_PAGE, STRATEGY_PROCESS, WORKSHOP_PROCESS } from '../data/services'
 import { startScroll } from '../lib/scroll'
+import { SERVICE_PAGES } from '../data/servicePages'
+
+// the address of an offering's own page, e.g. 'AI Strategy' -> 'ai-strategy'
+const slugFor = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 /*
   What we do, at /what-we-do/.
@@ -159,6 +163,12 @@ export default function WhatWeDoPage() {
                   </div>
                   <div className="lg:col-span-7 lg:pt-10">
                     <p className="text-[17px] leading-relaxed text-slate sm:text-[18px]">{o.body}</p>
+                    {SERVICE_PAGES.some((sp) => sp.title && sp.slug === slugFor(o.name)) && (
+                      <a href={`/what-we-do/${slugFor(o.name)}/`} className="group mt-4 inline-flex items-center gap-2 text-[15px] font-medium text-pine">
+                        <span className="border-b border-pine/30 pb-0.5 group-hover:border-pine">More about {o.name}</span>
+                        <span aria-hidden>→</span>
+                      </a>
+                    )}
                     <ul className="mt-6 flex flex-wrap gap-2">
                       {o.includes.map((x) => (
                         <li key={x} className="rounded-full border border-pine/25 px-4 py-2 text-[13px] text-pine/85">
