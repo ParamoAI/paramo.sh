@@ -28,12 +28,13 @@ export type ServicePage = {
 export const SERVICE_PAGES: ServicePage[] = [
   {
     slug: 'ai-strategy',
-    // aims at "ai strategy consulting" (720 searches a month in the US)
-    seoTitle: 'AI Strategy Consulting for Growing Businesses | Páramo',
+    // aims at "ai consulting for small business" (590, difficulty 3) and
+    // "ai strategy consulting" (720)
+    seoTitle: 'AI Consulting for Small Business: AI Strategy | Páramo',
     seoDescription:
-      'AI strategy consulting for growing businesses in the Twin Cities. We map where your hours go and hand you a ranked plan: what to automate now and what can wait.',
+      'AI consulting for small and growing businesses in the Twin Cities. We map where your hours go and hand you a ranked plan: what to automate now and what can wait.',
     eyebrow: 'What we do · AI Strategy',
-    title: 'AI strategy consulting for growing businesses.',
+    title: 'AI consulting for small businesses, starting with a clear plan.',
     lede: 'We map where your hours and money go, then hand you a ranked plan: what to automate now, what can wait, and what to leave alone.',
     forWho: {
       title: 'Who it is for',
@@ -117,10 +118,11 @@ export const SERVICE_PAGES: ServicePage[] = [
 
   {
     slug: 'team-ai-workshops',
-    // aims at "ai training for employees" (320 searches a month in the US)
-    seoTitle: 'AI Training for Employees: Team AI Workshops | Páramo',
+    // aims at "ai training for employees" (320, difficulty 2) and
+    // "ai training for small business"
+    seoTitle: 'AI Training for Employees at Small Businesses | Páramo',
     seoDescription:
-      'Hands-on AI training for employees, built around the work your team actually does. On-site workshops in the Twin Cities, from 90 minutes to a full day.',
+      'Hands-on AI training for employees at small businesses, built around the work your team actually does. On-site workshops in the Twin Cities, from 90 minutes to a full day.',
     eyebrow: 'What we do · Team AI Workshops',
     title: 'AI training for your whole team, on their real work.',
     lede: 'Hands-on sessions in plain language, built around the tasks your people actually do, so AI becomes part of the job instead of another login.',
@@ -233,12 +235,13 @@ export const SERVICE_PAGES: ServicePage[] = [
   },
   {
     slug: 'managed-agents',
-    // aims at "ai agents for business" and "managed ai agents"
-    seoTitle: 'Managed AI Agents for Business | Páramo',
+    // aims at "ai agents for small business" (260, difficulty 3) and
+    // "ai automation for small business" (210, difficulty 3)
+    seoTitle: 'AI Agents and Automation for Small Business | Páramo',
     seoDescription:
-      'AI agents built on the tools your business already uses, then monitored, maintained and improved by us. Lead replies, follow-ups, records and reports.',
+      'AI agents and automation for small businesses, built on the tools you already use, then monitored and maintained by us. Lead replies, follow-ups, records and reports.',
     eyebrow: 'What we do · Managed Agents',
-    title: 'AI agents that work for your business, run by us.',
+    title: 'AI agents for your small business, run by us.',
     lede: 'Agents built around your business that answer, follow up, report and keep work moving. We monitor them, improve them and maintain them so you do not have to.',
     forWho: {
       title: 'Who it is for',

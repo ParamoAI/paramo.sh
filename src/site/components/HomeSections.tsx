@@ -665,7 +665,14 @@ export function Footer({ invite = false }: { invite?: boolean }) {
           ))}
         </div>
       </div>
-      <p className="mt-12 text-[12px] text-slate/45">{FOOTER.legal}</p>
+      <nav aria-label="Services" className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-line pt-8">
+        {FOOTER.services.map((l) => (
+          <a key={l.href} href={l.href} className="text-[13px] text-slate/70 transition-colors hover:text-pine">
+            {l.label}
+          </a>
+        ))}
+      </nav>
+      <p className="mt-10 text-[12px] text-slate/45">{FOOTER.legal}</p>
     </footer>
   )
 }
