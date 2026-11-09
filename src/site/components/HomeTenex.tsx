@@ -188,10 +188,8 @@ function ImageBreak() {
             {PARTNERS.label}
           </span>
           <span className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 sm:gap-16">
-            {PARTNERS.names.map((n) => (
-              <span key={n} className="text-[26px] font-medium tracking-[-0.01em] text-cream sm:text-[44px]">
-                {n}
-              </span>
+            {PARTNERS.logos.map((l) => (
+              <img key={l.name} src={l.src} alt={l.name} className={`${l.h} w-auto`} style={{ filter: 'drop-shadow(0 2px 14px rgba(24,35,30,0.45))' }} />
             ))}
           </span>
         </div>
