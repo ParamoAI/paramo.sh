@@ -403,3 +403,13 @@ h2,
 .case-body .living-banner-tag { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-gold-deep); }
 .case-body .internal-links { display: none; } /* the page has its own next-story link */
 .case-body code { font-size: 0.9em; }
+
+/* Never show the browser's own play button over the hero clip. If autoplay
+   is blocked, Home.tsx hides the clip and flies the still bird in instead. */
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+video::-webkit-media-controls {
+  display: none !important;
+}
