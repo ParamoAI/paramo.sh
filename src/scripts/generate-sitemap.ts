@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { blogPosts } from '../data/blog-posts';
 import { RESULTS } from '../site/data/results';
+import { SERVICE_PAGES } from '../site/data/servicePages';
 
 const SITE_URL = 'https://paramo.sh';
 const BUILD_DIR = 'docs';
@@ -28,6 +29,12 @@ const additionalPages: SitemapEntry[] = [
   ...blogPosts.map(post => ({
     path: `/blog/${post.slug}/`,
     priority: 0.7,
+    changefreq: 'monthly' as const,
+  })),
+  // one page per service
+  ...SERVICE_PAGES.map(p => ({
+    path: `/what-we-do/${p.slug}/`,
+    priority: 0.8,
     changefreq: 'monthly' as const,
   })),
   // every result: the seven original case studies plus the new stories

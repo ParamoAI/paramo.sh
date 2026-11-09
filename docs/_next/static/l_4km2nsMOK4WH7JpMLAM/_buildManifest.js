@@ -18,7 +18,10 @@ self.__BUILD_MANIFEST = {
     "static/chunks/0813e3de4d80f8dc.js"
   ],
   "/what-we-do": [
-    "static/chunks/81b2c460e7636275.js"
+    "static/chunks/189ff7fcdfdb9be9.js"
+  ],
+  "/what-we-do/[slug]": [
+    "static/chunks/270f64b4ef189261.js"
   ],
   "/who-we-are": [
     "static/chunks/a7d130184f358e94.js"
@@ -40,6 +43,7 @@ self.__BUILD_MANIFEST = {
     "/case-studies",
     "/case-studies/[slug]",
     "/what-we-do",
+    "/what-we-do/[slug]",
     "/who-we-are",
     "/why-us"
   ]
