@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { blogPosts } from '../data/blog-posts';
-import { caseStudies } from '../data/case-studies';
+import { RESULTS } from '../site/data/results';
 
 const SITE_URL = 'https://paramo.sh';
 const BUILD_DIR = 'docs';
@@ -17,6 +17,10 @@ const pages: SitemapEntry[] = [
   { path: '/', priority: 1.0, changefreq: 'weekly' },
   { path: '/blog/', priority: 0.8, changefreq: 'weekly' },
   { path: '/case-studies/', priority: 0.8, changefreq: 'weekly' },
+  // new pages in the redesign
+  { path: '/what-we-do/', priority: 0.9, changefreq: 'monthly' },
+  { path: '/who-we-are/', priority: 0.7, changefreq: 'monthly' },
+  { path: '/why-us/', priority: 0.7, changefreq: 'monthly' },
 ];
 
 // Dynamic content pages
@@ -26,7 +30,8 @@ const additionalPages: SitemapEntry[] = [
     priority: 0.7,
     changefreq: 'monthly' as const,
   })),
-  ...caseStudies.map(study => ({
+  // every result: the seven original case studies plus the new stories
+  ...RESULTS.map(study => ({
     path: `/case-studies/${study.slug}/`,
     priority: 0.7,
     changefreq: 'monthly' as const,
