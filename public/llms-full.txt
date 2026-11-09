@@ -1,67 +1,78 @@
-# Páramo AI — Full Documentation
+# Páramo: full overview
 
-> OpenClaw Implementation Studio. We show you what's possible, then we build it.
+> Your AI transformation partner. Páramo puts AI to work inside growing companies, then makes sure their teams can run it.
 
 ## About
 
-Páramo AI is an AI-native company that builds custom AI automation for business owners using OpenClaw. Named after the páramo — the high-altitude ecosystem of the Andes — we operate at elevation so your business flows effortlessly downstream.
+Páramo is an AI implementation partner based in the Twin Cities (Minneapolis and St. Paul, Minnesota). It was founded in late 2025 by brothers Dennis Morales (co-founder and CEO) and Adrian Morales (co-founder and COO), who are Colombian. The name comes from the páramo, the high Andean ecosystem above Bogotá whose plants catch fog and feed the rivers below. That is how we work: start with what is already there, shape it into systems, and let it run on its own.
 
-## Services
+We work with growing companies whose teams are ready for AI, including home services, construction, healthcare, real estate, professional services, accounting, manufacturing, distribution, restaurants, retail and ecommerce. Official partner of OpenAI, DevRev and Jotform. We have connected AI to Gmail, Microsoft 365, HubSpot, QuickBooks, PandaDoc and Slack for clients.
 
-### OpenClaw Setup — $500
+## What we do
 
-Your own AI assistant, fully set up and ready to go.
+### AI Concierge
+We sit with owners and CEOs, set up Claude for the way they work, and build the workflows their job needs together, step by step, until they are building their own agentic workflows.
 
-- We set it up for you — no coding required
-- Runs 24/7 on a virtual server
-- Control it from any messenger (Slack, WhatsApp, Telegram, Discord, Signal, iMessage)
-- 10 skills pre-installed
-- Ongoing support if you get stuck
+### Team AI Workshops
+Hands-on sessions in plain language, built around the tasks a team actually does. A paid workshop runs: assess, plan, a working session (90 minutes, a half day or a full day), done-with-you build hours, and take-home material.
 
-### Summit — Custom Pricing
+### AI Strategy
+We map where hours and money go, then hand over a ranked plan: what to automate now, what can wait, and what to leave alone. Kickoff, interviews, a map of hours and cost per workflow, ranked opportunities, and a decision with the leadership team.
 
-Full-stack AI infrastructure for businesses ready to go all-in on automation.
+### Fractional Chief AI Officer
+Senior AI leadership without a full-time hire: the AI roadmap and priorities, tool and vendor decisions, an AI use policy and training, a monthly leadership meeting, and a quarterly review.
 
-- Unlimited automations
-- Dedicated automation lead
-- Custom AI agent development
-- Integration architecture connecting your entire stack (CRM, email, payments, scheduling, content)
-- White-glove onboarding
+### Managed Agents
+Agents built around a business that answer, follow up, report and keep work moving. We pick one job to hand off first, build on the tools already in use, test it alongside the team, launch it, and keep improving it.
 
-## What We Build
+## How we work
 
-### AI Command Centers
-A single dashboard managing multiple AI instances. Monitor, control, and optimize all your automations from one place.
-
-### Workflow Automation
-End-to-end systems that handle content creation, lead nurturing, customer onboarding, and operations — without you touching a thing.
-
-### Custom AI Agents
-Purpose-built agents trained on your business data. They think like you, respond like you, and work around the clock.
-
-### Data Pipelines
-Automated collection, processing, and reporting. Turn raw data from scattered sources into actionable dashboards.
-
-### Smart Outreach Systems
-Personalized, AI-driven email and DM sequences that sound like you wrote them — because we trained the AI on your voice.
-
-### Integration Architecture
-We connect your entire stack — CRM, email, payments, scheduling, content — into one cohesive, automated ecosystem.
-
-## Process
-
-1. **Discovery Call** — We map your current workflows and identify the highest-leverage automation opportunities in your business.
-2. **We Build It** — Our team designs, builds, and tests your custom automation. You see demos at every stage — proof, not promises.
-3. **You Grow** — We deploy, train your team, and provide ongoing support. The system runs. You get your time back.
+1. **Audit:** we sit with the people doing the work, map how it actually gets done, and rank opportunities by impact and effort.
+2. **Optimize:** we fix the process before adding AI, then build on the tools the team already uses.
+3. **Automate:** we run it alongside the team until it runs on its own. Client-facing messages are drafted for a person to approve; automatic sending is a later choice.
 
 ## Results
 
-- 120+ automations deployed
-- 40 hours saved per client per month
-- 5 AI instances managed from one dashboard
-- 98% client retention
+- [SafeRide Health's team learned where Claude fits their work, in one workshop.](https://paramo.sh/case-studies/saferide-health/) (Healthcare)
+- [Storage Advisors answers every new inquiry with the confidentiality agreement already attached.](https://paramo.sh/case-studies/storage-advisors/) (Real estate)
+- [A junk removal company found customers that had never made it into QuickBooks.](https://paramo.sh/case-studies/junk-removal-quickbooks/) (Home services)
+- [A business coach's client notes now file themselves every evening.](https://paramo.sh/case-studies/coaching-meeting-notes/) (Professional services)
+- [A photographer got the website he wanted, and learned to run it himself.](https://paramo.sh/case-studies/photographer-website/) (Professional services)
+- [A Minneapolis owner got eight hours a month back from bookkeeping.](https://paramo.sh/case-studies/bookkeeping-automation/) (Finance)
+- [A home services company turned what lived in people's heads into a training manual.](https://paramo.sh/case-studies/employee-training-sops/) (Home services)
+- [Skillet'z Cafe runs five AI automations with the same small team.](https://paramo.sh/case-studies/skilletz-cafe/) (Restaurants)
+- [Dr. Brett Osborn's content now runs on an assistant that writes like him.](https://paramo.sh/case-studies/dr-osborn-neurosurgeon/) (Healthcare)
+- [A Bay Area investor brought every property into one command center.](https://paramo.sh/case-studies/real-estate-portfolio/) (Real estate)
+- [We built our own brand and website with AI, and saved over $40,000.](https://paramo.sh/case-studies/ai-built-website/) (Our own work)
+- [Our own agent runs our search work, and saves $2,500 a month.](https://paramo.sh/case-studies/seo-automation/) (Our own work)
+
+## Questions
+
+### Will AI make mistakes with my customers?
+
+It can, which is why nothing goes out without your approval at first. You see what it does, correct it, and only let it run on its own once you trust it.
+
+### Is my data safe?
+
+Each platform has its own AI policy. OpenAI and Anthropic both state that, by default, they do not train their models on data from their business plans or their developer platforms. That covers ChatGPT Business and Enterprise, and Claude Team and Enterprise. Personal plans follow different rules, so we set your team up on business accounts. Your data also stays in your own accounts and the tools you already use.
+
+### My team isn't technical. Will they actually use it?
+
+Yes. Training is part of the work. Your people learn it in plain language, on their own jobs.
+
+### Which AI should we use? We already pay for Microsoft 365 or Google.
+
+Usually Claude or ChatGPT, on a business plan. If you already pay for Microsoft 365 or Google Workspace, some AI may already be included, and for part of your team that may be enough. We start with what you already pay for, and only suggest new seats for the people who will use them. And if you do not have any AI yet, we can help with that too.
+
+### Will it work with the software we already use?
+
+Often, yes. We have connected AI to Gmail, Microsoft 365, HubSpot, QuickBooks, PandaDoc and Slack for clients, so nobody has to learn a new platform. Some industry software is harder to reach, so we check before we promise anything and tell you plainly what is possible.
+
+### Will AI replace people on my team?
+
+That is your decision, not the software's. In a 2024 Census Bureau survey, about 95 in 100 businesses using AI reported no change in how many people they employ. Most use it to take repetitive work off the people they already have, so those people have more time for customers and the work that needs them.
 
 ## Contact
 
 - Website: https://paramo.sh
-- Book a discovery call: https://calendly.com/d/cvkf-q3t-25j/free-discovery-call-with-paramo
+- Book a call: https://calendly.com/d/cvkf-q3t-25j/free-discovery-call-with-paramo
