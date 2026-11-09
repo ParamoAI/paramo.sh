@@ -34,11 +34,12 @@ export const FOUNDERS = {
     {
       name: 'Adrian',
       linkedin: 'https://www.linkedin.com/in/adrian-morales2002/',
-      photo: { src: '/assets/paramo/founders/adrian.webp', position: 'center 30%' },
+      // presenting at a lunch and learn, cropped around him and the slide
+      photo: { src: '/assets/paramo/founders/adrian.webp', position: 'center 40%' },
       role: { text: 'Co-founder and COO.' } as Slot,
+      // bio from Adrian (2026-11-09)
       background: {
-        text: 'Two or three sentences on Adrian: background, what came before Páramo, and what Adrian brings to a client’s company.',
-        placeholder: true,
+        text: 'Adrian is co-founder and COO of Páramo, which he started with his brother Dennis. He leads hands-on workshops and lunch and learns, helping small-business owners find practical ways to use AI in their day-to-day work. His approach starts with understanding how a business runs, simplifying the process, and helping people feel confident using the tools.',
       } as Slot,
     },
   ],

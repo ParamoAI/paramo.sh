@@ -36,7 +36,7 @@ self.__BUILD_MANIFEST = {
     "static/chunks/6c0201bcd58294e3.js"
   ],
   "/who-we-are": [
-    "static/chunks/38530d11dc13c7b7.js"
+    "static/chunks/a6064246d5ca7635.js"
   ],
   "/why-us": [
     "static/chunks/e173b3323c24d570.js"
