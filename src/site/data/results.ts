@@ -31,11 +31,16 @@ export type Result = {
   body?: Section[]
   quote?: string
   video?: { text: string; placeholder?: boolean }
+  // search title and description for new stories (Google shows about 60 and 160 characters)
+  seoTitle?: string
+  seoDescription?: string
 }
 
 export const RESULTS: Result[] = [
   {
     slug: 'saferide-health',
+    seoTitle: 'Claude Workshop for a Healthcare Team: SafeRide',
+    seoDescription: 'A hands-on Claude workshop, AI use policy and rollout plan for a medical transportation team. Clarity on where AI helps rose from 2.3 to 4.2 out of 5.',
     category: 'Healthcare',
     client: 'SafeRide Health',
     place: 'Medical transportation',
@@ -77,6 +82,7 @@ export const RESULTS: Result[] = [
   },
   {
     slug: 'storage-advisors',
+    seoTitle: 'AI Lead Replies for a Real Estate Firm',
     category: 'Real estate',
     client: 'Storage Advisors',
     place: 'Commercial real estate',
@@ -122,6 +128,7 @@ export const RESULTS: Result[] = [
   },
   {
     slug: 'junk-removal-quickbooks',
+    seoTitle: 'AI and QuickBooks for a Junk Removal Company',
     category: 'Home services',
     client: 'Junk removal company',
     place: 'Twin Cities',
@@ -155,6 +162,7 @@ export const RESULTS: Result[] = [
   },
   {
     slug: 'coaching-meeting-notes',
+    seoTitle: 'Automatic Client Meeting Notes for a Coach',
     category: 'Professional services',
     client: 'Business coaching firm',
     place: 'Owner-operator',
@@ -189,6 +197,7 @@ export const RESULTS: Result[] = [
   },
   {
     slug: 'photographer-website',
+    seoTitle: 'A Website a Photographer Runs Himself',
     category: 'Professional services',
     client: 'Photographer and filmmaker',
     place: 'Owner-operator',
