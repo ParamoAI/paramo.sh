@@ -3,7 +3,9 @@ export const SITE_URL = 'https://paramo.sh';
 export const SITE_NAME = 'Páramo';
 export const SITE_TAGLINE = 'Above the Clouds';
 export const SITE_DESCRIPTION = 'Custom AI automation for business owners. We show you what\'s possible, then we build it.';
-export const OG_IMAGE = `${SITE_URL}/og-image.png`;
+// The preview image shown when a paramo.sh link is shared in texts, email and social.
+// A new file name, so apps that remember the old image fetch the new one.
+export const OG_IMAGE = `${SITE_URL}/og-bird.png`;
 
 // Google Analytics
 export const GA_MEASUREMENT_IDS = ['G-T9Z403DE2W', 'G-RRW1NVQ7NY'];
