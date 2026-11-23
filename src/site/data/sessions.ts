@@ -45,9 +45,9 @@ export const SEO = {
 
 export const HERO = {
   label: 'AI working session · Minneapolis',
-  headline: 'Bring one task that eats your week.',
-  headlineEm: 'Leave with AI doing it.',
-  lede: 'One task off your plate in three hours, or your money back.',
+  headline: 'Hand one task to AI.',
+  headlineEm: 'For good.',
+  lede: 'You build it with us, on your own laptop. If it is not running when you leave, you do not pay.',
   primary: 'Reserve my seat',
   secondary: 'See how it works',
   facts: [
