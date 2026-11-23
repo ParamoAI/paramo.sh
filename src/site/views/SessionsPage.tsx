@@ -9,6 +9,7 @@ import {
   HERO,
   HOW,
   LOCATION,
+  PARTNER_BADGE,
   PRICE,
   PROBLEM,
   PROOF,
@@ -127,7 +128,16 @@ function Hero({ left }: { left: number }) {
           <Arrow className="rotate-135 transition-transform group-hover:translate-y-0.5" />
         </a>
       </motion.div>
-      <DetailLine left={left} lead={TAUGHT_BY} className="mt-8" />
+      <motion.div {...RISE} transition={{ duration: 0.8, delay: 0.5, ease }} className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-4">
+        <img
+          src={PARTNER_BADGE.src}
+          alt={PARTNER_BADGE.alt}
+          width={734}
+          height={338}
+          className="h-[60px] w-auto rounded-[10px] border border-pine/60 bg-white"
+        />
+        <DetailLine left={left} lead={TAUGHT_BY} />
+      </motion.div>
 
       <motion.dl {...RISE} transition={{ duration: 0.8, delay: 0.55, ease }} className="mt-16 grid grid-cols-3 border-t border-line">
         {HERO.facts.map((f, i) => (

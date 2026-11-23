@@ -154,3 +154,7 @@ export const RESERVE_LABEL = HERO.primary
 
 /* Shown under the hero buttons, next to the seats left. */
 export const TAUGHT_BY = 'Taught by an OpenAI Select Partner'
+
+/* The partner badge under the hero buttons. This file is a cleaned-up
+   screenshot; swap in the original from OpenAI's partner kit when we have it. */
+export const PARTNER_BADGE = { src: '/assets/paramo/sessions/openai-select-partner.png', alt: 'OpenAI Select Partner' }
