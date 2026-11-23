@@ -5,21 +5,34 @@
   Change these three settings and rebuild. Everything else on the page
   reads from them, so nothing else needs editing.
 
-  PRICE         e.g. '$495'. Left empty, no price shows anywhere.
+  PRICE         the ticket price. It appears on every Reserve button
+                ("Reserve my seat · $500") and in the Reserve section.
   SESSION_DATE  e.g. 'Thursday, January 15, 1 to 4pm'. Left empty, hidden.
   LOCATION      e.g. 'Coco Coworking, Minneapolis'. Left empty, hidden.
-  RESERVE_URL   the payment link. Left empty, "Reserve my seat" scrolls to
-                the Reserve section and the email address is shown. Once set,
-                the button goes straight to the payment link and the Reserve
-                section shows a pay button in place of the email.
+  SEATS_TOTAL   seats per session.
+  SEATS_LEFT    the number shown until the live count loads, and whenever
+                it cannot be read.
+  SEATS_URL     where the live count lives. An automatic job
+                (.github/workflows/seats.yml) asks Stripe every 10 minutes
+                how many tickets RESERVE_URL has sold and saves the result
+                there. The page only trusts a count made for the current
+                RESERVE_URL, so swapping the link for the next session
+                starts the count fresh.
+  RESERVE_URL   the Stripe payment link every Reserve button goes to. Swap
+                it here for the next session.
 
   The copy below is Dennis's, word for word (2026-11-22). Do not rewrite it.
 */
 
-export const PRICE = ''
+export const PRICE = '$500'
 export const SESSION_DATE = ''
 export const LOCATION = ''
-export const RESERVE_URL = ''
+export const RESERVE_URL = 'https://buy.stripe.com/9B6aEY95b0F11i509w2Ji04'
+
+export const SEATS_TOTAL = 10
+export const SEATS_LEFT = 10
+export const SEATS_URL = 'https://raw.githubusercontent.com/ParamoAI/paramo.sh/seats-data/seats.json'
+export const SOLD_OUT = 'This session is sold out. Email us to hear about the next one.'
 
 export const RESERVE_EMAIL = 'dennis@paramo.sh'
 
@@ -44,10 +57,18 @@ export const HERO = {
   ],
 }
 
+/* Draft by Claude (2026-11-22), for Dennis to confirm. */
+export const PROBLEM = {
+  label: 'The problem',
+  heading: 'You have tried AI. It has not taken a task off your plate.',
+  body: 'You have a ChatGPT account. You have asked it a few questions. The quotes, the follow-ups and the invoices still land on you every week. The tool is not the problem. Nobody sat next to you and built it around one real task.',
+}
+
 export const FOR_WHO = {
   label: 'Who it is for',
   heading: 'Business owners who want AI working inside their business.',
   body: 'You have one repetitive task you are ready to hand off, and you know which tools it runs on. That is all you need to start.',
+  notFor: 'This is not for you if you are still deciding whether AI is worth trying. Our free lunch and learns are the better first step.',
   tags: ['Writing quotes', 'Follow-up emails', 'Chasing invoices', 'Scheduling', 'Meeting notes', 'Weekly reports', 'Hiring replies'],
 }
 
@@ -87,6 +108,26 @@ export const TEAM = {
   ],
 }
 
+/* Proof. The numbers are the published SafeRide Health survey results
+   (see /case-studies/saferide-health/). Wording drafted by Claude
+   (2026-11-22), for Dennis to confirm. */
+export const PROOF = {
+  label: 'Proof',
+  heading: 'What happened the last time we ran a workshop.',
+  body: 'SafeRide Health brought us in to train their account management team. We surveyed the team before and after.',
+  stats: [
+    { value: '2.3 to 4.2', label: 'clarity on where AI could help, out of 5' },
+    { value: '2.5 to 3.7', label: 'confidence using AI effectively, out of 5' },
+    { value: '10 of 11', label: 'said the practical examples were what they valued most' },
+  ],
+  link: { label: 'Read the SafeRide Health result', href: 'https://paramo.sh/case-studies/saferide-health/' },
+  partner: 'Páramo is an OpenAI Select Partner.',
+  photos: [
+    { src: '/assets/paramo/sessions/room.webp', alt: 'Dennis and Adrian leading a lunch and learn for a full room', position: 'center 38%' },
+    { src: '/assets/paramo/sessions/table.webp', alt: 'Adrian talking with business owners at a coworking space', position: '92% center' },
+  ],
+}
+
 export const QUESTIONS = {
   label: 'Common questions',
   heading: 'Before you reserve.',
@@ -94,6 +135,8 @@ export const QUESTIONS = {
     { q: 'Do I need to be technical?', a: 'No. If you can write an email, you can do this. We handle the setup and sit with you while you build.' },
     { q: 'What do I bring?', a: 'A laptop, your logins for the tools your task uses, and two or three real examples of the task.' },
     { q: 'Is my data safe?', a: 'You remove client names before you share examples, we walk you through the privacy settings on your account, and we never film your screen.' },
+    { q: 'Three hours is too long. Is there another way?', a: 'Yes. You can book a one-on-one session with us. Email dennis@paramo.sh if you are interested.' },
+    { q: 'I have tried ChatGPT and it did not stick. Why would this be different?', a: 'You did not have a team from an OpenAI Select Partner sitting next to you, building it around your own task.' },
     { q: 'What happens after I reserve?', a: 'You get a short intake form about your task and your tools. We use it to build your starter kit and set up your account before the session.' },
   ],
 }
@@ -101,5 +144,12 @@ export const QUESTIONS = {
 export const RESERVE = {
   label: 'Reserve a seat',
   heading: 'Ten seats per session.',
-  body: 'Email us the task you want off your plate and we will send dates and next steps.',
+  body: `${PRICE} per seat. After you pay, you go straight to the intake form so we can start on your starter kit.`,
+  questions: 'Questions first? Email',
 }
+
+/* The words on every Reserve button, e.g. "Reserve my seat · $500". */
+export const RESERVE_LABEL = PRICE ? `${HERO.primary} · ${PRICE}` : HERO.primary
+
+/* Shown under the hero buttons, next to the seats left. */
+export const TAUGHT_BY = 'Taught by an OpenAI Select Partner'
