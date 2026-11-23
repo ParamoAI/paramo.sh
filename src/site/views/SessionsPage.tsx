@@ -15,12 +15,14 @@ import {
   QUESTIONS,
   RESERVE,
   RESERVE_EMAIL,
+  RESERVE_LABEL,
   RESERVE_URL,
   SEATS_LEFT,
   SEATS_TOTAL,
   SEATS_URL,
   SESSION_DATE,
   SOLD_OUT,
+  TAUGHT_BY,
   TEAM,
 } from '../data/sessions'
 
@@ -59,8 +61,9 @@ function jumpTo(id: string) {
   }
 }
 
-/* Date, place and price, shown only once they are filled in. */
-const details = [SESSION_DATE, LOCATION, PRICE].filter(Boolean)
+/* Date and place, shown only once they are filled in. The price is on the
+   Reserve buttons. */
+const details = [SESSION_DATE, LOCATION].filter(Boolean)
 
 /* Seats still open. Starts from the SEATS_LEFT setting; when SEATS_URL is
    set, the live count replaces it once it loads. */
@@ -78,9 +81,19 @@ function useSeatsLeft() {
   return left
 }
 
-function DetailLine({ left, className = '' }: { left: number; className?: string }) {
+function DetailLine({ left, lead, className = '' }: { left: number; lead?: string; className?: string }) {
   const seats = left > 0 ? `${left} of ${SEATS_TOTAL} seats left` : 'Sold out'
-  return <p className={`micro text-slate/80 ${className}`}>{[...details, seats].join(' · ')}</p>
+  const parts = [lead, ...details, seats].filter(Boolean)
+  return (
+    <p className={`micro flex flex-col gap-1.5 text-slate/80 sm:flex-row sm:gap-0 ${className}`}>
+      {parts.map((part, i) => (
+        <span key={part} className="whitespace-pre">
+          {i > 0 && <span aria-hidden className="hidden sm:inline"> · </span>}
+          {part}
+        </span>
+      ))}
+    </p>
+  )
 }
 
 /* The one action on the page, repeated after the main sections. */
@@ -89,7 +102,7 @@ function ReserveButton({ left }: { left: number }) {
   const props = RESERVE_URL ? { href: RESERVE_URL } : { href: '#reserve', onClick: jumpTo('reserve') }
   return (
     <a {...props} className={goldButton}>
-      {HERO.primary}
+      {RESERVE_LABEL}
     </a>
   )
 }
@@ -114,7 +127,7 @@ function Hero({ left }: { left: number }) {
           <Arrow className="rotate-135 transition-transform group-hover:translate-y-0.5" />
         </a>
       </motion.div>
-      <DetailLine left={left} className="mt-8" />
+      <DetailLine left={left} lead={TAUGHT_BY} className="mt-8" />
 
       <motion.dl {...RISE} transition={{ duration: 0.8, delay: 0.55, ease }} className="mt-16 grid grid-cols-3 border-t border-line">
         {HERO.facts.map((f, i) => (
@@ -388,21 +401,18 @@ function Reserve({ left }: { left: number }) {
               {RESERVE_EMAIL}
             </a>
           </p>
-        ) : RESERVE_URL ? (
-          <motion.div {...RISE} transition={{ duration: 0.8, ease }} className="mt-10">
-            <a href={RESERVE_URL} className={goldButton}>
-              {HERO.primary}
-            </a>
-          </motion.div>
         ) : (
           <motion.div {...RISE} transition={{ duration: 0.8, ease }}>
             <p className={`${body} mt-6 max-w-xl`}>{RESERVE.body}</p>
-            <a
-              href={`mailto:${RESERVE_EMAIL}`}
-              className="mt-10 inline-block border-b border-pine/30 pb-1 font-display text-[30px] leading-tight break-all text-pine transition-colors hover:border-pine sm:text-[56px]"
-            >
-              {RESERVE_EMAIL}
-            </a>
+            <div className="mt-10">
+              <ReserveButton left={left} />
+            </div>
+            <p className="mt-6 text-[15px] text-slate">
+              {RESERVE.questions}{' '}
+              <a href={`mailto:${RESERVE_EMAIL}`} className="border-b border-pine/30 pb-0.5 text-pine transition-colors hover:border-pine">
+                {RESERVE_EMAIL}
+              </a>
+            </p>
           </motion.div>
         )}
       </div>

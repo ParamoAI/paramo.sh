@@ -30,7 +30,7 @@ self.__BUILD_MANIFEST = {
     "static/chunks/fd3200e9b3bc8d44.js"
   ],
   "/sessions": [
-    "static/chunks/dc3f234c391de6f5.js"
+    "static/chunks/467b6b498bd89ae4.js"
   ],
   "/what-we-do": [
     "static/chunks/5b00cfbfdfca58f0.js"

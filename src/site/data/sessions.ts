@@ -5,7 +5,8 @@
   Change these three settings and rebuild. Everything else on the page
   reads from them, so nothing else needs editing.
 
-  PRICE         e.g. '$495'. Left empty, no price shows anywhere.
+  PRICE         the ticket price. It appears on every Reserve button
+                ("Reserve my seat · $500") and in the Reserve section.
   SESSION_DATE  e.g. 'Thursday, January 15, 1 to 4pm'. Left empty, hidden.
   LOCATION      e.g. 'Coco Coworking, Minneapolis'. Left empty, hidden.
   SEATS_LEFT    seats still open, shown as "N of 10 seats left". Change the
@@ -13,10 +14,8 @@
   SEATS_URL     optional. The address of a small file that holds the live
                 count, e.g. {"left": 7}. When set, the page reads it on load
                 and shows that number in place of SEATS_LEFT.
-  RESERVE_URL   the payment link. Left empty, "Reserve my seat" scrolls to
-                the Reserve section and the email address is shown. Once set,
-                the button goes straight to the payment link and the Reserve
-                section shows a pay button in place of the email.
+  RESERVE_URL   the Stripe payment link every Reserve button goes to. Swap
+                it here for the next session.
 
   The copy below is Dennis's, word for word (2026-11-22). Do not rewrite it.
 */
@@ -24,7 +23,7 @@
 export const PRICE = '$500'
 export const SESSION_DATE = ''
 export const LOCATION = ''
-export const RESERVE_URL = ''
+export const RESERVE_URL = 'https://buy.stripe.com/9B6aEY95b0F11i509w2Ji04'
 
 export const SEATS_TOTAL = 10
 export const SEATS_LEFT = 10
@@ -110,7 +109,7 @@ export const TEAM = {
    (2026-11-22), for Dennis to confirm. */
 export const PROOF = {
   label: 'Proof',
-  heading: 'What happened the last time we ran a paid workshop.',
+  heading: 'What happened the last time we ran a workshop.',
   body: 'SafeRide Health brought us in to train their account management team. We surveyed the team before and after.',
   stats: [
     { value: '2.3 to 4.2', label: 'clarity on where AI could help, out of 5' },
@@ -141,5 +140,12 @@ export const QUESTIONS = {
 export const RESERVE = {
   label: 'Reserve a seat',
   heading: 'Ten seats per session.',
-  body: 'Email us the task you want off your plate and we will send dates and next steps.',
+  body: `${PRICE} per seat. After you pay, you go straight to the intake form so we can start on your starter kit.`,
+  questions: 'Questions first? Email',
 }
+
+/* The words on every Reserve button, e.g. "Reserve my seat · $500". */
+export const RESERVE_LABEL = PRICE ? `${HERO.primary} · ${PRICE}` : HERO.primary
+
+/* Shown under the hero buttons, next to the seats left. */
+export const TAUGHT_BY = 'Taught by an OpenAI Select Partner'
