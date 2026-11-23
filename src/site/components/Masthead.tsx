@@ -21,11 +21,15 @@ export default function Masthead({
   ref,
   current,
   tone = 'dark',
+  menu = true,
 }: {
   ref?: Ref<HTMLDivElement>
   current?: string
   /* 'dark' sits over the hero's photography; 'light' sits on the sage page */
   tone?: 'dark' | 'light'
+  /* false leaves out the page links and the phone Menu button, for a
+     landing page with one job (the sessions page) */
+  menu?: boolean
 }) {
   const light = tone === 'light'
   const [open, setOpen] = useState(false)
@@ -68,33 +72,39 @@ export default function Masthead({
           Páramo
         </span>
       </a>
-      <nav className="masthead-nav" aria-label="Main">
-        {NAV.map(({ label, href }) => (
-          <a
-            key={label}
-            href={href}
-            aria-current={current === href ? 'page' : undefined}
-            className="micro masthead-link"
-            style={current === href ? { color: light ? '#18231e' : '#f1ede3' } : undefined}
-          >
-            {label}
-          </a>
-        ))}
-      </nav>
+      {menu ? (
+        <nav className="masthead-nav" aria-label="Main">
+          {NAV.map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              aria-current={current === href ? 'page' : undefined}
+              className="micro masthead-link"
+              style={current === href ? { color: light ? '#18231e' : '#f1ede3' } : undefined}
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+      ) : (
+        <span style={{ flex: 1 }} />
+      )}
       {/* Outlined, not gold: the page's one gold button lives in its content. */}
       <a href={CALENDLY_URL} className="micro masthead-cta">
         Book a call
       </a>
       {/* phones: the links move into a full-screen menu */}
-      <button
-        type="button"
-        className="micro masthead-menu-btn"
-        aria-expanded={open}
-        aria-controls="phone-menu"
-        onClick={() => setOpen(true)}
-      >
-        Menu
-      </button>
+      {menu && (
+        <button
+          type="button"
+          className="micro masthead-menu-btn"
+          aria-expanded={open}
+          aria-controls="phone-menu"
+          onClick={() => setOpen(true)}
+        >
+          Menu
+        </button>
+      )}
     </div>
     {open && (
       <div id="phone-menu" role="dialog" aria-modal="true" aria-label="Menu" className="phone-menu">

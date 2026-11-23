@@ -425,7 +425,7 @@ export default function SessionsPage() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="relative min-h-screen bg-mist">
-        <Masthead tone="light" />
+        <Masthead tone="light" menu={false} />
         <Hero left={left} />
         <main>
           <Problem />

@@ -5,8 +5,8 @@
   Change these three settings and rebuild. Everything else on the page
   reads from them, so nothing else needs editing.
 
-  PRICE         the ticket price. It appears on every Reserve button
-                ("Reserve my seat · $500") and in the Reserve section.
+  PRICE         the ticket price, shown in the Reserve section. Keep it
+                the same as the price on the Stripe payment link.
   SESSION_DATE  e.g. 'Thursday, January 15, 1 to 4pm'. Left empty, hidden.
   LOCATION      e.g. 'Coco Coworking, Minneapolis'. Left empty, hidden.
   SEATS_TOTAL   seats per session.
@@ -24,10 +24,10 @@
   The copy below is Dennis's, word for word (2026-11-22). Do not rewrite it.
 */
 
-export const PRICE = '$500'
+export const PRICE = '$497'
 export const SESSION_DATE = ''
 export const LOCATION = ''
-export const RESERVE_URL = 'https://buy.stripe.com/9B6aEY95b0F11i509w2Ji04'
+export const RESERVE_URL = 'https://buy.stripe.com/5kQfZi0yFcnJ7Gt4pM2Ji05'
 
 export const SEATS_TOTAL = 10
 export const SEATS_LEFT = 10
@@ -148,8 +148,9 @@ export const RESERVE = {
   questions: 'Questions first? Email',
 }
 
-/* The words on every Reserve button, e.g. "Reserve my seat · $500". */
-export const RESERVE_LABEL = PRICE ? `${HERO.primary} · ${PRICE}` : HERO.primary
+/* The words on every Reserve button. The price shows in the Reserve
+   section and on the Stripe page, not on the button. */
+export const RESERVE_LABEL = HERO.primary
 
 /* Shown under the hero buttons, next to the seats left. */
 export const TAUGHT_BY = 'Taught by an OpenAI Select Partner'
