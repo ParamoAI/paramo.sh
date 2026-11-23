@@ -22,6 +22,7 @@ export default function Masthead({
   current,
   tone = 'dark',
   menu = true,
+  cta = true,
 }: {
   ref?: Ref<HTMLDivElement>
   current?: string
@@ -30,6 +31,8 @@ export default function Masthead({
   /* false leaves out the page links and the phone Menu button, for a
      landing page with one job (the sessions page) */
   menu?: boolean
+  /* false leaves out the Book a call button */
+  cta?: boolean
 }) {
   const light = tone === 'light'
   const [open, setOpen] = useState(false)
@@ -90,9 +93,11 @@ export default function Masthead({
         <span style={{ flex: 1 }} />
       )}
       {/* Outlined, not gold: the page's one gold button lives in its content. */}
-      <a href={CALENDLY_URL} className="micro masthead-cta">
-        Book a call
-      </a>
+      {cta && (
+        <a href={CALENDLY_URL} className="micro masthead-cta">
+          Book a call
+        </a>
+      )}
       {/* phones: the links move into a full-screen menu */}
       {menu && (
         <button
