@@ -29,6 +29,9 @@ self.__BUILD_MANIFEST = {
   "/services": [
     "static/chunks/fd3200e9b3bc8d44.js"
   ],
+  "/sessions": [
+    "static/chunks/6613785c3a867da8.js"
+  ],
   "/what-we-do": [
     "static/chunks/5b00cfbfdfca58f0.js"
   ],
@@ -58,6 +61,7 @@ self.__BUILD_MANIFEST = {
     "/faq",
     "/how-we-work",
     "/services",
+    "/sessions",
     "/what-we-do",
     "/what-we-do/[slug]",
     "/who-we-are",
