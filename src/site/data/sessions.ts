@@ -8,6 +8,11 @@
   PRICE         e.g. '$495'. Left empty, no price shows anywhere.
   SESSION_DATE  e.g. 'Thursday, January 15, 1 to 4pm'. Left empty, hidden.
   LOCATION      e.g. 'Coco Coworking, Minneapolis'. Left empty, hidden.
+  SEATS_LEFT    seats still open, shown as "N of 10 seats left". Change the
+                number here when a ticket sells.
+  SEATS_URL     optional. The address of a small file that holds the live
+                count, e.g. {"left": 7}. When set, the page reads it on load
+                and shows that number in place of SEATS_LEFT.
   RESERVE_URL   the payment link. Left empty, "Reserve my seat" scrolls to
                 the Reserve section and the email address is shown. Once set,
                 the button goes straight to the payment link and the Reserve
@@ -16,10 +21,15 @@
   The copy below is Dennis's, word for word (2026-11-22). Do not rewrite it.
 */
 
-export const PRICE = ''
+export const PRICE = '$500'
 export const SESSION_DATE = ''
 export const LOCATION = ''
 export const RESERVE_URL = ''
+
+export const SEATS_TOTAL = 10
+export const SEATS_LEFT = 10
+export const SEATS_URL = ''
+export const SOLD_OUT = 'This session is sold out. Email us to hear about the next one.'
 
 export const RESERVE_EMAIL = 'dennis@paramo.sh'
 
@@ -44,10 +54,18 @@ export const HERO = {
   ],
 }
 
+/* Draft by Claude (2026-11-22), for Dennis to confirm. */
+export const PROBLEM = {
+  label: 'The problem',
+  heading: 'You have tried AI. It has not taken a task off your plate.',
+  body: 'You have a ChatGPT account. You have asked it a few questions. The quotes, the follow-ups and the invoices still land on you every week. The tool is not the problem. Nobody sat next to you and built it around one real task.',
+}
+
 export const FOR_WHO = {
   label: 'Who it is for',
   heading: 'Business owners who want AI working inside their business.',
   body: 'You have one repetitive task you are ready to hand off, and you know which tools it runs on. That is all you need to start.',
+  notFor: 'This is not for you if you are still deciding whether AI is worth trying. Our free lunch and learns are the better first step.',
   tags: ['Writing quotes', 'Follow-up emails', 'Chasing invoices', 'Scheduling', 'Meeting notes', 'Weekly reports', 'Hiring replies'],
 }
 
@@ -87,6 +105,26 @@ export const TEAM = {
   ],
 }
 
+/* Proof. The numbers are the published SafeRide Health survey results
+   (see /case-studies/saferide-health/). Wording drafted by Claude
+   (2026-11-22), for Dennis to confirm. */
+export const PROOF = {
+  label: 'Proof',
+  heading: 'What happened the last time we ran a paid workshop.',
+  body: 'SafeRide Health brought us in to train their account management team. We surveyed the team before and after.',
+  stats: [
+    { value: '2.3 to 4.2', label: 'clarity on where AI could help, out of 5' },
+    { value: '2.5 to 3.7', label: 'confidence using AI effectively, out of 5' },
+    { value: '10 of 11', label: 'said the practical examples were what they valued most' },
+  ],
+  link: { label: 'Read the SafeRide Health result', href: 'https://paramo.sh/case-studies/saferide-health/' },
+  partner: 'Páramo is an OpenAI Select Partner.',
+  photos: [
+    { src: '/assets/paramo/sessions/room.webp', alt: 'Dennis and Adrian leading a lunch and learn for a full room', position: 'center 38%' },
+    { src: '/assets/paramo/sessions/table.webp', alt: 'Adrian talking with business owners at a coworking space', position: '92% center' },
+  ],
+}
+
 export const QUESTIONS = {
   label: 'Common questions',
   heading: 'Before you reserve.',
@@ -94,6 +132,8 @@ export const QUESTIONS = {
     { q: 'Do I need to be technical?', a: 'No. If you can write an email, you can do this. We handle the setup and sit with you while you build.' },
     { q: 'What do I bring?', a: 'A laptop, your logins for the tools your task uses, and two or three real examples of the task.' },
     { q: 'Is my data safe?', a: 'You remove client names before you share examples, we walk you through the privacy settings on your account, and we never film your screen.' },
+    { q: 'Three hours is too long. Is there another way?', a: 'Yes. You can book a one-on-one session with us. Email dennis@paramo.sh if you are interested.' },
+    { q: 'I have tried ChatGPT and it did not stick. Why would this be different?', a: 'You did not have a team from an OpenAI Select Partner sitting next to you, building it around your own task.' },
     { q: 'What happens after I reserve?', a: 'You get a short intake form about your task and your tools. We use it to build your starter kit and set up your account before the session.' },
   ],
 }

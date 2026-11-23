@@ -1,4 +1,4 @@
-import { useState, type MouseEvent } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 import { AnimatePresence, MotionConfig, motion } from 'motion/react'
 import Masthead from '../components/Masthead'
 import { Arrow, BlurWords, Eyebrow, Footer, wrap } from '../components/HomeSections'
@@ -10,11 +10,17 @@ import {
   HOW,
   LOCATION,
   PRICE,
+  PROBLEM,
+  PROOF,
   QUESTIONS,
   RESERVE,
   RESERVE_EMAIL,
   RESERVE_URL,
+  SEATS_LEFT,
+  SEATS_TOTAL,
+  SEATS_URL,
   SESSION_DATE,
+  SOLD_OUT,
   TEAM,
 } from '../data/sessions'
 
@@ -56,8 +62,39 @@ function jumpTo(id: string) {
 /* Date, place and price, shown only once they are filled in. */
 const details = [SESSION_DATE, LOCATION, PRICE].filter(Boolean)
 
-function Hero() {
-  const reserveProps = RESERVE_URL ? { href: RESERVE_URL } : { href: '#reserve', onClick: jumpTo('reserve') }
+/* Seats still open. Starts from the SEATS_LEFT setting; when SEATS_URL is
+   set, the live count replaces it once it loads. */
+function useSeatsLeft() {
+  const [left, setLeft] = useState(SEATS_LEFT)
+  useEffect(() => {
+    if (!SEATS_URL) return
+    fetch(SEATS_URL, { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((d: { left?: unknown }) => {
+        if (typeof d.left === 'number') setLeft(Math.max(0, Math.min(SEATS_TOTAL, Math.round(d.left))))
+      })
+      .catch(() => {})
+  }, [])
+  return left
+}
+
+function DetailLine({ left, className = '' }: { left: number; className?: string }) {
+  const seats = left > 0 ? `${left} of ${SEATS_TOTAL} seats left` : 'Sold out'
+  return <p className={`micro text-slate/80 ${className}`}>{[...details, seats].join(' · ')}</p>
+}
+
+/* The one action on the page, repeated after the main sections. */
+function ReserveButton({ left }: { left: number }) {
+  if (left <= 0) return null
+  const props = RESERVE_URL ? { href: RESERVE_URL } : { href: '#reserve', onClick: jumpTo('reserve') }
+  return (
+    <a {...props} className={goldButton}>
+      {HERO.primary}
+    </a>
+  )
+}
+
+function Hero({ left }: { left: number }) {
   return (
     <header className={`${wrap} pt-40 pb-20 sm:pt-52 sm:pb-28`}>
       <Eyebrow>{HERO.label}</Eyebrow>
@@ -71,15 +108,13 @@ function Hero() {
         {HERO.lede}
       </motion.p>
       <motion.div {...RISE} transition={{ duration: 0.8, delay: 0.45, ease }} className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
-        <a {...reserveProps} className={goldButton}>
-          {HERO.primary}
-        </a>
+        <ReserveButton left={left} />
         <a href="#how" onClick={jumpTo('how')} className="group inline-flex items-center gap-2 text-[15px] font-medium text-pine">
           <span className="border-b border-pine/30 pb-0.5 transition-colors group-hover:border-pine">{HERO.secondary}</span>
           <Arrow className="rotate-135 transition-transform group-hover:translate-y-0.5" />
         </a>
       </motion.div>
-      {details.length > 0 && <p className="micro mt-8 text-slate/80">{details.join(' · ')}</p>}
+      <DetailLine left={left} className="mt-8" />
 
       <motion.dl {...RISE} transition={{ duration: 0.8, delay: 0.55, ease }} className="mt-16 grid grid-cols-3 border-t border-line">
         {HERO.facts.map((f, i) => (
@@ -90,6 +125,24 @@ function Hero() {
         ))}
       </motion.dl>
     </header>
+  )
+}
+
+function Problem() {
+  return (
+    <section className={`${wrap} pb-20 sm:pb-28`}>
+      <div className="grid gap-10 border-t border-line pt-16 sm:pt-20 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-6">
+          <Eyebrow>{PROBLEM.label}</Eyebrow>
+          <h2 className={h2}>
+            <BlurWords text={PROBLEM.heading} />
+          </h2>
+        </div>
+        <motion.p {...RISE} transition={{ duration: 0.8, ease }} className={`${body} lg:col-span-6 lg:pt-12`}>
+          {PROBLEM.body}
+        </motion.p>
+      </div>
+    </section>
   )
 }
 
@@ -112,13 +165,14 @@ function ForWho() {
               </li>
             ))}
           </ul>
+          <p className="mt-8 border-l border-gold-deep pl-4 text-[15px] leading-relaxed text-slate">{FOR_WHO.notFor}</p>
         </motion.div>
       </div>
     </section>
   )
 }
 
-function How() {
+function How({ left }: { left: number }) {
   return (
     <section id="how" className={`${wrap} scroll-mt-24 pb-20 sm:pb-28`}>
       <div className="border-t border-line pt-16 sm:pt-20">
@@ -140,12 +194,15 @@ function How() {
             </motion.li>
           ))}
         </ol>
+        <div className="mt-10">
+          <ReserveButton left={left} />
+        </div>
       </div>
     </section>
   )
 }
 
-function Get() {
+function Get({ left }: { left: number }) {
   return (
     <section className={`${wrap} pb-20 sm:pb-28`}>
       <div className="grid gap-10 border-t border-line pt-16 sm:pt-20 lg:grid-cols-12 lg:gap-16">
@@ -154,6 +211,9 @@ function Get() {
           <h2 className={h2}>
             <BlurWords text={GET.heading} />
           </h2>
+          <div className="mt-10 hidden lg:block">
+            <ReserveButton left={left} />
+          </div>
         </div>
         <dl className="border-t border-line lg:col-span-7">
           {GET.items.map((item) => (
@@ -168,18 +228,24 @@ function Get() {
             </motion.div>
           ))}
         </dl>
+        <div className="lg:hidden">
+          <ReserveButton left={left} />
+        </div>
       </div>
     </section>
   )
 }
 
-function Guarantee() {
+function Guarantee({ left }: { left: number }) {
   return (
     <section className={`${wrap} pb-20 sm:pb-28`}>
       <motion.div {...RISE} transition={{ duration: 0.8, ease }} className="border border-pine/40 bg-mist-raised/50 p-8 sm:p-14">
         <Eyebrow>{GUARANTEE.label}</Eyebrow>
         <h2 className={`${h2} max-w-3xl`}>{GUARANTEE.heading}</h2>
         <p className={`${body} mt-6 max-w-2xl`}>{GUARANTEE.body}</p>
+        <div className="mt-9 empty:hidden">
+          <ReserveButton left={left} />
+        </div>
       </motion.div>
     </section>
   )
@@ -202,6 +268,53 @@ function Team() {
             </p>
           ))}
         </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function Proof() {
+  return (
+    <section className={`${wrap} pb-20 sm:pb-28`}>
+      <div className="border-t border-line pt-16 sm:pt-20">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-6">
+            <Eyebrow>{PROOF.label}</Eyebrow>
+            <h2 className={h2}>
+              <BlurWords text={PROOF.heading} />
+            </h2>
+          </div>
+          <motion.div {...RISE} transition={{ duration: 0.8, ease }} className="lg:col-span-6 lg:pt-12">
+            <p className={body}>{PROOF.body}</p>
+            <a href={PROOF.link.href} className="group mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-pine">
+              <span className="border-b border-pine/30 pb-0.5 transition-colors group-hover:border-pine">{PROOF.link.label}</span>
+              <Arrow className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          </motion.div>
+        </div>
+        <motion.dl {...RISE} transition={{ duration: 0.8, ease }} className="mt-12 grid border-t border-line sm:grid-cols-3">
+          {PROOF.stats.map((s, i) => (
+            <div key={s.label} className={`border-b border-line py-6 sm:border-b-0 sm:pt-8 sm:pr-8 ${i > 0 ? 'sm:border-l sm:pl-8' : ''}`}>
+              <dt className="font-display text-[40px] leading-none text-pine sm:text-[48px]">{s.value}</dt>
+              <dd className="mt-3 text-[14px] leading-snug text-slate sm:text-[15px]">{s.label}</dd>
+            </div>
+          ))}
+        </motion.dl>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+          {PROOF.photos.map((ph) => (
+            <motion.img
+              key={ph.src}
+              {...RISE}
+              transition={{ duration: 0.8, ease }}
+              src={ph.src}
+              alt={ph.alt}
+              loading="lazy"
+              className="aspect-[4/3] w-full border border-pine/25 object-cover"
+              style={{ objectPosition: ph.position }}
+            />
+          ))}
+        </div>
+        <p className="micro mt-8 text-slate/80">{PROOF.partner}</p>
       </div>
     </section>
   )
@@ -259,7 +372,7 @@ function Questions() {
   )
 }
 
-function Reserve() {
+function Reserve({ left }: { left: number }) {
   return (
     <section id="reserve" className={`${wrap} scroll-mt-24 pb-24 sm:pb-32`}>
       <div className="border-t border-line pt-16 sm:pt-20">
@@ -267,8 +380,15 @@ function Reserve() {
         <h2 className={`${display} text-[44px] leading-[1.03] sm:text-[72px]`}>
           <BlurWords text={RESERVE.heading} />
         </h2>
-        {details.length > 0 && <p className="micro mt-6 text-slate/80">{details.join(' · ')}</p>}
-        {RESERVE_URL ? (
+        <DetailLine left={left} className="mt-6" />
+        {left <= 0 ? (
+          <p className={`${body} mt-6 max-w-xl`}>
+            {SOLD_OUT}{' '}
+            <a href={`mailto:${RESERVE_EMAIL}`} className="border-b border-pine/30 text-pine hover:border-pine">
+              {RESERVE_EMAIL}
+            </a>
+          </p>
+        ) : RESERVE_URL ? (
           <motion.div {...RISE} transition={{ duration: 0.8, ease }} className="mt-10">
             <a href={RESERVE_URL} className={goldButton}>
               {HERO.primary}
@@ -291,19 +411,22 @@ function Reserve() {
 }
 
 export default function SessionsPage() {
+  const left = useSeatsLeft()
   return (
     <MotionConfig reducedMotion="user">
       <div className="relative min-h-screen bg-mist">
         <Masthead tone="light" />
-        <Hero />
+        <Hero left={left} />
         <main>
+          <Problem />
           <ForWho />
-          <How />
-          <Get />
-          <Guarantee />
+          <How left={left} />
+          <Get left={left} />
+          <Guarantee left={left} />
           <Team />
+          <Proof />
           <Questions />
-          <Reserve />
+          <Reserve left={left} />
         </main>
         <Footer />
       </div>
