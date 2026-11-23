@@ -9,11 +9,15 @@
                 ("Reserve my seat · $500") and in the Reserve section.
   SESSION_DATE  e.g. 'Thursday, January 15, 1 to 4pm'. Left empty, hidden.
   LOCATION      e.g. 'Coco Coworking, Minneapolis'. Left empty, hidden.
-  SEATS_LEFT    seats still open, shown as "N of 10 seats left". Change the
-                number here when a ticket sells.
-  SEATS_URL     optional. The address of a small file that holds the live
-                count, e.g. {"left": 7}. When set, the page reads it on load
-                and shows that number in place of SEATS_LEFT.
+  SEATS_TOTAL   seats per session.
+  SEATS_LEFT    the number shown until the live count loads, and whenever
+                it cannot be read.
+  SEATS_URL     where the live count lives. An automatic job
+                (.github/workflows/seats.yml) asks Stripe every 10 minutes
+                how many tickets RESERVE_URL has sold and saves the result
+                there. The page only trusts a count made for the current
+                RESERVE_URL, so swapping the link for the next session
+                starts the count fresh.
   RESERVE_URL   the Stripe payment link every Reserve button goes to. Swap
                 it here for the next session.
 
@@ -27,7 +31,7 @@ export const RESERVE_URL = 'https://buy.stripe.com/9B6aEY95b0F11i509w2Ji04'
 
 export const SEATS_TOTAL = 10
 export const SEATS_LEFT = 10
-export const SEATS_URL = ''
+export const SEATS_URL = 'https://raw.githubusercontent.com/ParamoAI/paramo.sh/seats-data/seats.json'
 export const SOLD_OUT = 'This session is sold out. Email us to hear about the next one.'
 
 export const RESERVE_EMAIL = 'dennis@paramo.sh'

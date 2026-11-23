@@ -73,8 +73,8 @@ function useSeatsLeft() {
     if (!SEATS_URL) return
     fetch(SEATS_URL, { cache: 'no-store' })
       .then((r) => r.json())
-      .then((d: { left?: unknown }) => {
-        if (typeof d.left === 'number') setLeft(Math.max(0, Math.min(SEATS_TOTAL, Math.round(d.left))))
+      .then((d: { left?: unknown; link?: unknown }) => {
+        if (d.link === RESERVE_URL && typeof d.left === 'number') setLeft(Math.max(0, Math.min(SEATS_TOTAL, Math.round(d.left))))
       })
       .catch(() => {})
   }, [])
