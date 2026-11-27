@@ -123,9 +123,9 @@ export default function App() {
   const wordRef = useRef<HTMLDivElement>(null)
   const veilRef = useRef<HTMLDivElement>(null)
   const mastRef = useRef<HTMLDivElement>(null)
-  const scaleRef = useRef({ scale: 1, cover: 1 })
+  const scaleRef = useRef({ scale: 1, cover: 1, phone: false })
   // the phone headline is not on the scaled artboard, so its scroll offsets are 1:1
-  scaleRef.current = { scale: phone ? 1 : scale, cover }
+  scaleRef.current = { scale: phone ? 1 : scale, cover, phone: !!phone }
 
   /* Leaving the hero, after the Scrolltide Tarn template: the copy sinks and
      blurs back into the fog, the hummingbird lifts up and away faster than
@@ -141,11 +141,13 @@ export default function App() {
       const vh = window.innerHeight
       if (y > vh * 1.6) return
       const p = clamp(y / vh)
-      const { scale: s, cover: c } = scaleRef.current
+      const { scale: s, cover: c, phone: onPhone } = scaleRef.current
       if (copyRef.current) {
         copyRef.current.style.transform = `translate3d(0, ${(y * 0.32) / s}px, 0)`
-        copyRef.current.style.opacity = String(clamp(1 - p * 1.3))
-        copyRef.current.style.filter = `blur(${p * 10}px)`
+        // Phones: the headline fades out quickly and stays sharp. Blurring
+        // text while a phone scrolls smears the words into each other.
+        copyRef.current.style.opacity = String(clamp(1 - p * (onPhone ? 2.6 : 1.3)))
+        copyRef.current.style.filter = onPhone ? 'none' : `blur(${p * 10}px)`
       }
       if (birdRef.current) {
         birdRef.current.style.transform = `translate3d(${(y * 0.12) / c}px, ${(-y * 0.42) / c}px, 0) scale(${1 + p * 0.1})`
@@ -194,40 +196,58 @@ export default function App() {
       return
     }
     const a = setTimeout(() => setPlay(true), (window.innerWidth < 768 ? PHONE_REVEAL_AT : REVEAL_AT) * 1000)
-    const b = setTimeout(() => setWord(true), HANDOFF_AT * 1000)
-    return () => {
-      clearTimeout(a)
-      clearTimeout(b)
-    }
+    return () => clearTimeout(a)
   }, [run, plate, plateEmpty])
 
-  /* Some phones block autoplay (iOS Low Power Mode, data saver). The clip
+  /* The handoff from the clip to the still follows the clip itself, not a
+     clock: it happens when the clip ends. On a slow phone connection the clip
+     can start seconds late, and a fixed timer used to cut the flight short.
+
+     Some phones block autoplay (iOS Low Power Mode, data saver). The clip
      then sits on its first frame with a play button over it. Ask it to play;
-     if it refuses, or has not started within a moment, skip the clip and let
-     the still bird fly in. */
+     if the phone refuses, or the clip still has not started after a few
+     seconds, skip it and let the still bird fly in. */
   useEffect(() => {
     if (plate) return
     setBlocked(false)
     const v = videoRef.current
     if (!v) return
     let started = false
-    const onPlaying = () => {
-      started = true
-    }
-    v.addEventListener('playing', onPlaying)
-    const give = () => {
-      if (started) return
-      setBlocked(true)
+    let done = false
+    let safety: ReturnType<typeof setTimeout> | undefined
+    const finish = () => {
+      if (done) return
+      done = true
       setWord(true)
     }
+    const onPlaying = () => {
+      if (started) return
+      started = true
+      // in case the "ended" event never arrives
+      const left = Number.isFinite(v.duration) ? v.duration - v.currentTime : HANDOFF_AT
+      safety = setTimeout(finish, left * 1000 + 800)
+    }
+    const giveUp = () => {
+      if (started || done) return
+      if (!v.paused && v.currentTime > 0) return onPlaying()
+      setBlocked(true)
+      finish()
+    }
+    v.addEventListener('playing', onPlaying)
+    v.addEventListener('ended', finish)
+    // the clip may already be running, or over, before this code loads
+    if (v.ended) finish()
+    else if (!v.paused && v.currentTime > 0) onPlaying()
     const tryPlay = v.play()
-    if (tryPlay) tryPlay.catch(give)
-    const t = setTimeout(() => {
-      if (v.paused || v.currentTime === 0) give()
-    }, 1500)
+    if (tryPlay) tryPlay.catch((e: unknown) => {
+      if ((e as { name?: string } | null)?.name === 'NotAllowedError') giveUp()
+    })
+    const t = setTimeout(giveUp, 4000)
     return () => {
       clearTimeout(t)
+      if (safety) clearTimeout(safety)
       v.removeEventListener('playing', onPlaying)
+      v.removeEventListener('ended', finish)
     }
   }, [run, plate])
 
@@ -311,8 +331,9 @@ export default function App() {
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: blocked ? 'none' : undefined }}
       >
         {/* phones get a version about a seventh of the size */}
-        <source src="/assets/hummingbird-flight-phone.webm" type="video/webm" media="(max-width: 767px)" />
+        {/* the mp4 comes first: every iPhone plays it, and not every one plays webm */}
         <source src="/assets/hummingbird-flight-phone.mp4" type="video/mp4" media="(max-width: 767px)" />
+        <source src="/assets/hummingbird-flight-phone.webm" type="video/webm" media="(max-width: 767px)" />
         <source src="/assets/hummingbird-flight.webm" type="video/webm" />
         <source src="/assets/hummingbird-flight.mp4" type="video/mp4" />
       </motion.video>

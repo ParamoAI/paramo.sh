@@ -67,7 +67,7 @@ export function BlurWords({ text, delay = 0, className = '' }: { text: string; d
       {words.map((w, i) => (
         <motion.span
           key={i}
-          className="inline-block whitespace-pre"
+          className="blur-word inline-block whitespace-pre"
           initial={{ opacity: 0, filter: 'blur(12px)', y: 10 }}
           whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -470,7 +470,7 @@ function Proof() {
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 1, delay: 0.15 + i * 0.15, ease }}
-              className="group flex flex-col justify-between gap-10 rounded-[24px] border border-white/25 bg-mist-raised/60 p-7 backdrop-blur-md transition-colors hover:border-white/60 sm:p-9"
+              className="blur-word group flex flex-col justify-between gap-10 rounded-[24px] border border-white/25 bg-mist-raised/60 p-7 backdrop-blur-md transition-colors hover:border-white/60 sm:p-9"
             >
               <div>
                 <div className="font-display text-[64px] leading-none tracking-[-0.02em] text-pine sm:text-[80px]">

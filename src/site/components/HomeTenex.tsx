@@ -275,6 +275,18 @@ function FeelTheDifference() {
       onFrame(() => {
         const el = ref.current
         if (!el) return
+        // Phones and tablets: the section is not held in place (the stacked
+        // cards are taller than the screen), so a task is handled once its
+        // card has scrolled into the upper part of the screen.
+        if (window.innerWidth < 1024) {
+          const line = window.innerHeight * 0.4
+          let count = 0
+          el.querySelectorAll('li[data-task]').forEach((li) => {
+            if (li.getBoundingClientRect().top < line) count += 1
+          })
+          setDone((d) => (d === count ? d : count))
+          return
+        }
         const r = el.getBoundingClientRect()
         const travel = r.height - window.innerHeight
         if (travel <= 0) return
@@ -290,13 +302,20 @@ function FeelTheDifference() {
   const allDone = done >= n
 
   return (
-    <section ref={ref} className="relative" style={{ height: `${(n + 2) * 70}vh` }}>
-      <div className="sticky top-0 flex h-[100svh] items-center">
+    <section
+      ref={ref}
+      className="relative lg:h-[var(--feel-h)]"
+      style={{ '--feel-h': `${(n + 2) * 70}vh` } as React.CSSProperties}
+    >
+      {/* Held in place on wide screens only. On phones the stacked cards are
+          taller than the screen, and holding them made them spill over the
+          next section. */}
+      <div className="py-16 lg:sticky lg:top-0 lg:flex lg:h-[100svh] lg:items-center lg:py-0">
         <div className={`${wrap} grid w-full gap-10 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-5">
             <Eyebrow>{FEEL.eyebrow}</Eyebrow>
             <h2 className={`${display} text-[38px] leading-[1.06] sm:text-[52px]`}>{FEEL.title}</h2>
-            <div className="mt-10">
+            <div className="mt-10 hidden lg:block">
               <div className="micro text-slate/70">Hours back this week</div>
               <div className={`${display} mt-2 text-[88px] leading-none tnum sm:text-[112px]`}>
                 <Counter value={hours} />
@@ -310,21 +329,31 @@ function FeelTheDifference() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.7, ease }}
-                  className="mt-8 max-w-sm font-display text-[22px] leading-snug text-pine italic"
+                  className="mt-8 hidden max-w-sm font-display text-[22px] leading-snug text-pine italic lg:block"
                 >
                   {FEEL.done}
                 </motion.p>
               )}
             </AnimatePresence>
-            <p className="mt-8 text-[13px] text-slate/60">{FEEL.note}</p>
+            <p className="mt-8 hidden text-[13px] text-slate/60 lg:block">{FEEL.note}</p>
           </div>
 
-          <ul className="space-y-3 lg:col-span-7">
+          <div className="lg:col-span-7">
+          {/* phones: the running total rides along at the top while the cards scroll under it */}
+          <div className="sticky top-0 z-10 -mx-5 mb-4 flex items-baseline justify-between gap-4 border-b border-line bg-mist px-5 py-3 sm:-mx-8 sm:px-8 lg:hidden">
+            <span className="micro text-slate/70">Hours back this week</span>
+            <span className={`${display} text-[34px] leading-none tnum`}>
+              <Counter value={hours} />
+              <span className="text-[20px] text-slate/60"> / {total}</span>
+            </span>
+          </div>
+          <ul className="space-y-3">
             {FEEL.tasks.map((t, i) => {
               const handled = i < done
               return (
                 <li
                   key={t.before}
+                  data-task
                   className={`grid grid-cols-[1fr_auto] items-center gap-4 border p-5 transition-all duration-700 sm:p-6 ${
                     handled ? 'border-pine/15 bg-mist-raised/50' : 'border-pine/35'
                   }`}
@@ -360,6 +389,23 @@ function FeelTheDifference() {
               )
             })}
           </ul>
+          <div className="lg:hidden">
+            <AnimatePresence>
+              {allDone && (
+                <motion.p
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7, ease }}
+                  className="mt-8 font-display text-[22px] leading-snug text-pine italic"
+                >
+                  {FEEL.done}
+                </motion.p>
+              )}
+            </AnimatePresence>
+            <p className="mt-6 text-[13px] text-slate/60">{FEEL.note}</p>
+          </div>
+          </div>
         </div>
       </div>
     </section>

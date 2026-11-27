@@ -413,3 +413,12 @@ video::-webkit-media-controls-start-playback-button {
 video::-webkit-media-controls {
   display: none !important;
 }
+
+/* Phones: text that sharpens in out of a blur on desktop only fades and
+   rises here. Blurring text while a phone scrolls smears the words into each
+   other, so the blur is switched off below 768px. */
+@media (max-width: 767px) {
+  .blur-word {
+    filter: none !important;
+  }
+}
